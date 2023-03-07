@@ -8,9 +8,9 @@ You can find here details about the product (or mini-app or module), from a high
   * [Product Vision](https://github.com/FEUP-LEIC-ES-2022-23/2LEIC14T5/blob/main/docs/ProductVision.md)
   * [Elevator Pitch](https://github.com/FEUP-LEIC-ES-2022-23/2LEIC14T5/blob/main/docs/ElevatorPitch.md)
 * Requirements
-  * [Use Case Model](https://github.com/FEUP-LEIC-ES-2022-23/2LEIC14T5/blob/main/docs/Requirements.md#use-case-model)
-  * [User stories](https://github.com/FEUP-LEIC-ES-2022-23/2LEIC14T5/blob/main/docs/Requirements.md#user-stories)
-  * [Domain model](https://github.com/FEUP-LEIC-ES-2022-23/2LEIC14T5/blob/main/docs/Requirements.md#domain-model)
+  * [Use Case Model](https://github.com/FEUP-LEIC-ES-2022-23/2LEIC14T5/blob/main/docs/requirements.md#use-case-model)
+  * [User stories](https://github.com/FEUP-LEIC-ES-2022-23/2LEIC14T5/blob/main/docs/requirements.md#user-stories)
+  * [Domain model](https://github.com/FEUP-LEIC-ES-2022-23/2LEIC14T5/blob/main/docs/requirements.md#domain-model)
 * Architecture and Design
   * [Logical architecture](https://github.com/FEUP-LEIC-ES-2022-23/2LEIC14T5/blob/main/docs/ArchitectureAndDesign.md#logical-architecture)
   * [Physical architecture](https://github.com/FEUP-LEIC-ES-2022-23/2LEIC14T5/blob/main/docs/ArchitectureAndDesign.md#physical-architecture)
