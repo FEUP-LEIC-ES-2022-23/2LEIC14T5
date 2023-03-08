@@ -1,33 +1,112 @@
 
-## Requirements
+# Requirements
 
-### User stories
-The user stories should be created as GitHub issues. Therefore, this section will *not* exist in your report, it is here only to explain how you should describe the requirements of the product as **user stories**. 
+## User stories
+### Story nº 1
+As a user, I want to search for a specific job offer, without having to scroll through all the ads, so that I can find the job I want faster.
 
-A user story is a description of desired functionality told from the perspective of the user or customer. A starting template for the description of a user story is 
+### User interface mockup
 
-*As a < user role >, I want < goal > so that < reason >.*
+### Acceptance test
 
-User stories should be created and described as [Issues](https://github.com/FEUP-LEIC-ES-2022-23/templates/issues) in GitHub with the label "user story". See how to in the video [Creating a Product Backlog of User Stories for Agile Development using GitHub](https://www.youtube.com/watch?v=m8ZxTHSKSKE).
+### Value and effort estimation
+- Value: Must-have
+- Effort: 5
 
-You should name the issue with the text of the user story, and, in the "comments" field, add any relevant notes, the image(s) of the user interface mockup(s) (see below) and the acceptance test scenarios (see below). 
+---
 
-**INVEST in good user stories**. 
-You may add more details after, but the shorter and complete, the better. In order to decide if the user story is good, please follow the [INVEST guidelines](https://xp123.com/articles/invest-in-good-stories-and-smart-tasks/).
+### Story nº 2
+As a user, I want to see the reviews and/or opinions on a certain job offer, so that I can have a better idea of what the job is like.
 
-**User interface mockups**.
-After the user story text, you should add a draft of the corresponding user interfaces, a simple mockup or draft, if applicable.
+### User interface mockup
 
-**Acceptance tests**.
-For each user story you should write also the acceptance tests (textually in [Gherkin](https://cucumber.io/docs/gherkin/reference/)), i.e., a description of scenarios (situations) that will help to confirm that the system satisfies the requirements addressed by the user story.
+### Acceptance test
 
-**Value and effort**.
-At the end, it is good to add a rough indication of the value of the user story to the customers (e.g. [MoSCoW](https://en.wikipedia.org/wiki/MoSCoW_method) method) and the team should add an estimation of the effort to implement it, for example, using t-shirt sizes (XS, S, M, L, XL).
+### Value and effort estimation
+- Value: Should-have
+- Effort: 8
 
+---
 
+### Story nº 3
+As a user, I want to be able to filter the job offers by different criteria, not only to that my search is easier and also to find the job I want faster, but also to compare the different job offers.
 
-### Domain model
+### User interface mockup
 
+### Acceptance test
+
+### Value and effort estimation
+Value: Must-have
+Effort: 8
+
+---
+
+### Story nº 4
+As a user, I want to have easy and interactive access to job offers in different locations, so that I can find a job in a place that I prefer.
+
+### User interface mockup
+
+### Acceptance test
+
+### Value and effort estimation
+Value: Must-have
+Effort: 8
+
+---
+
+### Story nº 5
+As a user, I want to be able to mark a job offer as favorite, so that I can easily find it later.
+
+### User interface mockup
+
+### Acceptance test
+
+### Value and effort estimation
+Value: Should-have
+Effort: 5
+
+---
+
+### Story nº 6
+As a user, I want to be able to see the job offers that I have marked as favorite, so that I can easily find them later.
+
+### User interface mockup
+
+### Acceptance test
+
+### Value and effort estimation
+Value: Must-have
+Effort: 5
+
+---
+
+### Story nº 7
+As a user, I want to be able to rate and review a job offer, so that I can give my opinion on the job.
+### User interface mockup
+
+### Acceptance test
+
+### Value and effort estimation
+- Value: Should-have
+- Effort: 8
+
+---
+
+### Story nº 8
+As a user, I want to see detailed information about a job offer, so that I can have a better idea of what the job is like.
+
+### User interface mockup
+
+### Acceptance test
+
+### Value and effort estimation
+Value: Must-have
+Effort: 5
+
+---
+<br>
+
+## Domain Model
  <p align="center" justify="center">
   <img src="../images/domain_model.png" alt="Domain Model">
 </p>
