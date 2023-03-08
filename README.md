@@ -20,6 +20,13 @@ You can find here details about the product (or mini-app or module), from a high
 * [Configuration and change management](https://github.com/FEUP-LEIC-ES-2022-23/2LEIC14T5/blob/main/docs/ConfigurationAndChangeManagement.md)
 * [Project management](https://github.com/FEUP-LEIC-ES-2022-23/2LEIC14T5/blob/main/docs/ProjectManagement.md)
 
+
+# FilterIT Preview
+
+![FilterIT gif (2)](https://user-images.githubusercontent.com/113979321/223730757-9a69984f-ab35-46a3-bacb-5482bf7afc43.gif)<br>
+
+---
+
 So far, contributions are exclusively made by the initial team, but we hope to open them to the community, in all areas and topics: requirements, technologies, development, experimentation, testing, etc.
 
 Please contact us! 
@@ -31,5 +38,3 @@ Henrique Garde (up202108725@up.pt)<br>
 João Longras (up202108780@up.pt)<br>
 João Padrão (up202108766@up.pt)<br>
 Samuel Maciel (up202108697@up.pt)<br>
-
----
