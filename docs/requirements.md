@@ -6,7 +6,7 @@
 As a user, I want to search for a specific job offer, without having to scroll through all the ads, so that I can find the job I want faster.
 
 ### User interface mockup
-![Search png](https://user-images.githubusercontent.com/113979321/223869383-75154e89-c0a4-434c-9b77-49cf07365ff2.png)
+![Search java png](https://user-images.githubusercontent.com/113979321/224019759-2fe244af-46fe-4ee3-a018-cf15af3a58c4.png)
 
 ### Acceptance test
 
