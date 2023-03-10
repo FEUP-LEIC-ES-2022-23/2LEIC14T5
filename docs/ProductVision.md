@@ -16,5 +16,6 @@ With the growth of technology related jobs, it is hard to find reliable opinions
 ### Assumptions and dependencies
 - ITJobs API
 - LinkedIn API
+- Glassdoor API
 - Firebase 
 
