@@ -10,17 +10,17 @@ As a user, I want to search for a specific job offer, without having to scroll t
 
 ### Acceptance tests
 ```Gherkin
-Scenario: Rate a talk.
-  Given The post of a talk that I have attended
-  When I tap "Rate talk"
-  And I insert a rate
-  And I tap "OK",
-  Then the talk's post appears
+Scenario: Search for Java Developer jobs.
+  Given The search screen
+  When I tap the search bar
+  And I insert "Java Developer"
+  And I tap the search button,
+  Then the results of the search for "Java Developer" appear
 ```
 
 ### Value and effort estimation
 - Value: Must-have
-- Effort: 5
+- Effort: 8
 
 ---
 
@@ -32,12 +32,10 @@ As a user, I want to see the reviews and/or opinions on a certain job offer, so 
 
 ### Acceptance tests
 ```Gherkin
-Scenario: Rate a talk.
-  Given The post of a talk that I have attended
-  When I tap "Rate talk"
-  And I insert a rate
-  And I tap "OK",
-  Then the talk's post appears
+Scenario: See the reviews about a job offer.
+  Given The post of a job offer
+  When I tap "Reviews",
+  Then the reviews about the job offer appear
 ```
 
 ### Value and effort estimation
@@ -54,17 +52,17 @@ As a user, I want to be able to filter the job offers by different criteria, not
 
 ### Acceptance tests
 ```Gherkin
-Scenario: Rate a talk.
-  Given The post of a talk that I have attended
-  When I tap "Rate talk"
-  And I insert a rate
-  And I tap "OK",
-  Then the talk's post appears
+Scenario: Filter the search.
+  Given The search screen
+  When I tap the filters button
+  And I select the criteria I want to filter by
+  And I tap "Search",
+  Then the results of the search for appear filtered by the criteria I selected
 ```
 
 ### Value and effort estimation
-Value: Must-have
-Effort: 8
+- Value: Must-have
+- Effort: 13
 
 ---
 
@@ -76,17 +74,15 @@ As a user, I want to have easy and interactive access to job offers in different
 
 ### Acceptance tests
 ```Gherkin
-Scenario: Rate a talk.
-  Given The post of a talk that I have attended
-  When I tap "Rate talk"
-  And I insert a rate
-  And I tap "OK",
-  Then the talk's post appears
+Scenario: See the job offers in Porto.
+  Given The main screen
+  When I tap "Porto",
+  Then the job offers in Porto district appear
 ```
 
 ### Value and effort estimation
-Value: Must-have
-Effort: 8
+- Value: Must-have
+- Effort: 8
 
 ---
 
@@ -98,17 +94,15 @@ As a user, I want to be able to mark a job offer as favorite, so that I can easi
 
 ### Acceptance tests
 ```Gherkin
-Scenario: Rate a talk.
-  Given The post of a talk that I have attended
-  When I tap "Rate talk"
-  And I insert a rate
-  And I tap "OK",
-  Then the talk's post appears
+Scenario: Mark a job offer as favorite.
+  Given The post of a job offer
+  When I tap the favorite button,
+  Then the job offer is marked as favorite
 ```
 
 ### Value and effort estimation
-Value: Should-have
-Effort: 5
+- Value: Should-have
+- Effort: 5
 
 ---
 
@@ -120,17 +114,15 @@ As a user, I want to be able to see the job offers that I have marked as favorit
 
 ### Acceptance tests
 ```Gherkin
-Scenario: Rate a talk.
-  Given The post of a talk that I have attended
-  When I tap "Rate talk"
-  And I insert a rate
-  And I tap "OK",
-  Then the talk's post appears
+Scenario: See the job offers that I have marked as favorite.
+  Given The navigation drawer
+  When I tap "Favorites",
+  Then the job offers that I have marked as favorite appear
 ```
 
 ### Value and effort estimation
-Value: Must-have
-Effort: 5
+- Value: Must-have
+- Effort: 5
 
 ---
 
@@ -141,12 +133,12 @@ As a user, I want to be able to rate and review a job offer, so that I can give 
 
 ### Acceptance tests
 ```Gherkin
-Scenario: Rate a talk.
-  Given The post of a talk that I have attended
-  When I tap "Rate talk"
+Scenario: Rate a job offer.
+  Given The post of a job offer
+  When I tap "Rate job"
   And I insert a rate
   And I tap "OK",
-  Then the talk's post appears
+  Then the job offer's post appears
 ```
 
 ### Value and effort estimation
@@ -163,17 +155,15 @@ As a user, I want to see detailed information about a job offer, so that I can h
 
 ### Acceptance tests
 ```Gherkin
-Scenario: Rate a talk.
-  Given The post of a talk that I have attended
-  When I tap "Rate talk"
-  And I insert a rate
-  And I tap "OK",
-  Then the talk's post appears
+Scenario: See the details of a job offer.
+  Given The search screen
+  When I tap a job offer,
+  Then the details of the job offer appear
 ```
 
 ### Value and effort estimation
-Value: Must-have
-Effort: 5
+- Value: Must-have
+- Effort: 5
 
 ---
 <br>
