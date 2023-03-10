@@ -35,5 +35,5 @@ In our app, there are only 2 entities envolved:
 ### Vertical prototype
 In our vertical prototype, we implemented multiple pages (Home Page, Favorites Page and Help Page), to give a basic idea of what we want to create. Also, we added a simple button widget, just to show some "state" functionality, a key feature that we will need in the app.
 
-The vertical prototype is available in the "app" directory, on the repository root.
+The source code for vertical prototype is available in the "app" directory, on the repository root.
 

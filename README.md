@@ -8,7 +8,6 @@ You can find here details about the product (or mini-app or module), from a high
   * [Product Vision](https://github.com/FEUP-LEIC-ES-2022-23/2LEIC14T5/blob/main/docs/ProductVision.md)
   * [Elevator Pitch](https://github.com/FEUP-LEIC-ES-2022-23/2LEIC14T5/blob/main/docs/ElevatorPitch.md)
 * Requirements
-  * [Use Case Model](https://github.com/FEUP-LEIC-ES-2022-23/2LEIC14T5/blob/main/docs/requirements.md#use-case-model)
   * [User stories](https://github.com/FEUP-LEIC-ES-2022-23/2LEIC14T5/blob/main/docs/requirements.md#user-stories)
   * [Domain model](https://github.com/FEUP-LEIC-ES-2022-23/2LEIC14T5/blob/main/docs/requirements.md#domain-model)
 * Architecture and Design
