@@ -45,7 +45,7 @@ Scenario: See the reviews about a job offer.
 ---
 
 ### Story nº 3
-As a user, I want to be able to filter the job offers by different criteria, not only to that my search is easier and also to find the job I want faster, but also to compare the different job offers.
+As a user, I want to be able to filter job offers by different criteria, not only to make my search easier and also to find the job I want faster, but also to compare different job offers.
 
 ### User interface mockup
 ![Filter png](https://user-images.githubusercontent.com/113979321/223870114-433fb14e-29c5-4b66-a5ae-0e3529ff408b.png)
@@ -138,7 +138,7 @@ Scenario: Rate a job offer.
   When I tap "Rate job"
   And I insert a rate
   And I tap "OK",
-  Then the job offer's post appears
+  Then the job offer's review appears
 ```
 
 ### Value and effort estimation
