@@ -166,6 +166,28 @@ Scenario: See the details of a job offer.
 - Effort: 5
 
 ---
+
+### Story nº 9
+As a user, I want to be able to navigate easily through the app pages.
+
+### User interface mockup
+![bar search png](https://user-images.githubusercontent.com/113979321/224378031-0c5fbe72-1482-47f5-b048-82ee230c0d56.png)
+
+### Acceptance tests
+```Gherkin
+Scenario: Switch pages.
+  Given any page
+  When I tap the top left corner button
+  And the navigation drawer opens,
+  Then I can select which page to navigate to
+```
+
+### Value and effort estimation
+- Value: Must-have
+- Effort: 5
+
+---
+
 <br>
 
 ## Domain Model
