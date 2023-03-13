@@ -1,9 +1,9 @@
-name: filter_it
-description: Project for ESOF project 2022/23
+name: Filter IT
+description: App design to help current and future IT workers find their ideal job.
 
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
-version: 1.0.0
+version: 0.1.0
 
 environment:
   sdk: '>=2.18.4 <3.0.0'

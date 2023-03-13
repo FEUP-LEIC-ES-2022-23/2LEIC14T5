@@ -23,14 +23,18 @@ class _HomePageState extends State<HomePage> {
       body: Center(
         child: Column(
           children: <Widget>[
-            const SizedBox(height: 30,),
+            const SizedBox(height: 30, ),
             const Text("This will be the home page!\n"),
             if (_clicked) const Text('Made by:\n\nJoão Silva\nHenrique Gardé\nJoão Padrão\nJoão Longras\nSamuel Maciel'),
             ElevatedButton(
                 onPressed: () {
                   setState(() {
-                    if(_clicked) _clicked = false;
-                    else _clicked = true;
+                    if(_clicked) {
+                      _clicked = false;
+                    }
+                    else{
+                      _clicked = true;
+                    }
                   });
                 },
               style:ElevatedButton.styleFrom(
