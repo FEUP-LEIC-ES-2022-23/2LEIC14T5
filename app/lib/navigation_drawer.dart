@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'home_page.dart';
-import 'favorites_page.dart';
-import 'help_page.dart';
+import 'app_pages/home_page.dart';
+import 'app_pages/favorites_page.dart';
+import 'app_pages/help_page.dart';
+import 'app_pages/search_page.dart';
 
 
 class NavigationDrawer extends StatelessWidget{
@@ -29,12 +30,22 @@ class NavigationDrawer extends StatelessWidget{
               )),
         ),
         ListTile(
+          leading: const Icon(Icons.search),
+          title: const Text("Search Page"),
+          onTap: () {
+            Navigator.pop(context);
+            Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => const SearchPage(),
+            ));
+          },
+        ),
+        ListTile(
           leading: const Icon(Icons.favorite),
           title: const Text("Favorites"),
           onTap: () {
             Navigator.pop(context);
             Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => FavoritesPage(),
+              builder: (context) => const FavoritesPage(),
             ));
           },
         ),
