@@ -1,8 +1,9 @@
 import 'package:filter_it/custom_widgets/search_bar.dart';
 import 'package:filter_it/data_models/job_post.dart';
-import 'package:filter_it/data/job_posts_examples.dart';
 import 'package:filter_it/custom_widgets/small_job_post_builder.dart';
+import 'package:filter_it/itjobs_api/itjobs_api.dart';
 import 'package:flutter/material.dart';
+import 'dart:async';
 
 import '../navigation_drawer.dart' as nav;
 
@@ -15,13 +16,43 @@ class SearchPage extends StatefulWidget {
 }
 
 class SearchPageState extends State<SearchPage> {
-  late List<JobPost> jobPostsExample;
+  late List<JobPost> jobPostsFinal = [];
   String searchQuery = '';
+  var requestBody = {
+    'api_key': '74f0ed2264074636d4cc729bd22c62de',
+    'limit': '2',
+  };
+  Timer? _debounce;
 
   @override
   void initState() {
     super.initState();
-    jobPostsExample = example;
+
+    init();
+  }
+
+  @override
+  void dispose() {
+    _debounce?.cancel();
+    super.dispose();
+  }
+
+  void debouncedSearch(
+      VoidCallback callback, {
+        Duration duration = const Duration(milliseconds: 500),
+      }) {
+    if (_debounce != null) {
+      _debounce!.cancel();
+    }
+
+    _debounce = Timer(duration, callback);
+  }
+
+  Future init() async {
+    final jobPosts = await ITJobsAPI.fetchJobPosts(searchQuery, requestBody);
+    setState(() {
+      jobPostsFinal = jobPosts;
+    });
   }
 
   @override
@@ -37,9 +68,9 @@ class SearchPageState extends State<SearchPage> {
           searchBar(),
           Expanded(
             child: ListView.builder(
-              itemCount: jobPostsExample.length,
+              itemCount: jobPostsFinal.length,
               itemBuilder: (context, index) {
-                  final jobPost = jobPostsExample[index];
+                  final jobPost = jobPostsFinal[index];
                   return jobPostBuilder(jobPost);
               },
             ),
@@ -59,17 +90,14 @@ class SearchPageState extends State<SearchPage> {
       jobPost: jobPost
   );
 
-  void searchJobPosts(String query) {
-    final filteredJobPosts = example.where((jobPost) {
-      final companyNameLower = jobPost.company.companyName.toLowerCase();
-      final jobTitleLower = jobPost.jobTitle.toLowerCase();
-      final searchLower = query.toLowerCase();
-      return companyNameLower.contains(searchLower) || jobTitleLower.contains(searchLower);
-    }).toList();
+  Future searchJobPosts(String query) async  => debouncedSearch(() async {
+    final jobPosts = await ITJobsAPI.fetchJobPosts(searchQuery, requestBody);
+
+    if(!mounted) return;
 
     setState(() {
       searchQuery = query;
-      jobPostsExample = filteredJobPosts;
+      jobPostsFinal = jobPosts;
     });
-  }
+  });
 }

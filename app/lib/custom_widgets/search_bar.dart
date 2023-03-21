@@ -18,6 +18,7 @@ class SearchBar extends StatefulWidget {
 
 class SearchBarState extends State<SearchBar> {
   final controller = TextEditingController();
+  final FocusNode focusNode = FocusNode();
 
   @override
   Widget build(BuildContext context) {
@@ -34,26 +35,29 @@ class SearchBarState extends State<SearchBar> {
         border: Border.all(color: Colors.black26),
       ),
       padding: const EdgeInsets.symmetric(horizontal: 8),
-      child: TextField(
-        controller: controller,
-        decoration: InputDecoration(
-          icon: Icon(Icons.search, color: style.color),
-          suffixIcon: widget.text.isNotEmpty
-              ? GestureDetector(
-            child: Icon(Icons.close, color: style.color),
-            onTap: () {
-              controller.clear();
-              widget.onChanged('');
-              FocusScope.of(context).requestFocus(FocusNode());
-            },
-          )
-              : null,
-          hintText: widget.hintText,
-          hintStyle: style,
-          border: InputBorder.none,
+      child: GestureDetector(
+        onTap:() => FocusManager.instance.primaryFocus?.unfocus(),
+        child: TextField(
+          controller: controller,
+          decoration: InputDecoration(
+            icon: Icon(Icons.search, color: style.color),
+            suffixIcon: widget.text.isNotEmpty
+                ? GestureDetector(
+              child: Icon(Icons.close, color: style.color),
+              onTap: () {
+                controller.clear();
+                widget.onChanged('');
+                FocusScope.of(context).requestFocus(FocusNode());
+              },
+            )
+                : null,
+            hintText: widget.hintText,
+            hintStyle: style,
+            border: InputBorder.none,
+          ),
+          style: style,
+          onChanged: widget.onChanged,
         ),
-        style: style,
-        onChanged: widget.onChanged,
       ),
     );
   }
