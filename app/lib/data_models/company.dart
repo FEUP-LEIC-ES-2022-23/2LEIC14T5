@@ -1,5 +1,5 @@
 class Company {
-  final int companyID;
+  final String companyID;
   final String companyName;
   final String logoURL;
   final String companyDescription;
@@ -25,16 +25,16 @@ class Company {
 
   factory Company.fromJson(Map<String, dynamic> json) {
     return Company(
-      companyID: json['id'] ?? 99999,
-      companyName: json['name'] ?? "",
-      logoURL: json['logo'] ?? "",
-      companyDescription: json['description'] ?? "",
-      companyAddress: json['address'] ?? "",
-      companyPhoneNumber: json['phone'] ?? "",
-      companyFax: json['fax'] ?? "",
-      companyEmail: json['email'] ?? "",
-      companyURL: json['url'] ?? "",
-      companySlug: json['slug'] ?? "",
+      companyID: (json['id']).toString(),
+      companyName: (json['name']).toString(),
+      logoURL: (json['logo']).toString(),
+      companyDescription: (json['description']).toString(),
+      companyAddress: (json['address']).toString(),
+      companyPhoneNumber: (json['phone']).toString(),
+      companyFax: (json['fax']).toString(),
+      companyEmail: (json['email']).toString(),
+      companyURL: (json['url']).toString(),
+      companySlug: (json['slug']).toString(),
     );
   }
 }

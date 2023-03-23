@@ -16,42 +16,25 @@ class SearchPage extends StatefulWidget {
 }
 
 class SearchPageState extends State<SearchPage> {
-  late List<JobPost> jobPostsFinal = [];
+  late List<JobPost> jobPostsDisplay = [];
+  List<JobPost> allJobPosts = [];
   String searchQuery = '';
   var requestBody = {
     'api_key': '74f0ed2264074636d4cc729bd22c62de',
-    'limit': '2',
+    'limit': '10',
   };
-  Timer? _debounce;
 
   @override
   void initState() {
     super.initState();
-
     init();
   }
 
-  @override
-  void dispose() {
-    _debounce?.cancel();
-    super.dispose();
-  }
-
-  void debouncedSearch(
-      VoidCallback callback, {
-        Duration duration = const Duration(milliseconds: 500),
-      }) {
-    if (_debounce != null) {
-      _debounce!.cancel();
-    }
-
-    _debounce = Timer(duration, callback);
-  }
-
   Future init() async {
-    final jobPosts = await ITJobsAPI.fetchJobPosts(searchQuery, requestBody);
+    final jobPosts = await ITJobsAPI.fetchJobPosts(requestBody);
     setState(() {
-      jobPostsFinal = jobPosts;
+      jobPostsDisplay = jobPosts;
+      allJobPosts = jobPosts;
     });
   }
 
@@ -67,14 +50,58 @@ class SearchPageState extends State<SearchPage> {
         children: <Widget> [
           searchBar(),
           Expanded(
-            child: ListView.builder(
-              itemCount: jobPostsFinal.length,
+            child: jobPostsDisplay.isEmpty
+                ? const Center(
+                  child: Text(
+                    'No results found.',
+                    style: TextStyle(
+                      fontSize: 20,
+                    )
+                  )
+                )
+                : ListView.builder(
+              itemCount: jobPostsDisplay.length,
               itemBuilder: (context, index) {
-                  final jobPost = jobPostsFinal[index];
-                  return jobPostBuilder(jobPost);
+                final jobPost = jobPostsDisplay[index];
+                return jobPostBuilder(jobPost);
               },
             ),
           ),
+          Container(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                jobPostsDisplay.isNotEmpty ?
+                ElevatedButton(
+                  onPressed: () async {
+                    requestBody['limit'] = (int.parse(requestBody['limit']!) + 10).toString();
+                    final jobPosts = await ITJobsAPI.fetchJobPosts(requestBody);
+                    setState(() {
+                      allJobPosts = jobPosts;
+                      jobPostsDisplay = jobPosts;
+                    });
+                  },
+                  child: const Text("Add more results"),
+                ) : const SizedBox(width: 0, height: 0),
+
+                jobPostsDisplay.length > 10 ?
+                    const SizedBox(width: 10, height: 0) : const SizedBox(width: 0, height: 0),
+
+                jobPostsDisplay.length > 10 ?
+                ElevatedButton(
+                  onPressed: () async{
+                    requestBody['limit'] = (int.parse(requestBody['limit']!) - 10).toString();
+                    final jobPosts = await ITJobsAPI.fetchJobPosts(requestBody);
+                    setState(() {
+                      allJobPosts = jobPosts;
+                      jobPostsDisplay = jobPosts;
+                    });
+                  },
+                  child: const Text("See less results"),
+                ) : const SizedBox(width: 0, height: 0),
+              ],
+            )
+          )
         ]
       )
     );
@@ -90,14 +117,15 @@ class SearchPageState extends State<SearchPage> {
       jobPost: jobPost
   );
 
-  Future searchJobPosts(String query) async  => debouncedSearch(() async {
-    final jobPosts = await ITJobsAPI.fetchJobPosts(searchQuery, requestBody);
-
-    if(!mounted) return;
+  void searchJobPosts(String query) {
+    final temp = allJobPosts.where((jobPost){
+      return jobPost.jobTitle.toLowerCase().contains(query.toLowerCase())
+            || jobPost.company.companyName.toLowerCase().contains(query.toLowerCase());
+    }).toList();
 
     setState(() {
       searchQuery = query;
-      jobPostsFinal = jobPosts;
+      jobPostsDisplay = temp;
     });
-  });
+  }
 }

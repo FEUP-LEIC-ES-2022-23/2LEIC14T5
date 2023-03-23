@@ -3,6 +3,7 @@ import 'package:filter_it/data_models/job_contract.dart';
 import 'package:filter_it/data_models/job_location.dart';
 import 'package:filter_it/data_models/job_type.dart';
 
+
 class JobPost{
   final Company company;
   final int companyID;
@@ -63,16 +64,16 @@ class JobPost{
     return JobPost(
       company: Company.fromJson(json['company']),
       companyID: json['companyId'] ?? 0,
-      jobTitle: json['title'] ?? "",
-      jobDescription: json['body'] ?? "",
-      jobReference: json['ref'] ?? "",
-      jobWage: json['wage'] ?? "",
+      jobTitle: (json['title']).toString(),
+      jobDescription: (json['description']).toString(),
+      jobReference: (json['reference']).toString(),
+      jobWage: (json['wage']).toString(),
       jobTypes: jobTypesTemp,
       jobContracts: jobContractsTemp,
       jobLocations: jobLocationsTemp,
       publishedDate: json['publishedAt'] ?? "",
       updatedDate: json['updatedAt'] ?? "",
-      jobSlug: json['slug'] ?? "",
+      jobSlug: (json['slug']).toString(),
     );
   }
 }
