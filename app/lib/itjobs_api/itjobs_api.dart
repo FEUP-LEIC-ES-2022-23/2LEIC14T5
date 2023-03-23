@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:filter_it/data_models/job_post.dart';
 
 class ITJobsAPI {
-  static Future<List<JobPost>> fetchJobPosts(String searchQuery, Map<String, String> body) async {
+  static Future<List<JobPost>> fetchJobPosts(Map<String, String> body) async {
     final response = await http.post(Uri.parse('https://api.itjobs.pt/job/list.json'), body: body);
 
     if (response.statusCode == 200) {
@@ -20,16 +20,10 @@ class ITJobsAPI {
         throw Exception("jobPostsJson is empty");
       }
 
-      return jobPostsJson.map((jobPostJson) => JobPost.fromJson(jobPostJson)).where((jobPost) {
-        if(searchQuery.isEmpty){
-          return true;
-        } else {
-          return jobPost.jobTitle.toLowerCase().contains(searchQuery.toLowerCase())
-              || jobPost.company.companyName.toLowerCase().contains(searchQuery.toLowerCase());
-        }
-      }
-      ).toList();
-    } else {
+      return jobPostsJson.map((jobPostJson) => JobPost.fromJson(jobPostJson)).toList();
+    }
+
+    else {
       throw Exception('Failed to load job posts');
     }
   }

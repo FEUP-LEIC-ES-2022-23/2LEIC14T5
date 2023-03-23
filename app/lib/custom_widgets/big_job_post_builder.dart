@@ -1,5 +1,6 @@
 import 'package:filter_it/data_models/job_post.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 
 class BigJobPostBuilder extends StatelessWidget{
   final JobPost jobPost;
