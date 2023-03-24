@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'app_pages/home_page.dart';
-import 'app_pages/favorites_page.dart';
-import 'app_pages/help_page.dart';
-import 'app_pages/search_page.dart';
+import '../app_pages/home_page.dart';
+import '../app_pages/favorites_page.dart';
+import '../app_pages/help_page.dart';
+import '../app_pages/search_page.dart';
 
 
 class NavigationDrawer extends StatelessWidget{

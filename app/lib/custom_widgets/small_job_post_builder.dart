@@ -14,10 +14,12 @@ class SmallJobPostBuilder extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       leading: Image.network(
-        jobPost.company.logoURL,
+        jobPost.company.logoURL.isNotEmpty
+            ? jobPost.company.logoURL
+            : 'https://static.itjobs.pt/images/logo.png',
         width: 50,
         height: 50,
-        fit: BoxFit.cover,
+        fit: BoxFit.contain,
       ),
       title: Text(jobPost.jobTitle),
       subtitle: Text(jobPost.company.companyName),
