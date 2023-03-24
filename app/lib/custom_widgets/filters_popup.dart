@@ -40,7 +40,7 @@ class FiltersPopupState extends State<FiltersPopup> {
                             jobType = newValue!;
                           });
                         },
-                        items: <String>['Unspecified', 'Full Time', 'Part Time']
+                        items: <String>['Unspecified', 'Full-Time', 'Part-Time']
                             .map<DropdownMenuItem<String>>((String value) {
                           return DropdownMenuItem<String>(
                             value: value,
@@ -100,7 +100,7 @@ class FiltersPopupState extends State<FiltersPopup> {
                             contractType = newValue!;
                           });
                         },
-                        items: <String>['Unspecified', 'Contarto a termo', 'Contrato sem termo', 'Estágio profissional', 'Prestação de serviços', 'Estágio académico']
+                        items: <String>['Unspecified', 'Contrato a termo', 'Contrato sem termo', 'Estágio profissional', 'Prestação de Serviços', 'Estágio académico']
                             .map<DropdownMenuItem<String>>((String value) {
                           return DropdownMenuItem<String>(
                             value: value,

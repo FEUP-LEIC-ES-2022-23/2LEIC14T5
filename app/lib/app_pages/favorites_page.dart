@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../navigation_drawer.dart' as nav;
+import '../custom_widgets/navigation_drawer.dart' as nav;
 
 class FavoritesPage extends StatelessWidget{
   const FavoritesPage({Key? key}) : super(key: key);

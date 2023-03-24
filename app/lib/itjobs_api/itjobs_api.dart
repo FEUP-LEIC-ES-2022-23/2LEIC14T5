@@ -11,6 +11,15 @@ class ITJobsAPI {
       if(key == 'api_key'){
         finalBody[key] = body[key];
       }
+
+      else if(key == 'jobType' && body[key] != 'Unspecified'){
+        finalBody['type'] = body[key].toString();
+      }
+
+      else if(key == 'contractType' && body[key] != 'Unspecified'){
+        finalBody['contract'] = body[key].toString();
+      }
+
       else if(body[key] != 'Unspecified' && key != 'limit'){
         if(query.isEmpty){
           query += body[key].toString().toLowerCase();
@@ -26,16 +35,17 @@ class ITJobsAPI {
     }
     finalBody['limit'] = body['limit'];
 
-    for(var key in finalBody.keys){
-      print('$key: ${finalBody[key]}');
-    }
-
     final response = await http.post(Uri.parse('https://api.itjobs.pt/job/list.json'), body: finalBody);
 
     if (response.statusCode == 200) {
       final Map<String, dynamic> preFetch = json.decode(response.body);
-
-      final List jobPostsJson = preFetch["results"];
+      List jobPostsJson = [];
+      if(preFetch["results"] == null){
+        jobPostsJson = [];
+      }
+      else {
+        jobPostsJson = preFetch["results"];
+      }
 
       if(jobPostsJson.isEmpty){
         throw Exception("jobPostsJson is empty");

@@ -6,7 +6,7 @@ import 'package:filter_it/itjobs_api/itjobs_api.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 
-import '../navigation_drawer.dart' as nav;
+import '../custom_widgets/navigation_drawer.dart' as nav;
 
 
 class SearchPage extends StatefulWidget {
@@ -66,13 +66,30 @@ class SearchPageState extends State<SearchPage> {
       setState(() {
         jobPostsDisplay = jobPosts;
         allJobPosts = jobPosts;
+        requestBody['jobType'] = 'Unspecified';
+        requestBody['language'] = 'Unspecified';
+        requestBody['contractType'] = 'Unspecified';
+        requestBody['location'] = 'Unspecified';
       });
-
-      requestBody['jobType'] = 'Unspecified';
-      requestBody['language'] = 'Unspecified';
-      requestBody['contractType'] = 'Unspecified';
-      requestBody['location'] = 'Unspecified';
     }
+  }
+
+  void refresh() async {
+    setState(() {
+      jobPostsDisplay = [];
+      allJobPosts = [];
+    });
+
+    requestBody['jobType'] = 'Unspecified';
+    requestBody['language'] = 'Unspecified';
+    requestBody['contractType'] = 'Unspecified';
+    requestBody['location'] = 'Unspecified';
+
+    final jobPosts = await ITJobsAPI.fetchJobPosts(requestBody);
+    setState(() {
+      jobPostsDisplay = jobPosts;
+      allJobPosts = jobPosts;
+    });
   }
 
   @override
@@ -92,6 +109,10 @@ class SearchPageState extends State<SearchPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Expanded(child: searchBar()),
+                  IconButton(
+                      onPressed: refresh,
+                      icon: const Icon(Icons.refresh),
+                  ),
                   IconButton(
                       onPressed: showFiltersPopup,
                       icon: const Icon(Icons.filter_list),
