@@ -40,7 +40,7 @@ class JobPost{
           .map((type) => JobType.fromJson(type))
           .toList();
     } else {
-      jobTypesTemp = [JobType(jobTypeID: "Error", jobTypeName: "Error")];
+      jobTypesTemp = [JobType(jobTypeID: "Error", jobTypeName: "No job types specified")];
     }
 
     List<JobLocation> jobLocationsTemp = [];
@@ -60,6 +60,7 @@ class JobPost{
     } else {
       jobContractsTemp = [JobContract(jobContractID: "Error", jobContractName: "Error")];
     }
+
 
     return JobPost(
       company: Company.fromJson(json['company']),
