@@ -1,4 +1,5 @@
 import 'package:filter_it/custom_widgets/search_bar.dart';
+import 'package:filter_it/custom_widgets/filters_popup.dart';
 import 'package:filter_it/data_models/job_post.dart';
 import 'package:filter_it/custom_widgets/small_job_post_builder.dart';
 import 'package:filter_it/itjobs_api/itjobs_api.dart';
@@ -19,9 +20,14 @@ class SearchPageState extends State<SearchPage> {
   late List<JobPost> jobPostsDisplay = [];
   List<JobPost> allJobPosts = [];
   String searchQuery = '';
+  FiltersPopup filterPopup = FiltersPopup();
   var requestBody = {
     'api_key': '74f0ed2264074636d4cc729bd22c62de',
-    'limit': '10',
+    'limit': '20',
+    'jobType': 'Unspecified',
+    'language': 'Unspecified',
+    'contractType': 'Unspecified',
+    'location': 'Unspecified',
   };
 
   @override
@@ -38,6 +44,37 @@ class SearchPageState extends State<SearchPage> {
     });
   }
 
+  void showFiltersPopup() async {
+    final result = await showDialog(
+      context: context,
+      builder: (BuildContext context) => filterPopup,
+    );
+
+    if(result != null) {
+      setState(() {
+        jobPostsDisplay = [];
+        allJobPosts = [];
+      });
+
+      requestBody['jobType'] = result['jobType'];
+      requestBody['language'] = result['language'];
+      requestBody['contractType'] = result['contractType'];
+      requestBody['location'] = result['location'];
+
+      final jobPosts = await ITJobsAPI.fetchJobPosts(requestBody);
+
+      setState(() {
+        jobPostsDisplay = jobPosts;
+        allJobPosts = jobPosts;
+      });
+
+      requestBody['jobType'] = 'Unspecified';
+      requestBody['language'] = 'Unspecified';
+      requestBody['contractType'] = 'Unspecified';
+      requestBody['location'] = 'Unspecified';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,7 +85,20 @@ class SearchPageState extends State<SearchPage> {
       drawer: const nav.NavigationDrawer(),
       body: Column(
         children: <Widget> [
-          searchBar(),
+          SizedBox(
+            width: MediaQuery.of(context).size.width,
+            height: 80,
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Expanded(child: searchBar()),
+                  IconButton(
+                      onPressed: showFiltersPopup,
+                      icon: const Icon(Icons.filter_list),
+                  ),
+                ],
+            ),
+          ),
           Expanded(
             child: jobPostsDisplay.isEmpty
                 ? const Center(
@@ -81,13 +131,16 @@ class SearchPageState extends State<SearchPage> {
                       jobPostsDisplay = jobPosts;
                     });
                   },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.orangeAccent,
+                  ),
                   child: const Text("Add more results"),
                 ) : const SizedBox(width: 0, height: 0),
 
-                jobPostsDisplay.length > 10 ?
+                jobPostsDisplay.length > 20 ?
                     const SizedBox(width: 10, height: 0) : const SizedBox(width: 0, height: 0),
 
-                jobPostsDisplay.length > 10 ?
+                jobPostsDisplay.length > 20 ?
                 ElevatedButton(
                   onPressed: () async{
                     requestBody['limit'] = (int.parse(requestBody['limit']!) - 10).toString();
@@ -97,6 +150,9 @@ class SearchPageState extends State<SearchPage> {
                       jobPostsDisplay = jobPosts;
                     });
                   },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.orangeAccent,
+                  ),
                   child: const Text("See less results"),
                 ) : const SizedBox(width: 0, height: 0),
               ],
