@@ -190,23 +190,93 @@ Scenario: Switch pages.
 ---
 
 ### Story nº 10
-As a user, I want to see the reviews and/or opinions on a certain job offer, so that I can have a better idea of what the job is like.
+As a user, I want to see in the job offer the average rating of the job, so that I can have a better ideia of what the job is like.
 
 ### User interface mockup
-![image 10](https://user-images.githubusercontent.com/113979321/227980436-3b20f6a9-8d5b-40c9-b771-f71a3e7360e0.png)
+
 
 ### Acceptance tests
 ```Gherkin
-Scenario: See reviews of a job post.
+Scenario: See the average rating of a job offer.
   Given The job offer post
-  When I tap "See more"
-  Then the job offer's reviews appears
+  When I tap "See more",
+  Then the average rating of the job appears
 ```
+
+### Value and effort estimation
+- Value: Should-have
+- Effort: 5
+
+---
+
+### Story nº 11
+As a user, I want to register/login in an account, so that I can use my account in different devices.
+
+### User interface mockup
+
+
+### Acceptance tests
+```Gherkin
+Scenario: Register in an account.
+  Given The login screen
+  When I tap "Register"
+  And I insert my email
+  And I insert my password
+  And I tap "Register",
+  Then I am registered in an account
+```
+```Gherkin
+Scenario: Login in an account.
+  Given The login screen
+  When I insert my email
+  And I insert my password
+  And I tap "Login",
+  Then I am logged in my account
+```
+
 ### Value and effort estimation
 - Value: Must-have
 - Effort: 5
 
 ---
+
+### Story nº 12
+As a user, I want to have a personal profile, so that I can keeep track of my reviews and favourites.
+
+### User interface mockup
+
+
+### Acceptance tests
+```Gherkin
+Scenario: See my profile.
+  Given The navigation drawer
+  When I tap "Profile",
+  Then my profile appears
+```
+
+### Value and effort estimation
+- Value: Must-have
+- Effort: 8
+
+---
+
+### Story nº 13
+As a user, I want to be able to edit my profile, so that I can update/change the information in it
+
+### User interface mockup
+
+
+### Acceptance tests
+```Gherkin
+Scenario: Edit my profile.
+  Given The profile screen
+  When I tap "Edit profile",
+  Then I can edit my profile
+```
+
+### Value and effort estimation
+- Value: Should-have
+- Effort: 8
 
 <br>
 
