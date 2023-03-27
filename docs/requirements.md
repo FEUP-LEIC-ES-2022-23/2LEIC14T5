@@ -134,11 +134,12 @@ As a user, I want to be able to rate and review a job offer, so that I can give 
 ### Acceptance tests
 ```Gherkin
 Scenario: Rate a job offer.
-  Given The post of a job offer
-  When I tap "Rate job"
-  And I insert a rate
-  And I tap "OK",
-  Then the job offer's review appears
+  Given The job offer post
+  When I tap "See more"
+  And I tap the star
+  And I select the rate
+  And I tap the send button,
+  Then my review appears
 ```
 
 ### Value and effort estimation
@@ -182,6 +183,25 @@ Scenario: Switch pages.
   Then I can select which page to navigate to
 ```
 
+### Value and effort estimation
+- Value: Must-have
+- Effort: 5
+
+---
+
+### Story nº 10
+As a user, I want to see the reviews and/or opinions on a certain job offer, so that I can have a better idea of what the job is like.
+
+### User interface mockup
+![image 10](https://user-images.githubusercontent.com/113979321/227980436-3b20f6a9-8d5b-40c9-b771-f71a3e7360e0.png)
+
+### Acceptance tests
+```Gherkin
+Scenario: See reviews of a job post.
+  Given The job offer post
+  When I tap "See more"
+  Then the job offer's reviews appears
+```
 ### Value and effort estimation
 - Value: Must-have
 - Effort: 5
