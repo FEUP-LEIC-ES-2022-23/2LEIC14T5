@@ -188,6 +188,77 @@ Scenario: Switch pages.
 
 ---
 
+### Story nº 10
+As a user, I want to register/login in an account, so that I can use my account in different devices.
+
+### User interface mockup
+
+
+### Acceptance tests
+```Gherkin
+Scenario: Register in an account.
+  Given The login screen
+  When I tap "Register"
+  And I insert my email
+  And I insert my password
+  And I tap "Register",
+  Then I am registered in an account
+```
+```Gherkin
+Scenario: Login in an account.
+  Given The login screen
+  When I insert my email
+  And I insert my password
+  And I tap "Login",
+  Then I am logged in my account
+```
+
+### Value and effort estimation
+- Value: Must-have
+- Effort: 5
+
+---
+
+### Story nº 11
+As a user, I want to have a personal profile, so that I can keeep track of my reviews and favourites.
+
+### User interface mockup
+
+
+### Acceptance tests
+```Gherkin
+Scenario: See my profile.
+  Given The navigation drawer
+  When I tap "Profile",
+  Then my profile appears
+```
+
+### Value and effort estimation
+- Value: Must-have
+- Effort: 8
+
+---
+
+### Story nº 12
+As a user, I want to be able to edit my profile, so that I can update/change the information in it
+
+### User interface mockup
+
+
+### Acceptance tests
+```Gherkin
+Scenario: Edit my profile.
+  Given The profile screen
+  When I tap "Edit profile",
+  Then I can edit my profile
+```
+
+### Value and effort estimation
+- Value: Should-have
+- Effort: 8
+
+---
+
 <br>
 
 ## Domain Model
