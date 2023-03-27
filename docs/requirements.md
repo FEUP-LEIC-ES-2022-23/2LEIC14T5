@@ -193,14 +193,15 @@ Scenario: Switch pages.
 As a user, I want to see in the job offer the average rating of the job, so that I can have a better ideia of what the job is like.
 
 ### User interface mockup
-
+![Specific job png](https://user-images.githubusercontent.com/113979321/223875276-a81be2fb-e670-4ce8-abc3-4b79b4104fc9.png)
 
 ### Acceptance tests
 ```Gherkin
 Scenario: See the average rating of a job offer.
   Given The job offer post
-  When I tap "See more",
-  Then the average rating of the job appears
+  When I tap the arrow button,
+  And the details of the job offer appear,
+  Then I can see the rating of the job post
 ```
 
 ### Value and effort estimation
@@ -213,7 +214,7 @@ Scenario: See the average rating of a job offer.
 As a user, I want to register/login in an account, so that I can use my account in different devices.
 
 ### User interface mockup
-
+![LOGIN](https://user-images.githubusercontent.com/113979321/227995040-5357a2a3-3ec5-4f74-bb51-0466d8be3a9e.png)
 
 ### Acceptance tests
 ```Gherkin
@@ -244,7 +245,8 @@ Scenario: Login in an account.
 As a user, I want to have a personal profile, so that I can keeep track of my reviews and favourites.
 
 ### User interface mockup
-
+![Nav_Bar](https://user-images.githubusercontent.com/113979321/228002670-1cddf062-854c-41b9-8899-e9e9a24464ed.png)
+![PROFILE](https://user-images.githubusercontent.com/113979321/228015709-89176d23-402e-4312-8770-f34ec3520c0e.png)
 
 ### Acceptance tests
 ```Gherkin
@@ -264,7 +266,7 @@ Scenario: See my profile.
 As a user, I want to be able to edit my profile, so that I can update/change the information in it
 
 ### User interface mockup
-
+![EDIT_PROFILE](https://user-images.githubusercontent.com/113979321/228015725-cb7a17ee-2ffd-4602-9f2c-3860d7545869.png)
 
 ### Acceptance tests
 ```Gherkin
