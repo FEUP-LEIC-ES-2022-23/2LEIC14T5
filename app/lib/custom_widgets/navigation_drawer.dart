@@ -4,6 +4,7 @@ import '../app_pages/home_page.dart';
 import '../app_pages/favorites_page.dart';
 import '../app_pages/help_page.dart';
 import '../app_pages/search_page.dart';
+import '../app_pages/profile_page.dart';
 
 
 class NavigationDrawer extends StatelessWidget{
@@ -54,6 +55,17 @@ class NavigationDrawer extends StatelessWidget{
           color: Colors.black,
           indent: 10,
           endIndent: 10,
+        ),
+
+        ListTile(
+          leading: const Icon(Icons.person),
+          title: const Text("Profile"),
+          onTap: () {
+            Navigator.pop(context);
+            Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => const ProfilePage(),
+            ));
+          },
         ),
 
         ListTile(
