@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-
 import '../app_pages/home_page.dart';
 import '../app_pages/favorites_page.dart';
 import '../app_pages/help_page.dart';
 import '../app_pages/search_page.dart';
+import '../app_pages/profile_page.dart';
 
 
 class NavigationDrawer extends StatelessWidget{
-  const NavigationDrawer({Key? key}) : super(key: key);
+    const NavigationDrawer({Key? key}) : super(key: key);
 
   Widget buildHeader(BuildContext context){
     return Container(
@@ -22,6 +22,7 @@ class NavigationDrawer extends StatelessWidget{
       runSpacing: 10,
       children: [
         ListTile(
+          key: const Key('home_key'),
           leading: const Icon(Icons.home),
           title: const Text("Home Page"),
           onTap: () =>
@@ -30,6 +31,7 @@ class NavigationDrawer extends StatelessWidget{
               )),
         ),
         ListTile(
+          key: const Key('search_key'),
           leading: const Icon(Icons.search),
           title: const Text("Search Page"),
           onTap: () {
@@ -40,6 +42,7 @@ class NavigationDrawer extends StatelessWidget{
           },
         ),
         ListTile(
+          key: const Key('favorites_key'),
           leading: const Icon(Icons.favorite),
           title: const Text("Favorites"),
           onTap: () {
@@ -57,6 +60,18 @@ class NavigationDrawer extends StatelessWidget{
         ),
 
         ListTile(
+          leading: const Icon(Icons.person),
+          title: const Text("Profile"),
+          onTap: () {
+            Navigator.pop(context);
+            Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => const ProfilePage(),
+            ));
+          },
+        ),
+
+        ListTile(
+            key: const Key('help_key'),
             leading: const Icon(Icons.question_mark_rounded),
             title: const Text("Help Page"),
             onTap: () {

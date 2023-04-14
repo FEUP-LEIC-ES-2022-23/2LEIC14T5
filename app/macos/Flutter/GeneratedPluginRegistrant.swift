@@ -4,7 +4,6 @@
 
 import FlutterMacOS
 import Foundation
-
 import cloud_firestore
 import desktop_webview_auth
 import firebase_auth
