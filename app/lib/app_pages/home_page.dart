@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 import 'package:firebase_auth/firebase_auth.dart'
     hide EmailAuthProvider, PhoneAuthProvider;
-
 import '../custom_widgets/authentication.dart';
 import 'app_state.dart';
+import  '../custom_widgets/widgets.dart';
+
 import '../custom_widgets/navigation_drawer.dart' as nav;
 
 class HomePage extends StatefulWidget {
@@ -28,7 +30,7 @@ class _HomePageState extends State<HomePage> {
       body: Center(
         child: Column(
           children: <Widget>[
-            Consumer<AppState>(
+            Consumer<ApplicationState>(
               builder: (context, appState, _) => AuthFunc(
                   loggedIn: appState.loggedIn,
                   signOut: () {
