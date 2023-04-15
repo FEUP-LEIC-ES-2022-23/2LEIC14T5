@@ -88,7 +88,7 @@ class NavigationDrawer extends StatelessWidget{
           title :const Text("Sign Out"),
           onTap: () {
             FirebaseAuth.instance.signOut();
-          }
+          },
         ),
       ],
     );
