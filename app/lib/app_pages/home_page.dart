@@ -30,6 +30,7 @@ class _HomePageState extends State<HomePage> {
       body: Center(
         child: Column(
           children: <Widget>[
+            /*
             Consumer<ApplicationState>(
               builder: (context, appState, _) => AuthFunc(
                   loggedIn: appState.loggedIn,
@@ -37,6 +38,8 @@ class _HomePageState extends State<HomePage> {
                     FirebaseAuth.instance.signOut();
                   }),
             ),
+
+             */
             const SizedBox(height: 30, ),
             const Text("This will be the home page!\n"),
             if (_clicked) const Text('Made by:\n\nJoão Silva\nHenrique Gardé\nJoão Padrão\nJoão Longras\nSamuel Maciel'),

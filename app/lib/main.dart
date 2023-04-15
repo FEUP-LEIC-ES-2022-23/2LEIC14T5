@@ -1,3 +1,5 @@
+import 'package:filter_it/firebase_options.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -8,12 +10,16 @@ import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import '../app_pages/app_state.dart';
+import 'app_pages/main_page.dart';
 
 
 
-void main() {
-
-  runApp(const App());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  runApp(App());
 
   /*
   WidgetsFlutterBinding.ensureInitialized();
@@ -105,10 +111,9 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context){
-
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: LoginPage(),
+      home: MainPage(),
     );
     /*
     return MaterialApp.router(
