@@ -62,7 +62,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
                 SizedBox(height: 30,),
                 Text(
-                  'Hello There',
+                  'Hello Curious Fella',
                   style: GoogleFonts.bebasNeue(
                     fontSize: 52,
                   ),

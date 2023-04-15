@@ -57,7 +57,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                   SizedBox(height: 10),
                   Text(
-                      'Come take a look at these job offers!',
+                      'Come take a look at the best job offers!',
                       style: TextStyle(
                         fontSize: 20,
                       ),
