@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'app_pages/home_page.dart';
+import 'app_pages/login_page.dart';
 
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:go_router/go_router.dart';
@@ -11,12 +12,17 @@ import '../app_pages/app_state.dart';
 
 
 void main() {
+
+  runApp(const App());
+
+  /*
   WidgetsFlutterBinding.ensureInitialized();
 
   runApp(ChangeNotifierProvider(
     create: (context) => ApplicationState(),
     builder: ((context, child) => const App()),
   ));
+   */
 }
 
 final _router = GoRouter(
@@ -99,10 +105,18 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context){
+
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: LoginPage(),
+    );
+    /*
     return MaterialApp.router(
       title: 'Filter IT',
       routerConfig: _router,
     );
+
+     */
   }
 }
 
