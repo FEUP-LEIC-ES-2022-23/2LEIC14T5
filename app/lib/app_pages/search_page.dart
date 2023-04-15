@@ -3,6 +3,7 @@ import 'package:filter_it/custom_widgets/filters_popup.dart';
 import 'package:filter_it/data_models/job_post.dart';
 import 'package:filter_it/custom_widgets/small_job_post_builder.dart';
 import 'package:filter_it/itjobs_api/itjobs_api.dart';
+import 'package:filter_it/temporary_stubs/jobpost_stub.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 
@@ -37,6 +38,7 @@ class SearchPageState extends State<SearchPage> {
   }
 
   Future init() async {
+    final jobPostStub = JobPostStub.jobpostStub;
     final jobPosts = await ITJobsAPI.fetchJobPosts(requestBody);
     setState(() {
       jobPostsDisplay = jobPosts;
