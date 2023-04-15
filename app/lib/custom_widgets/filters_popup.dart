@@ -1,17 +1,27 @@
 import 'package:flutter/material.dart';
 
 class FiltersPopup extends StatefulWidget {
-  const FiltersPopup({Key? key}) : super(key: key);
+  final String jobType;
+  final String language;
+  final String contractType;
+  final String location;
+  const FiltersPopup({
+    Key? key,
+    required this.jobType,
+    required this.language,
+    required this.contractType,
+    required this.location,
+  }) : super(key: key);
 
   @override
   FiltersPopupState createState() => FiltersPopupState();
 }
 
 class FiltersPopupState extends State<FiltersPopup> {
-  String jobType = 'Unspecified';
-  String language = 'Unspecified';
-  String contractType = 'Unspecified';
-  String location = 'Unspecified';
+  late String jobType = widget.jobType;
+  late String language = widget.language;
+  late String contractType = widget.contractType;
+  late String location = widget.location;
 
   @override
   Widget build(BuildContext context) {
@@ -130,7 +140,7 @@ class FiltersPopupState extends State<FiltersPopup> {
                           location = newValue!;
                         });
                       },
-                      items: <String>['Unspecified', 'Açores', 'Aveiro', 'Beja', 'Braga', 'Bragança', 'Castelo Branco', 'Coimbra', 'Évora', 'Faro', 'Guarda', 'Leiria', 'Lisboa', 'Madeira', 'Portalegre', 'Porto', 'Santarém', 'Setúbal', 'Viana do Castelo', 'Vila Real', 'Viseu']
+                      items: <String>['Unspecified', 'Açores', 'Aveiro', 'Beja', 'Braga', 'Bragança', 'Castelo Branco', 'Coimbra', 'Évora', 'Faro', 'Guarda', 'Leiria', 'Lisboa', 'Madeira', 'Portalegre', 'Porto', 'Santarém', 'Setúbal', 'Viana do Castelo', 'Vila Real', 'Viseu', 'Internacional']
                           .map<DropdownMenuItem<String>>((String value) {
                         return DropdownMenuItem<String>(
                           value: value,
