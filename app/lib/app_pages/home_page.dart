@@ -1,12 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-
-import 'package:firebase_auth/firebase_auth.dart'
-    hide EmailAuthProvider, PhoneAuthProvider;
-import '../custom_widgets/authentication.dart';
-import 'app_state.dart';
-import  '../custom_widgets/widgets.dart';
-
 import '../custom_widgets/navigation_drawer.dart' as nav;
 
 class HomePage extends StatefulWidget {
@@ -30,13 +22,6 @@ class _HomePageState extends State<HomePage> {
       body: Center(
         child: Column(
           children: <Widget>[
-            Consumer<ApplicationState>(
-              builder: (context, appState, _) => AuthFunc(
-                  loggedIn: appState.loggedIn,
-                  signOut: () {
-                    FirebaseAuth.instance.signOut();
-                  }),
-            ),
             const SizedBox(height: 30, ),
             const Text("This will be the home page!\n"),
             if (_clicked) const Text('Made by:\n\nJoão Silva\nHenrique Gardé\nJoão Padrão\nJoão Longras\nSamuel Maciel'),
