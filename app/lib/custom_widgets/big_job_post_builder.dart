@@ -1,6 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:filter_it/data_models/job_post.dart';
+import 'package:filter_it/data_models/review_service.dart';
 import 'package:flutter/material.dart';
 import 'package:readmore/readmore.dart';
+
+import '../data_models/review.dart';
 
 class BigJobPostBuilder extends StatelessWidget{
   final JobPost jobPost;
@@ -11,6 +15,7 @@ class BigJobPostBuilder extends StatelessWidget{
 
   @override
   Widget build(BuildContext context){
+    final reviewService = ReviewService();
     String companyNumber = jobPost.company.companyPhoneNumber;
     String companyEmail = jobPost.company.companyEmail;
     String companyAddress = jobPost.company.companyAddress;
@@ -160,8 +165,8 @@ class BigJobPostBuilder extends StatelessWidget{
                   borderRadius: BorderRadius.all(Radius.circular(20)),
                 ),
                 child: Column(
-                  children: const [
-                    Align(
+                  children:[
+                    const Align(
                       alignment: Alignment.center,
                       child: Text(
                         "Reviews",
@@ -171,6 +176,38 @@ class BigJobPostBuilder extends StatelessWidget{
                         ),
                       ),
                     ),
+                    ElevatedButton(
+                      onPressed: () async {
+                        Review stubReview = Review(
+                          id: 'stubId',
+                          jobId: 'stubJobId',
+                          rating: 5,
+                          comment: 'This is a stub review.',
+                          timestamp: Timestamp.now(),
+                        );
+                        await reviewService.addReview(stubReview);
+                      },
+                      child: const Text('Adicionar Stub Review'),
+                    ),
+                StreamBuilder<double>(
+                  stream: reviewService.getJobAverageRatingStream("stubJobId"),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      double averageRating = snapshot.data!;
+                      return Text(
+                        'Average rating: ${averageRating.toStringAsFixed(1)}',
+                        style: const TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      );
+                    } else if (snapshot.hasError) {
+                      return const Text('Error getting average rating');
+                    } else {
+                      return const CircularProgressIndicator();
+                    }
+                  },
+                ),
                   ],
                 )
             )

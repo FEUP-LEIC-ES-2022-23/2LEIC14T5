@@ -3,6 +3,7 @@ import 'package:filter_it/custom_widgets/filters_popup.dart';
 import 'package:filter_it/data_models/job_post.dart';
 import 'package:filter_it/custom_widgets/small_job_post_builder.dart';
 import 'package:filter_it/itjobs_api/itjobs_api.dart';
+import 'package:filter_it/temporary_stubs/jobpost_stub.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 
@@ -20,7 +21,6 @@ class SearchPageState extends State<SearchPage> {
   late List<JobPost> jobPostsDisplay = [];
   List<JobPost> allJobPosts = [];
   String searchQuery = '';
-  FiltersPopup filterPopup = FiltersPopup();
   var requestBody = {
     'api_key': '74f0ed2264074636d4cc729bd22c62de',
     'limit': '20',
@@ -37,6 +37,7 @@ class SearchPageState extends State<SearchPage> {
   }
 
   Future init() async {
+    final jobPostStub = JobPostStub.jobpostStub;
     final jobPosts = await ITJobsAPI.fetchJobPosts(requestBody);
     setState(() {
       jobPostsDisplay = jobPosts;
@@ -47,7 +48,12 @@ class SearchPageState extends State<SearchPage> {
   void showFiltersPopup() async {
     final result = await showDialog(
       context: context,
-      builder: (BuildContext context) => filterPopup,
+      builder: (BuildContext context) => FiltersPopup(
+        jobType: requestBody['jobType']!,
+        language: requestBody['language']!,
+        contractType: requestBody['contractType']!,
+        location: requestBody['location']!,
+      ),
     );
 
     if(result != null) {
@@ -66,10 +72,6 @@ class SearchPageState extends State<SearchPage> {
       setState(() {
         jobPostsDisplay = jobPosts;
         allJobPosts = jobPosts;
-        requestBody['jobType'] = 'Unspecified';
-        requestBody['language'] = 'Unspecified';
-        requestBody['contractType'] = 'Unspecified';
-        requestBody['location'] = 'Unspecified';
       });
     }
   }

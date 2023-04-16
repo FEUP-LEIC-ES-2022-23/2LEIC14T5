@@ -17,6 +17,7 @@ class JobPost{
   final String publishedDate;
   final String updatedDate;
   final String jobSlug;
+  late int jobID = 0;
 
   JobPost({
     required this.company,
@@ -31,6 +32,7 @@ class JobPost{
     required this.publishedDate,
     required this.updatedDate,
     required this.jobSlug,
+
   });
 
   factory JobPost.fromJson(Map<String, dynamic> json) {
