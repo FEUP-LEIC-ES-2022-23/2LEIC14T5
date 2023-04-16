@@ -84,7 +84,7 @@ class NavigationDrawer extends StatelessWidget{
         ),
 
         ListTile(
-          leading: Icon(Icons.arrow_back),
+          leading: const Icon(Icons.arrow_back),
           title :const Text("Sign Out"),
           onTap: () {
             FirebaseAuth.instance.signOut();
