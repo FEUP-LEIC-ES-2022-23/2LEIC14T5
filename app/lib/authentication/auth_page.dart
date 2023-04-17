@@ -1,4 +1,4 @@
-import 'package:filter_it/app_pages/register_page.dart';
+import 'package:filter_it/authentication/register_page.dart';
 import 'package:flutter/material.dart';
 
 import 'login_page.dart';

@@ -1,13 +1,13 @@
-import 'package:filter_it/app_pages/edit_password_page.dart';
+import 'package:filter_it/app_pages/profile_pages/edit_password_page.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../custom_widgets/navigation_drawer.dart' as nav;
-import '../temporary_stubs/user_stub.dart';
-import '../custom_widgets/profile_image.dart';
-import '../data_models/user.dart';
-import '../custom_widgets/rounded_button.dart';
+import '../../custom_widgets/navigation_drawer.dart' as nav;
+import '../../temporary_stubs/user_stub.dart';
+import '../../custom_widgets/profile_image.dart';
+import '../../data_models/user.dart';
+import '../../custom_widgets/rounded_button.dart';
 import 'edit_profile_page.dart';
 
 class ProfilePage extends StatefulWidget {
