@@ -1,9 +1,5 @@
-import 'package:filter_it/custom_widgets/search_bar.dart';
-import 'package:filter_it/custom_widgets/filters_popup.dart';
 import 'package:filter_it/data_models/job_post.dart';
 import 'package:filter_it/custom_widgets/small_job_post_builder.dart';
-import 'package:filter_it/itjobs_api/itjobs_api.dart';
-import 'package:filter_it/temporary_stubs/jobpost_stub.dart';
 import 'package:filter_it/temporary_stubs/fav_1post_stub.dart';
 import 'package:filter_it/temporary_stubs/fav_2post_stub.dart';
 import 'package:filter_it/temporary_stubs/fav_3post_stub.dart';
@@ -25,7 +21,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
   final fav3 = OscorpPostStub.fav3;
 
   @override
-  void fav_to_list() {
+  void favToList() {
     favPostsDisplay.add(fav1);
     favPostsDisplay.add(fav2);
     favPostsDisplay.add(fav3);
@@ -33,7 +29,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
 
   @override
   Widget build(BuildContext context){
-    fav_to_list();
+    favToList();
     return Scaffold(
       appBar: AppBar(
         title: const Text("Favorites"),

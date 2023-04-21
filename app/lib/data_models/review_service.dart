@@ -25,4 +25,14 @@ class ReviewService {
       return totalRatings / querySnapshot.size;
     });
   }
+
+  Stream<List<Review>> getJobReviewsStream(String jobId) {
+    return _db
+        .collection('reviews')
+        .where('jobId', isEqualTo: jobId)
+        .snapshots()
+        .map((querySnapshot) {
+      return querySnapshot.docs.map((doc) => Review.fromMap(doc.data(), doc.id)).toList();
+    });
+  }
 }

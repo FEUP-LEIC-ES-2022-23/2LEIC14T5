@@ -60,21 +60,21 @@ class _RegisterPageState extends State<RegisterPage> {
                   size: 100,
                   color: Colors.orange[500],
                 ),
-                SizedBox(height: 30,),
+                const SizedBox(height: 30,),
                 Text(
                   'Hello Curious Fella',
                   style: GoogleFonts.bebasNeue(
                     fontSize: 52,
                   ),
                 ),
-                SizedBox(height: 10),
-                Text(
+                const SizedBox(height: 10),
+                const Text(
                   'Register Below',
                   style: TextStyle(
                     fontSize: 20,
                   ),
                 ),
-                SizedBox(height: 50),
+                const SizedBox(height: 50),
 
                 // email textfield
                 Padding(
@@ -83,11 +83,11 @@ class _RegisterPageState extends State<RegisterPage> {
                     controller: _emailController,
                     decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.white),
+                        borderSide: const BorderSide(color: Colors.white),
                         borderRadius: BorderRadius.circular(12),
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.orangeAccent),
+                        borderSide: const BorderSide(color: Colors.orangeAccent),
                         borderRadius: BorderRadius.circular(12),
                       ),
                       hintText: 'Email',
@@ -96,7 +96,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                   ),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
 
                 //password textfield
                 Padding(
@@ -106,11 +106,11 @@ class _RegisterPageState extends State<RegisterPage> {
                     obscureText: true,
                     decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.white),
+                        borderSide: const BorderSide(color: Colors.white),
                         borderRadius: BorderRadius.circular(12),
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.orangeAccent),
+                        borderSide: const BorderSide(color: Colors.orangeAccent),
                         borderRadius: BorderRadius.circular(12),
                       ),
                       hintText: 'Password',
@@ -119,7 +119,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                   ),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
 
                 // confirm password textfield
                 Padding(
@@ -129,11 +129,11 @@ class _RegisterPageState extends State<RegisterPage> {
                     obscureText: true,
                     decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.white),
+                        borderSide: const BorderSide(color: Colors.white),
                         borderRadius: BorderRadius.circular(12),
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.orangeAccent),
+                        borderSide: const BorderSide(color: Colors.orangeAccent),
                         borderRadius: BorderRadius.circular(12),
                       ),
                       hintText: 'Confirm Password',
@@ -142,7 +142,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                   ),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
 
                 // sign in button
                 Padding(
@@ -150,12 +150,12 @@ class _RegisterPageState extends State<RegisterPage> {
                   child: GestureDetector(
                     onTap: signUp,
                     child: Container(
-                      padding: EdgeInsets.all(20),
+                      padding: const EdgeInsets.all(20),
                       decoration: BoxDecoration(
                         color: Colors.orange,
                         borderRadius: BorderRadius.circular(12),
                       ),
-                      child: Center(
+                      child: const Center(
                           child: Text(
                             'Sign Up',
                             style: TextStyle(
@@ -168,13 +168,13 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                   ),
                 ),
-                SizedBox(height: 25),
+                const SizedBox(height: 25),
 
                 // not a member? register now
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
+                    const Text(
                       'I am a member!',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
@@ -182,7 +182,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                     GestureDetector(
                       onTap: widget.showLoginPage,
-                      child: Text(
+                      child: const Text(
                         ' Login Now',
                         style: TextStyle(
                           color:Colors.deepOrange,

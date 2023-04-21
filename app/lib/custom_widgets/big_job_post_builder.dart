@@ -1,10 +1,8 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:filter_it/custom_widgets/review_builder.dart';
 import 'package:filter_it/data_models/job_post.dart';
 import 'package:filter_it/data_models/review_service.dart';
 import 'package:flutter/material.dart';
 import 'package:readmore/readmore.dart';
-
-import '../data_models/review.dart';
 
 class BigJobPostBuilder extends StatelessWidget{
   final JobPost jobPost;
@@ -176,29 +174,20 @@ class BigJobPostBuilder extends StatelessWidget{
                         ),
                       ),
                     ),
-                    ElevatedButton(
-                      onPressed: () async {
-                        Review stubReview = Review(
-                          id: 'stubId',
-                          jobId: 'stubJobId',
-                          rating: 5,
-                          comment: 'This is a stub review.',
-                          timestamp: Timestamp.now(),
-                        );
-                        await reviewService.addReview(stubReview);
-                      },
-                      child: const Text('Adicionar Stub Review'),
-                    ),
+
                 StreamBuilder<double>(
-                  stream: reviewService.getJobAverageRatingStream("stubJobId"),
+                  stream: reviewService.getJobAverageRatingStream(jobPost.jobID),
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {
                       double averageRating = snapshot.data!;
-                      return Text(
-                        'Average rating: ${averageRating.toStringAsFixed(1)}',
-                        style: const TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
+                      return Padding(
+                        padding: const EdgeInsets.only(top: 20),
+                        child: Text(
+                          'Average rating: ${averageRating.toStringAsFixed(1)}',
+                          style: const TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       );
                     } else if (snapshot.hasError) {
@@ -208,6 +197,18 @@ class BigJobPostBuilder extends StatelessWidget{
                     }
                   },
                 ),
+                    const SizedBox(height: 20),
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ReviewBuilder(jobID: jobPost.jobID),
+                          ),
+                        );
+                      },
+                      child: const Text('See reviews'),
+                    ),
                   ],
                 )
             )

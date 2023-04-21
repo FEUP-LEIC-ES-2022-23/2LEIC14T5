@@ -141,26 +141,26 @@ packages:
     dependency: "direct main"
     description:
       name: cloud_firestore
-      sha256: f5431cf41ab5c5e9c64e03ac2af103e10be22bf89020f394130c04b81add0010
+      sha256: "17b4bac19f367ba1bd84239493a9a4182730221e4780334dd9cd57c4f13eccb7"
       url: "https://pub.dev"
     source: hosted
-    version: "4.5.1"
+    version: "4.5.2"
   cloud_firestore_platform_interface:
     dependency: transitive
     description:
       name: cloud_firestore_platform_interface
-      sha256: "29349a0687bc31290ab81d1de2b1cdadb40d0ea3ab30d247323c6c5be0d4c6fc"
+      sha256: "76ba7b9dd43ce7f07e75a2349f3eb3e2c61e1bea88fec4798c3377cccf44cd7a"
       url: "https://pub.dev"
     source: hosted
-    version: "5.12.0"
+    version: "5.12.1"
   cloud_firestore_web:
     dependency: transitive
     description:
       name: cloud_firestore_web
-      sha256: "228f1944fb3c61ddf5de3647ec5b6ed88d6aacb0a4d485ef597c1211fe98ef8b"
+      sha256: "0c1305722339e0b3fc0ce62bf6233b3f8762cc105a26af02171b849e6a3b3727"
       url: "https://pub.dev"
     source: hosted
-    version: "3.4.1"
+    version: "3.4.2"
   code_builder:
     dependency: transitive
     description:
@@ -253,26 +253,26 @@ packages:
     dependency: "direct main"
     description:
       name: firebase_auth
-      sha256: e5254a39daab8c5bc76b17f5a161c11a7a97a3718cd314f460e2b4366c850c7d
+      sha256: "8c97619ed2633148c41c344a59461f23c73bf8aa477ae48296703f06d9621fb0"
       url: "https://pub.dev"
     source: hosted
-    version: "4.4.1"
+    version: "4.4.2"
   firebase_auth_platform_interface:
     dependency: transitive
     description:
       name: firebase_auth_platform_interface
-      sha256: "5d5f283517ba34afd69ef448cc81ea23bcf8887393bedae4f70f45060b045fb9"
+      sha256: f7db119be795d79533c503887075a0315fc3ae1da6f9a9cd4f9100a62c68859c
       url: "https://pub.dev"
     source: hosted
-    version: "6.13.0"
+    version: "6.13.1"
   firebase_auth_web:
     dependency: transitive
     description:
       name: firebase_auth_web
-      sha256: c631ec90d05c990fe971774ff12e96ee88fc3dd22839d5cab3b04c8693859116
+      sha256: "45687246f5be811baf3810652460acd0f3d8c98f9d8f8b1961d7cc5c15c1e803"
       url: "https://pub.dev"
     source: hosted
-    version: "5.3.1"
+    version: "5.3.2"
   firebase_core:
     dependency: "direct main"
     description:
@@ -301,18 +301,18 @@ packages:
     dependency: transitive
     description:
       name: firebase_dynamic_links
-      sha256: "07534e65f1417e2a59f64fa1f551d8f33b3cfe959fc24fd3833e8a810b9239c6"
+      sha256: e23f9d7323efc4532226d18cf1b7c05d1e348267a1a52bc1a18576a4d5f76849
       url: "https://pub.dev"
     source: hosted
-    version: "5.1.0"
+    version: "5.1.1"
   firebase_dynamic_links_platform_interface:
     dependency: transitive
     description:
       name: firebase_dynamic_links_platform_interface
-      sha256: "8f9e655dbaba284b656549a8aa8eb4cade7354f37ef56aa415ec9ec65cef3118"
+      sha256: afcefb6b49416f4c0631fb5a80f516729fc39cd8163de27e287f2d72ac017fbc
       url: "https://pub.dev"
     source: hosted
-    version: "0.2.4"
+    version: "0.2.4+1"
   firebase_storage:
     dependency: "direct main"
     description:
@@ -341,10 +341,10 @@ packages:
     dependency: "direct main"
     description:
       name: firebase_ui_auth
-      sha256: "826005fdd63d2ed2b5b933b7adcd07b438435f4f09c3d1847ad8a49795acf6ef"
+      sha256: "5e2b33c906586f458f035e70a0982b5254664f61fe314c3e10ed70be6487758e"
       url: "https://pub.dev"
     source: hosted
-    version: "1.2.1"
+    version: "1.2.2"
   firebase_ui_localizations:
     dependency: transitive
     description:
@@ -357,18 +357,18 @@ packages:
     dependency: transitive
     description:
       name: firebase_ui_oauth
-      sha256: "6805ecaad61caad8d13dede352e6a918470a7ed8bb8756f3e1c499980c2fc072"
+      sha256: "9c4e3145ac17b3811468594898577f8fd822e11c72e84a1d0bedcea4bdc8d0d7"
       url: "https://pub.dev"
     source: hosted
-    version: "1.2.1"
+    version: "1.2.2"
   firebase_ui_shared:
     dependency: transitive
     description:
       name: firebase_ui_shared
-      sha256: "4bb93419733161f882227a05d34dc66ad8bd98b1e248976c37cc94a9840d7aea"
+      sha256: "1a035d21e09ed36a7b07975a92dd35f6ab04a1030982f02fd57b024ca871a581"
       url: "https://pub.dev"
     source: hosted
-    version: "1.1.0"
+    version: "1.2.0"
   fixnum:
     dependency: transitive
     description:
@@ -449,10 +449,10 @@ packages:
     dependency: "direct main"
     description:
       name: go_router
-      sha256: "50bc08b72ede07daaf897deb4c00ca8fd8976c8821a4c84d7aeef0e92d1c5620"
+      sha256: "99c7fbd4f73da5268046374576af2f6fef970088038d626c5c689a359479af40"
       url: "https://pub.dev"
     source: hosted
-    version: "6.5.6"
+    version: "6.5.7"
   google_fonts:
     dependency: "direct main"
     description:
@@ -534,7 +534,7 @@ packages:
     source: hosted
     version: "2.6.3"
   intl:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: intl
       sha256: "910f85bce16fb5c6f614e117efa303e85a1731bb0081edf3604a2ae6e9a3cc91"

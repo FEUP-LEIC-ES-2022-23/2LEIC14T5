@@ -1,4 +1,3 @@
-import 'package:filter_it/app_pages/profile_pages/edit_password_page.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -119,16 +118,6 @@ class ProfilePageState extends State<ProfilePage> {
         );
       },
     );
-  }
-
-  Future<void> _updatePassword(BuildContext context) async {
-    final result = await Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => EditPassword(user: user),
-      ),
-    );
-    //Future code to update password goes here, firebase needed
   }
 
   Widget buildUserStats(User user){
