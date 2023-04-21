@@ -3,9 +3,9 @@ class User{
   String email;
   String about;
   String profilePictureURL = "";
-  String favouritesCount = "0";
-  String ratingsCount = "0";
-  String reviewsCount = "0";
+  int favouritesCount = 0;
+  int ratingsCount = 0;
+  int reviewsCount = 0;
   String facebookURL = "";
   String linkedinURL = "";
   String twitterURL = "";
@@ -30,4 +30,34 @@ class User{
     required this.twitterURL,
     required this.instagramURL,
   });
+
+  User.d({
+    this.name = "",
+    this.email = "",
+    this.about = "",
+    this.profilePictureURL = "",
+    this.favouritesCount = 0,
+    this.ratingsCount = 0,
+    this.reviewsCount = 0,
+    this.facebookURL = "",
+    this.linkedinURL = "",
+    this.twitterURL = "",
+    this.instagramURL = "",
+  });
+
+  factory User.fromMap(Map<String, dynamic> map) {
+    return User.m(
+      name: map['name'],
+      email: map['email'],
+      about: map['about'],
+      profilePictureURL: map['profilePicURL'],
+      favouritesCount: map['favouritesCount'],
+      ratingsCount: map['ratingsCount'],
+      reviewsCount: map['reviewsCount'],
+      facebookURL: map['facebookURL'],
+      linkedinURL: map['linkedInURL'],
+      twitterURL: map['twitterURL'],
+      instagramURL: map['instagramURL'],
+    );
+  }
 }

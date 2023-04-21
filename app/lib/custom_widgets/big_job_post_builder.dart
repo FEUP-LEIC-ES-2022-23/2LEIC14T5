@@ -1,11 +1,8 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:filter_it/custom_widgets/review_builder.dart';
 import 'package:filter_it/data_models/job_post.dart';
 import 'package:filter_it/data_models/review_service.dart';
 import 'package:flutter/material.dart';
 import 'package:readmore/readmore.dart';
-
-import '../data_models/review.dart';
 
 class BigJobPostBuilder extends StatelessWidget{
   final JobPost jobPost;

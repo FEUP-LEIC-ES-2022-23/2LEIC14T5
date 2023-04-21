@@ -1,5 +1,4 @@
 import 'package:filter_it/app_pages/home_page.dart';
-import 'package:filter_it/app_pages/search_page.dart';
 import 'package:filter_it/app_pages/favorites_page.dart';
 import 'package:filter_it/app_pages/help_page.dart';
 import 'package:filter_it/main.dart';

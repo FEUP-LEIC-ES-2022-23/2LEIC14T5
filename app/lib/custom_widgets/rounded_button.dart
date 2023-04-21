@@ -14,8 +14,8 @@ class RoundedButton extends StatelessWidget{
   Widget build(BuildContext context){
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
-        primary: Colors.orangeAccent,
-        onPrimary: Colors.white,
+        backgroundColor: Colors.orangeAccent,
+        foregroundColor: Colors.white,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
         ),
