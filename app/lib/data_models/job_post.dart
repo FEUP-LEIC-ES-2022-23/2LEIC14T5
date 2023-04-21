@@ -17,7 +17,7 @@ class JobPost{
   final String publishedDate;
   final String updatedDate;
   final String jobSlug;
-  late int jobID = 0;
+  late String jobID;
 
   JobPost({
     required this.company,
@@ -32,6 +32,7 @@ class JobPost{
     required this.publishedDate,
     required this.updatedDate,
     required this.jobSlug,
+    required this.jobID,
 
   });
 
@@ -76,6 +77,8 @@ class JobPost{
       publishedDate: json['publishedAt'] ?? "",
       updatedDate: json['updatedAt'] ?? "",
       jobSlug: (json['slug']).toString(),
+      jobID: '${json['companyId']}${json['title']}',
+
     );
   }
 }

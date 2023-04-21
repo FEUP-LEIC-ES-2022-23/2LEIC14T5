@@ -47,5 +47,6 @@ class JobPostStub {
         jobLocations: jobLocationList,
         publishedDate: "StubPublishedDate",
         updatedDate: "StubUpdatedDate",
-        jobSlug: "StubJobSlug");
+        jobSlug: "StubJobSlug",
+        jobID: "-1");
 }
