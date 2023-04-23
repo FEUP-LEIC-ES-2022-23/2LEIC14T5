@@ -25,7 +25,7 @@ class WaynePostStub {
         ),
     ];
     static JobPost fav2 = JobPost(
-        company: Company(companyID: "-1",
+        company: Company(companyID: "501",
             companyName: "Wayne Enterprises, Inc.",
             logoURL: "https://static.wikia.nocookie.net/dccu/images/a/ae/Wayne_Enterprises_logo.png/revision/latest?cb=20201015164616",
             companyDescription: "StubCompanyDescription",
@@ -36,7 +36,7 @@ class WaynePostStub {
             companyURL: "StubCompanyUrl",
             companySlug: "StubCompanySlug"),
         companyID: 1,
-        jobTitle: "StubJobTitle",
+        jobTitle: "Wayne Enterprises",
         jobDescription: "StubJobDescription",
         jobReference: "StubJobReference",
         jobWage: "StubJobWage",

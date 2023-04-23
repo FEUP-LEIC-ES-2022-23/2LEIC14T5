@@ -25,7 +25,7 @@ class OscorpPostStub {
         ),
     ];
     static JobPost fav3 = JobPost(
-        company: Company(companyID: "-1",
+        company: Company(companyID: "502",
             companyName: "Oscorp",
             logoURL: "https://cdn.dribbble.com/users/2183668/screenshots/16714178/media/a0ed3f9906420037d48ecf478e2b2103.png?compress=1&resize=400x300&vertical=top",
             companyDescription: "StubCompanyDescription",
@@ -36,7 +36,7 @@ class OscorpPostStub {
             companyURL: "StubCompanyUrl",
             companySlug: "StubCompanySlug"),
         companyID: 1,
-        jobTitle: "StubJobTitle",
+        jobTitle: "Oscorp",
         jobDescription: "StubJobDescription",
         jobReference: "StubJobReference",
         jobWage: "StubJobWage",

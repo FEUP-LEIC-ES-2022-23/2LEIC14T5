@@ -25,7 +25,7 @@ class StarkPostStub {
         ),
     ];
     static JobPost fav1 = JobPost(
-        company: Company(companyID: "-1",
+        company: Company(companyID: "500",
             companyName: "Stark Industries",
             logoURL: "https://static.wikia.nocookie.net/universocinematograficomarvel/images/9/93/TVM-IM-01_18192_zoom.jpg/revision/latest?cb=20150615134136&path-prefix=pt",
             companyDescription: "StubCompanyDescription",
@@ -36,7 +36,7 @@ class StarkPostStub {
             companyURL: "StubCompanyUrl",
             companySlug: "StubCompanySlug"),
         companyID: 1,
-        jobTitle: "StubJobTitle",
+        jobTitle: "Stark",
         jobDescription: "StubJobDescription",
         jobReference: "StubJobReference",
         jobWage: "StubJobWage",
