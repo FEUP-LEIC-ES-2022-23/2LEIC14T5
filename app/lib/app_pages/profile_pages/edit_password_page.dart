@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../data_models/user.dart';
-import '../custom_widgets/input_text_field.dart';
+import '../../data_models/user.dart';
+import '../../custom_widgets/input_text_field.dart';
 
 class EditPassword extends StatefulWidget {
   final User user;

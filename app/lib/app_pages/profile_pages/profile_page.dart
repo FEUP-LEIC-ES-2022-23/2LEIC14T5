@@ -1,13 +1,13 @@
-import 'package:filter_it/app_pages/edit_password_page.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart' as auth;
 
-import '../custom_widgets/navigation_drawer.dart' as nav;
-import '../temporary_stubs/user_stub.dart';
-import '../custom_widgets/profile_image.dart';
-import '../data_models/user.dart';
-import '../custom_widgets/rounded_button.dart';
+import '../../custom_widgets/navigation_drawer.dart' as nav;
+import '../../custom_widgets/profile_image.dart';
+import '../../data_models/user.dart';
+import '../../custom_widgets/rounded_button.dart';
 import 'edit_profile_page.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -18,44 +18,69 @@ class ProfilePage extends StatefulWidget {
 }
 
 class ProfilePageState extends State<ProfilePage> {
-  final user = UserStub.userStub;
+  final String? userEmail = auth.FirebaseAuth.instance.currentUser?.email;
+  final FirebaseFirestore _db = FirebaseFirestore.instance;
+  late User user;
+
+  Stream<User> generateUser() {
+    return _db.collection('user_profiles').where('email', isEqualTo: userEmail).snapshots().map((querySnapshot){
+      if (querySnapshot.size == 0) {
+        return user;
+      }
+      return querySnapshot.docs.map((doc) => User.fromMap(doc.data())).first;
+    });
+  }
 
   @override
   Widget build(BuildContext context){
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Profile"),
-        backgroundColor: Colors.orangeAccent,
-      ),
-      drawer: const nav.NavigationDrawer(),
-      body: ListView(
-        padding: const EdgeInsets.only(top: 30),
-        physics: const BouncingScrollPhysics(),
-        children: [
-          ProfileImage(
-            profilePictureURL: user.profilePictureURL,
-          ),
-          const SizedBox(height: 24),
-          buildName(user),
-          const SizedBox(height: 24),
-          buildUserStats(user),
-          const SizedBox(height: 24),
-          buildAboutUser(user),
-          const SizedBox(height: 24),
-          buildSocials(user),
-          const SizedBox(height: 24),
-          Center(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                buildEditButton(),
-                const SizedBox(width: 20),
-                buildEditPasswordButton(),
-              ],
-            ),
-          ),
-        ],
-      )
+    return StreamBuilder<User>(
+      stream: generateUser(),
+      builder: (context, snapshot) {
+        if(!snapshot.hasData){
+          return Scaffold(
+              appBar: AppBar(
+                title: const Text("Profile"),
+                backgroundColor: Colors.orangeAccent,
+              ),
+              drawer: const nav.NavigationDrawer(),
+              body: const Center(
+                child: CircularProgressIndicator()
+              ),
+          );
+        }
+        else{
+          user = snapshot.data!;
+          return Scaffold(
+              appBar: AppBar(
+                title: const Text("Profile"),
+                backgroundColor: Colors.orangeAccent,
+              ),
+              drawer: const nav.NavigationDrawer(),
+              body: ListView(
+                padding: const EdgeInsets.only(top: 30),
+                physics: const BouncingScrollPhysics(),
+                children: [
+                  ProfileImage(
+                    profilePictureURL: user.profilePictureURL,
+                  ),
+                  const SizedBox(height: 24),
+                  buildName(user),
+                  const SizedBox(height: 24),
+                  buildUserStats(user),
+                  const SizedBox(height: 24),
+                  buildAboutUser(user),
+                  const SizedBox(height: 24),
+                  buildSocials(user),
+                  const SizedBox(height: 24),
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 120),
+                    child: buildEditButton()
+                  ),
+                ],
+              )
+          );
+        }
+      }
     );
   }
 
@@ -85,49 +110,14 @@ class ProfilePageState extends State<ProfilePage> {
     return RoundedButton(
       text: "Edit Profile",
       onPressed:(){
-        _updateUser(context);
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => EditProfile(user: user),
+          ),
+        );
       },
     );
-  }
-
-  Future<void> _updateUser(BuildContext context) async {
-    final result = await Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => EditProfile(user: user),
-      ),
-    );
-    if (result != null) {
-      setState(() {
-        user.name = result.name;
-        user.email = result.email;
-        user.about = result.about;
-        user.facebookURL = result.facebookURL;
-        user.instagramURL = result.instagramURL;
-        user.twitterURL = result.twitterURL;
-        user.linkedinURL = result.linkedinURL;
-      });
-    }
-  }
-
-
-  Widget buildEditPasswordButton(){
-    return RoundedButton(
-      text: "Edit Password",
-      onPressed: () {
-        _updatePassword(context);
-      },
-    );
-  }
-
-  Future<void> _updatePassword(BuildContext context) async {
-    final result = await Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => EditPassword(user: user),
-      ),
-    );
-    //Future code to update password goes here, firebase needed
   }
 
   Widget buildUserStats(User user){
@@ -135,11 +125,11 @@ class ProfilePageState extends State<ProfilePage> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          buildStatColumn(context, "Favourites", user.favouritesCount),
+          buildStatColumn(context, "Favourites", user.favouritesCount.toString()),
           verticalDivider(),
-          buildStatColumn(context, "Ratings", user.ratingsCount),
+          buildStatColumn(context, "Ratings", user.ratingsCount.toString()),
           verticalDivider(),
-          buildStatColumn(context, "Reviews", user.reviewsCount),
+          buildStatColumn(context, "Reviews", user.reviewsCount.toString()),
         ],
       ),
     );
