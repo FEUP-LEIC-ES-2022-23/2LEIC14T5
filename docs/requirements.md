@@ -190,7 +190,7 @@ Scenario: Switch pages.
 ---
 
 ### Story nº 10
-As a user, I want to see in the job offer the average rating of the job, so that I can have a better ideia of what the job is like.
+As a user, I want to see in the job offer the average rating of the job, so that I can have a better idea of what the job is like.
 
 ### User interface mockup
 ![Specific job png](https://user-images.githubusercontent.com/113979321/223875276-a81be2fb-e670-4ce8-abc3-4b79b4104fc9.png)
@@ -242,7 +242,7 @@ Scenario: Login in an account.
 ---
 
 ### Story nº 12
-As a user, I want to have a personal profile, so that I can keeep track of my reviews and favourites.
+As a user, I want to have a personal profile, so that I can keep track of my reviews and favourites.
 
 ### User interface mockup
 ![Nav_Bar](https://user-images.githubusercontent.com/113979321/228002670-1cddf062-854c-41b9-8899-e9e9a24464ed.png)
