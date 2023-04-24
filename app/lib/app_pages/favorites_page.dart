@@ -1,6 +1,7 @@
 import 'package:filter_it/data_models/job_post.dart';
 import 'package:filter_it/custom_widgets/small_fav_post_builder.dart';
 import 'package:filter_it/itjobs_api/itjobs_api.dart';
+import 'package:filter_it/temporary_stubs/jobpost_stub.dart';
 import 'package:filter_it/temporary_stubs/fav_1post_stub.dart';
 import 'package:filter_it/temporary_stubs/fav_2post_stub.dart';
 import 'package:filter_it/temporary_stubs/fav_3post_stub.dart';
@@ -41,6 +42,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
 
   @override
   Widget build(BuildContext context){
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("Favorites"),
