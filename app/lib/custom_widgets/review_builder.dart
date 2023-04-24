@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:firebase_auth/firebase_auth.dart' as auth;
 
 import '../data_models/review.dart';
 import '../data_models/review_service.dart';
@@ -14,10 +16,10 @@ class ReviewBuilder extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _ReviewBuilderState createState() => _ReviewBuilderState();
+  ReviewBuilderState createState() => ReviewBuilderState();
 }
 
-class _ReviewBuilderState extends State<ReviewBuilder> {
+class ReviewBuilderState extends State<ReviewBuilder> {
   final _formKey = GlobalKey<FormState>();
   late int _rating;
   late String _description;
@@ -46,8 +48,11 @@ class _ReviewBuilderState extends State<ReviewBuilder> {
                 }
 
                 if (snapshot.data == null || snapshot.data!.isEmpty) {
-                  return const Text('No reviews yet.');
+                  return const Center(
+                    child: Text('No reviews yet.', style: TextStyle(fontSize: 20),),
+                  );
                 }
+
                 final reviews = snapshot.data!;
                 reviews.sort((a, b) => b.timestamp.compareTo(a.timestamp));
 
@@ -55,28 +60,22 @@ class _ReviewBuilderState extends State<ReviewBuilder> {
                   itemCount: snapshot.data!.length,
                   itemBuilder: (context, index) {
                     final review = snapshot.data![index];
-                    return ListTile(
-                      title: Text(
-                        review.comment,
-                        textAlign: TextAlign.justify,
-                        style: const TextStyle(
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                      subtitle: Text(DateFormat('dd-MM-yyyy HH:mm:ss').format(review.timestamp.toDate())),
-                      trailing: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(5),
-                          color: review.rating == 3 ? Colors.orange :
-                          review.rating > 3 ? Colors.green : Colors.red,
-                        ),
-                        padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
-                        child: Text(
-                          'Rating: ${review.rating}',
+                    return Padding(
+                      padding: const EdgeInsets.all(5.0),
+                      child: ListTile(
+                        title: Text(
+                          review.comment,
+                          textAlign: TextAlign.justify,
                           style: const TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 13,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        subtitle: Text(DateFormat('dd-MM-yyyy HH:mm:ss').format(review.timestamp.toDate())),
+                        trailing: Text(
+                          '${review.rating}/5 ★',
+                          style: const TextStyle(
+                            fontWeight: FontWeight.w500,
+                            color: Color(0xFFFFCB45),
                           ),
                         ),
                       ),
@@ -87,71 +86,89 @@ class _ReviewBuilderState extends State<ReviewBuilder> {
             ),
           ),
           const SizedBox(height: 20),
-          Form(
-            key: _formKey,
-            child: Column(
-              children: [
-                TextFormField(
-                  decoration: const InputDecoration(
-                    labelText: 'Rating (1-5)',
-                  ),
-                  keyboardType: TextInputType.number,
-                  validator: (value) {
-                    if (value == null ||
-                        value.isEmpty ||
-                        int.tryParse(value) == null ||
-                        int.parse(value) < 1 ||
-                        int.parse(value) > 5) {
-                      return 'Please enter a rating between 1 and 5.';
-                    }
-                    return null;
-                  },
-                  onSaved: (value) {
-                    _rating = int.parse(value!);
-                  },
-                ),
-                TextFormField(
-                  decoration: const InputDecoration(
-                    labelText: 'Description',
-                  ),
-                  keyboardType: TextInputType.multiline,
-                  maxLines: 1,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter a description.';
-                    }
-                    return null;
-                  },
-                  onSaved: (value) {
-                    _description = value!;
-                  },
-                ),
-                ElevatedButton(
-                  onPressed: () async {
-                    if (_formKey.currentState!.validate()) {
-                      _formKey.currentState!.save();
-                      Review review = Review(
-                        jobId: widget.jobID,
-                        rating: _rating!,
-                        comment: _description!,
-                        timestamp: Timestamp.now(),
-                      );
-                      await reviewService.addReview(review);
-
-                      _formKey.currentState!.reset();
-
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text('Review added successfully!'),
-                          duration: Duration(seconds: 1),
-
+          const Center(
+            child: Text(
+              'Leave a review',
+              style: TextStyle(
+                fontSize: 15,
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(5),
+            child: Container(
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.grey),
+                borderRadius: BorderRadius.circular(5),
+              ),
+              padding: const EdgeInsets.all(10),
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  children: [
+                    RatingBar.builder(
+                        initialRating: 0,
+                        minRating: 1,
+                        direction: Axis.horizontal,
+                        itemCount: 5,
+                        itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
+                        itemBuilder: (context, _) => const Icon(
+                          Icons.star,
+                          color: Colors.amber,
                         ),
-                      );
-                    }
-                  },
-                  child: const Text('Submit Review'),
+                        onRatingUpdate: (rating){
+                          _rating = rating.toInt();
+
+                        }
+                    ),
+                    TextFormField(
+                      decoration: const InputDecoration(
+                        labelText: 'Comment',
+                      ),
+                      keyboardType: TextInputType.multiline,
+                      maxLines: 1,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter a description.';
+                        }
+                        return null;
+                      },
+                      onSaved: (value) {
+                        _description = value!;
+                      },
+                    ),
+                    const SizedBox(height: 10),
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.orangeAccent,
+                      ),
+                      onPressed: () async {
+                        if (_formKey.currentState!.validate()) {
+                          _formKey.currentState!.save();
+                          Review review = Review(
+                            jobId: widget.jobID,
+                            rating: _rating,
+                            comment: _description,
+                            timestamp: Timestamp.now(),
+                          );
+                          await reviewService.addReview(review);
+
+                          _formKey.currentState!.reset();
+
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text('Review added successfully!'),
+                              duration: Duration(seconds: 1),
+
+                            ),
+                          );
+                        }
+                      },
+                      child: const Text('Submit Review'),
+                    ),
+                  ],
                 ),
-              ],
+              ),
             ),
           ),
         ],
