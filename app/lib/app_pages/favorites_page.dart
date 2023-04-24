@@ -1,5 +1,7 @@
 import 'package:filter_it/data_models/job_post.dart';
-import 'package:filter_it/custom_widgets/small_job_post_builder.dart';
+import 'package:filter_it/custom_widgets/small_fav_post_builder.dart';
+import 'package:filter_it/itjobs_api/itjobs_api.dart';
+import 'package:filter_it/temporary_stubs/jobpost_stub.dart';
 import 'package:filter_it/temporary_stubs/fav_1post_stub.dart';
 import 'package:filter_it/temporary_stubs/fav_2post_stub.dart';
 import 'package:filter_it/temporary_stubs/fav_3post_stub.dart';
@@ -21,15 +23,26 @@ class _FavoritesPageState extends State<FavoritesPage> {
   final fav3 = OscorpPostStub.fav3;
 
   @override
-  void favToList() {
+  void initState() {
+    super.initState();
+    addFavPost();
+  }
+
+  void addFavPost() {
     favPostsDisplay.add(fav1);
     favPostsDisplay.add(fav2);
     favPostsDisplay.add(fav3);
   }
 
+  void removeFavPost(JobPost jobPost){
+    setState(() {
+      favPostsDisplay.remove(jobPost);
+    });
+  }
+
   @override
   Widget build(BuildContext context){
-    favToList();
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("Favorites"),
@@ -41,21 +54,21 @@ class _FavoritesPageState extends State<FavoritesPage> {
           children: <Widget>[
             Expanded(
               child: favPostsDisplay.isEmpty
-                  ? const Center(
+                ? const Center(
                     child: Text(
-                      'No results found.',
-                      style: TextStyle(
-                        fontSize: 20,
-                      )
-                    ) 
-                  )
-                  : ListView.builder(
-                itemCount: favPostsDisplay.length,
-                itemBuilder: (context, index) {
-                  final jobPost = favPostsDisplay[index];
-                  return favPostBuilder(jobPost);
-                },
-              ),
+                    'No results found.',
+                    style: TextStyle(
+                      fontSize: 20,
+                    )
+                  ) 
+                )
+                : ListView.builder(
+                    itemCount: favPostsDisplay.length,
+                    itemBuilder: (context, index) {
+                      final jobPost = favPostsDisplay[index];
+                      return favPostBuilder(jobPost);
+                    },
+                  ),
             ),
           ],
         )
@@ -63,7 +76,8 @@ class _FavoritesPageState extends State<FavoritesPage> {
     );
   }
 
-   Widget favPostBuilder(JobPost jobPost) => SmallJobPostBuilder(
-      jobPost: jobPost
+  Widget favPostBuilder(JobPost jobPost) => SmallFavPostBuilder(
+    jobPost: jobPost,
+    onDelete: () => removeFavPost(jobPost),
   );
 }
