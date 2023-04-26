@@ -8,7 +8,7 @@ import '../data_models/review.dart';
 import '../data_models/review_service.dart';
 
 class ReviewBuilder extends StatefulWidget {
-  final String jobID;
+  final int jobID;
 
   const ReviewBuilder({
     Key? key,

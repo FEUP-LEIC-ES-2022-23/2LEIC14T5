@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Review {
-  final String jobId;
+  final int jobId;
   final int rating;
   final String comment;
   final String userId;

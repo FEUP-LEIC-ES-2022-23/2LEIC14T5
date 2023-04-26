@@ -8,7 +8,7 @@ class ReviewService {
     return _db.collection('reviews').add(review.toMap());
   }
 
-  Stream<double> getJobAverageRatingStream(String jobId) {
+  Stream<double> getJobAverageRatingStream(int jobId) {
     return _db
         .collection('reviews')
         .where('jobId', isEqualTo: jobId)
@@ -26,7 +26,7 @@ class ReviewService {
     });
   }
 
-  Stream<List<Review>> getJobReviewsStream(String jobId) {
+  Stream<List<Review>> getJobReviewsStream(int jobId) {
     return _db
         .collection('reviews')
         .where('jobId', isEqualTo: jobId)

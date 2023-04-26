@@ -46,5 +46,5 @@ class WaynePostStub {
         publishedDate: "StubPublishedDate",
         updatedDate: "StubUpdatedDate",
         jobSlug: "StubJobSlug",
-        jobID: "-1");
+        jobID: -1);
 }

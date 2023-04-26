@@ -19,7 +19,7 @@ class JobPost{
   final String publishedDate;
   final String updatedDate;
   final String jobSlug;
-  late String jobID;
+  final int jobID;
 
   JobPost({
     required this.company,
@@ -39,13 +39,6 @@ class JobPost{
   });
 
   factory JobPost.fromJson(Map<String, dynamic> json) {
-
-    String jobID = '${json['companyId']}${json['title']}';
-    var bytes = utf8.encode(jobID);
-    var hash = sha256.convert(bytes);
-    var truncatedHash = hash.bytes.sublist(0, 8);
-    var hashedJobID = hex.encode(truncatedHash);
-
     List<JobType> jobTypesTemp = [];
     if (json['types'] != null) {
       jobTypesTemp = (json['types'] as List<dynamic>)
@@ -86,7 +79,7 @@ class JobPost{
       publishedDate: json['publishedAt'] ?? "",
       updatedDate: json['updatedAt'] ?? "",
       jobSlug: (json['slug']).toString(),
-      jobID: hashedJobID,
+      jobID: (json['id']),
 
     );
   }
