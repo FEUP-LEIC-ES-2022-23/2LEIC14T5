@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:firebase_auth/firebase_auth.dart' as auth;
 
 import '../data_models/review.dart';
 import '../data_models/review_service.dart';
@@ -62,20 +61,23 @@ class ReviewBuilderState extends State<ReviewBuilder> {
                     final review = snapshot.data![index];
                     return Padding(
                       padding: const EdgeInsets.all(5.0),
-                      child: ListTile(
-                        title: Text(
-                          review.comment,
-                          textAlign: TextAlign.justify,
-                          style: const TextStyle(
-                            fontWeight: FontWeight.w500,
+                      child: Card(
+                        elevation: 5,
+                        child: ListTile(
+                          title: Text(
+                            review.comment,
+                            textAlign: TextAlign.justify,
+                            style: const TextStyle(
+                              fontWeight: FontWeight.w500,
+                            ),
                           ),
-                        ),
-                        subtitle: Text(DateFormat('dd-MM-yyyy HH:mm:ss').format(review.timestamp.toDate())),
-                        trailing: Text(
-                          '${review.rating}/5 ★',
-                          style: const TextStyle(
-                            fontWeight: FontWeight.w500,
-                            color: Color(0xFFFFCB45),
+                          subtitle: Text(DateFormat('dd-MM-yyyy HH:mm:ss').format(review.timestamp.toDate())),
+                          trailing: Text(
+                            '${review.rating}/5 ★',
+                            style: const TextStyle(
+                              fontWeight: FontWeight.w500,
+                              color: Color(0xFFFFCB45),
+                            ),
                           ),
                         ),
                       ),
