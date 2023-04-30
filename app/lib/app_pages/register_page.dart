@@ -30,10 +30,19 @@ class _RegisterPageState extends State<RegisterPage> {
   Future signUp() async {
 
     if (passwordConfirmed()) {
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: _emailController.text.trim(),
-        password: _passwordController.text.trim(),
-      );
+      try {
+        await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: _emailController.text.trim(),
+          password: _passwordController.text.trim(),
+        );} on FirebaseAuthException catch (e) {
+          if (e.code == 'weak-password') {
+            return 'The password provided is weak';
+        } else if (e.code == 'email-already-in-use') {
+            return 'The account already exists for that email.';
+          }
+      } catch (e) {
+        return e.toString();
+      }
     }
   }
 
