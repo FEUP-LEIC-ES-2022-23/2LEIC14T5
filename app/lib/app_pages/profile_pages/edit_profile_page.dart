@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
-import '../data_models/user.dart';
-import '../custom_widgets/profile_image.dart';
-import '../custom_widgets/input_text_field.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:image_picker/image_picker.dart';
+import 'dart:io';
+
+import '../../data_models/user.dart';
+import '../../custom_widgets/profile_image.dart';
+import '../../custom_widgets/input_text_field.dart';
 
 class EditProfile extends StatefulWidget {
   final User user;
@@ -21,6 +26,7 @@ class EditProfileState extends State<EditProfile> {
   late TextEditingController _instagramLinkController;
   late TextEditingController _twitterLinkController;
   late TextEditingController _linkedinLinkController;
+  String newProfilePictureURL = "";
 
   @override
   void initState() {
@@ -71,7 +77,22 @@ class EditProfileState extends State<EditProfile> {
                     color: Colors.orangeAccent,
                     padding: const EdgeInsets.all(1),
                     child: IconButton(
-                      onPressed: () {},
+                      onPressed: () async {
+                        ImagePicker imagePicker = ImagePicker();
+                        XFile? image = await imagePicker.pickImage(source: ImageSource.gallery);
+
+                        Reference uploadReference = FirebaseStorage.instance.refFromURL(widget.user.profilePictureURL);
+
+                        try{
+                          await uploadReference.putFile(File(image!.path));
+                           newProfilePictureURL = await uploadReference.getDownloadURL();
+                           setState(() {
+                              widget.user.profilePictureURL = newProfilePictureURL;
+                           });
+                        } catch(e){
+                          throw Exception("Error uploading image");
+                        }
+                      },
                       color: Colors.white,
                       icon: const Icon(Icons.add_a_photo),
                     ),
@@ -155,15 +176,8 @@ class EditProfileState extends State<EditProfile> {
           const SizedBox(height: 24),
           ElevatedButton(
             onPressed: () {
-              widget.user.name = _nameController.text;
-              widget.user.email = _emailController.text;
-              widget.user.about = _aboutController.text;
-              widget.user.facebookURL = _facebookLinkController.text;
-              widget.user.instagramURL = _instagramLinkController.text;
-              widget.user.twitterURL = _twitterLinkController.text;
-              widget.user.linkedinURL = _linkedinLinkController.text;
-
-              Navigator.pop(context, widget.user);
+              updateUserInfo();
+              Navigator.pop(context);
             },
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.orangeAccent,
@@ -181,5 +195,21 @@ class EditProfileState extends State<EditProfile> {
         ],
       ),
     );
+  }
+
+  Future<void> updateUserInfo(){
+    CollectionReference users = FirebaseFirestore.instance.collection('user_profiles');
+    return users.doc(widget.user.email).update(
+      {
+        'name': _nameController.text,
+        'email': _emailController.text,
+        'about': _aboutController.text,
+        'profilePicURL': newProfilePictureURL,
+        'facebookURL': _facebookLinkController.text,
+        'instagramURL': _instagramLinkController.text,
+        'twitterURL': _twitterLinkController.text,
+        'linkedInURL': _linkedinLinkController.text,
+      }
+    ).catchError((error) => throw("Failed to update user info: $error"));
   }
 }

@@ -2,7 +2,9 @@ import 'package:filter_it/data_models/company.dart';
 import 'package:filter_it/data_models/job_contract.dart';
 import 'package:filter_it/data_models/job_location.dart';
 import 'package:filter_it/data_models/job_type.dart';
-
+import 'dart:convert';
+import 'package:crypto/crypto.dart';
+import 'package:convert/convert.dart'; // import the hex library
 
 class JobPost{
   final Company company;
@@ -17,6 +19,7 @@ class JobPost{
   final String publishedDate;
   final String updatedDate;
   final String jobSlug;
+  final int jobID;
 
   JobPost({
     required this.company,
@@ -31,6 +34,8 @@ class JobPost{
     required this.publishedDate,
     required this.updatedDate,
     required this.jobSlug,
+    required this.jobID,
+
   });
 
   factory JobPost.fromJson(Map<String, dynamic> json) {
@@ -74,6 +79,8 @@ class JobPost{
       publishedDate: json['publishedAt'] ?? "",
       updatedDate: json['updatedAt'] ?? "",
       jobSlug: (json['slug']).toString(),
+      jobID: (json['id']),
+
     );
   }
 }

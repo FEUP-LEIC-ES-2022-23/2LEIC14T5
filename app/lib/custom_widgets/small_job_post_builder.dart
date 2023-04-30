@@ -25,10 +25,10 @@ class SmallJobPostBuilder extends StatelessWidget {
       subtitle: Text(jobPost.company.companyName),
       trailing: IconButton(
         onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => BigJobPostBuilder(jobPost: jobPost),
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => BigJobPostBuilder(jobPost: jobPost),
             ),
           );
         },
