@@ -138,46 +138,44 @@ class SearchPageState extends State<SearchPage> {
               },
             ),
           ),
-          Container(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                jobPostsDisplay.isNotEmpty ?
-                ElevatedButton(
-                  onPressed: () async {
-                    requestBody['limit'] = (int.parse(requestBody['limit']!) + 10).toString();
-                    final jobPosts = await ITJobsAPI.fetchJobPosts(requestBody);
-                    setState(() {
-                      allJobPosts = jobPosts;
-                      jobPostsDisplay = jobPosts;
-                    });
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.orangeAccent,
-                  ),
-                  child: const Text("Add more results"),
-                ) : const SizedBox(width: 0, height: 0),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              jobPostsDisplay.isNotEmpty ?
+              ElevatedButton(
+                onPressed: () async {
+                  requestBody['limit'] = (int.parse(requestBody['limit']!) + 10).toString();
+                  final jobPosts = await ITJobsAPI.fetchJobPosts(requestBody);
+                  setState(() {
+                    allJobPosts = jobPosts;
+                    jobPostsDisplay = jobPosts;
+                  });
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.orangeAccent,
+                ),
+                child: const Text("Add more results"),
+              ) : const SizedBox(width: 0, height: 0),
 
-                jobPostsDisplay.length > 20 ?
-                    const SizedBox(width: 10, height: 0) : const SizedBox(width: 0, height: 0),
+              jobPostsDisplay.length > 20 ?
+                  const SizedBox(width: 10, height: 0) : const SizedBox(width: 0, height: 0),
 
-                jobPostsDisplay.length > 20 ?
-                ElevatedButton(
-                  onPressed: () async{
-                    requestBody['limit'] = (int.parse(requestBody['limit']!) - 10).toString();
-                    final jobPosts = await ITJobsAPI.fetchJobPosts(requestBody);
-                    setState(() {
-                      allJobPosts = jobPosts;
-                      jobPostsDisplay = jobPosts;
-                    });
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.orangeAccent,
-                  ),
-                  child: const Text("See less results"),
-                ) : const SizedBox(width: 0, height: 0),
-              ],
-            )
+              jobPostsDisplay.length > 20 ?
+              ElevatedButton(
+                onPressed: () async{
+                  requestBody['limit'] = (int.parse(requestBody['limit']!) - 10).toString();
+                  final jobPosts = await ITJobsAPI.fetchJobPosts(requestBody);
+                  setState(() {
+                    allJobPosts = jobPosts;
+                    jobPostsDisplay = jobPosts;
+                  });
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.orangeAccent,
+                ),
+                child: const Text("See less results"),
+              ) : const SizedBox(width: 0, height: 0),
+            ],
           )
         ]
       )

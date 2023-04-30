@@ -2,7 +2,12 @@ import 'package:filter_it/custom_widgets/review_builder.dart';
 import 'package:filter_it/data_models/job_post.dart';
 import 'package:filter_it/data_models/review_service.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:intl/intl.dart';
 import 'package:readmore/readmore.dart';
+
+import '../data_models/job_type.dart';
+import '../data_models/review.dart';
 
 class BigJobPostBuilder extends StatelessWidget{
   final JobPost jobPost;
@@ -10,6 +15,7 @@ class BigJobPostBuilder extends StatelessWidget{
     Key? key,
     required this.jobPost,
   }) : super(key: key);
+
 
   @override
   Widget build(BuildContext context){
@@ -21,200 +27,364 @@ class BigJobPostBuilder extends StatelessWidget{
         "Email: ${companyEmail == "null" ? "No email specified" : companyEmail}\n"
         "Address: ${companyAddress == "null" ? "No address specified" : companyAddress}";
     String companyDesc = jobPost.company.companyDescription;
+    String jobTypes = "No job types specified";
+
+    if(jobPost.jobTypes.isNotEmpty){
+      jobTypes = "";
+      for(JobType jobType in jobPost.jobTypes){
+        jobTypes += "${jobType.jobTypeName}, ";
+      }
+      //erase last comma
+      jobTypes = jobTypes.substring(0, jobTypes.length - 2);
+    }
+
     return Scaffold(
-      backgroundColor: Colors.grey,
       appBar: AppBar(
         title: Text(jobPost.jobTitle),
         backgroundColor: Colors.orangeAccent,
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-
-          children: [
-            Container( // First Container
-              alignment: Alignment.center,
-              height: 500,
-              width:  350,
-              decoration: const BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.all(Radius.circular(20)),
-              ),
-
-              child: Container(
-                margin: const EdgeInsets.only(left: 10.0,right: 10.0),
-                child: Column(
-                  children:[
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Align(
-                        alignment: Alignment.topLeft,
-                        child: Image.network(
-                          jobPost.company.logoURL,
-                          width: 70,
-                          height: 70,
-                          fit: BoxFit.contain,
-                        ),
-                      ),
-                    ),
-                    Align(
-                        alignment: Alignment.topLeft,
-                        child: Text(
-                          jobPost.jobTitle,
-                          style: const TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        )
-                    ),
-                    Align(
-                      alignment: Alignment.topLeft,
-                      child: Column(
-                        children: [
-                          if (jobPost.jobTypes.isNotEmpty)
-                            for (var item in jobPost.jobTypes) Text(item.jobTypeName)
-                        ],
-                      ),
-                    ),
-                    const Align(
-                        alignment: Alignment.topLeft,
-                        child: Text(
-                          "Qualifications:",
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        )
-                    ),
-                    Align(
-                      alignment: Alignment.topLeft,
-                      child: Text(
-                          jobPost.jobDescription == "null" ? "No qualifications specified" : jobPost.jobDescription
-                      ),
-                    ),
-                    const Align(
-                        alignment: Alignment.topLeft,
-                        child: Text(
-                          "About us:",
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        )
-                    ),
-                    Container( // SCROLL ABOUT US
-                      padding: const EdgeInsets.only(top: 3,bottom: 3),
-                      height: 150,
-                      child: SingleChildScrollView(
-                          child: ReadMoreText(companyDesc == "null" ? "No company description specified" : companyDesc,trimLines: 8,
-                            textAlign: TextAlign.justify,
-                            trimMode: TrimMode.Line,
-                            trimCollapsedText: " Show More ",
-                            trimExpandedText: " Show Less ",
-                            lessStyle: const TextStyle(
-                              fontWeight: FontWeight.bold,
-                            ),
-                            moreStyle: const TextStyle(
-                              fontWeight: FontWeight.bold,
-                            ),
-                          )
-                      ),
-                    ),
-                    const Align(
-                        alignment: Alignment.topLeft,
-                        child: Text(
-                          "Contact us:",
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        )
-                    ),
-                    Align(
-                      alignment: Alignment.topLeft,
-                      child: Container( // SCROLL ABOUT US
-                        padding: const EdgeInsets.only(top: 3,bottom: 3),
-                        height: 100,
-                        child: SingleChildScrollView(
-                            child: ReadMoreText(companyContacts == "null" ? "No company contacts specified" : companyContacts,trimLines: 4,
-                              trimMode: TrimMode.Line,
-                              trimCollapsedText: " Show More ",
-                              trimExpandedText: " Show Less ",
-                              lessStyle: const TextStyle(
-                                fontWeight: FontWeight.bold,
-                              ),
-                              moreStyle: const TextStyle(
-                                fontWeight: FontWeight.bold,
-                              ),
-                            )
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+      body: ListView(
+        padding: const EdgeInsets.only(top: 30),
+        physics: const BouncingScrollPhysics(),
+        children: [
+          Image.network(
+            jobPost.company.logoURL,
+            width: MediaQuery.of(context).size.width * 0.15,
+            height: MediaQuery.of(context).size.width * 0.15,
+            fit: BoxFit.contain,
+          ),
+          const SizedBox(height: 10),
+          const SizedBox(height: 10),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            child: Text(
+              "Company Name",
+               textAlign: TextAlign.left,
+               style: TextStyle(
+                 fontSize: 20,
+                 fontWeight: FontWeight.bold,
               ),
             ),
-            Container( // Second Container
-                margin: const EdgeInsets.only(top:20.0),
-                height: 200,
-                width:  350,
-                decoration: const BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.all(Radius.circular(20)),
+          ),
+          Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 25),
+              child: Text(
+                jobPost.company.companyName,
+                textAlign: TextAlign.left,
+                style: const TextStyle(
+                fontSize: 18,
+              ),
+            )
+          ),
+          const SizedBox(height: 10),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            child: Text(
+              "Job Position",
+              textAlign: TextAlign.left,
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 25),
+              child: Text(
+                jobPost.jobTitle,
+                textAlign: TextAlign.left,
+                style: const TextStyle(
+                  fontSize: 18,
                 ),
-                child: Column(
-                  children:[
-                    const Align(
-                      alignment: Alignment.center,
-                      child: Text(
-                        "Reviews",
-                        style: TextStyle(
-                          fontSize: 25,
-                          fontWeight: FontWeight.bold,
-                        ),
+              )
+          ),
+          const SizedBox(height: 10),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            child: Text(
+              "Job Type(s)",
+              textAlign: TextAlign.left,
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 25),
+              child: Align(
+                alignment: Alignment.topLeft,
+                child: Scrollable(
+                  axisDirection: AxisDirection.right,
+                  viewportBuilder: (BuildContext context, ViewportOffset position){
+                    return Row(
+                      children: [
+                        Text(
+                          jobTypes,
+                          textAlign: TextAlign.left,
+                          style: const TextStyle(
+                            fontSize: 18,
+                          ),
+                        )
+                      ],
+                    );
+                  },
+                ),
+              )
+          ),
+          const SizedBox(height: 10),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            child: Text(
+              "Job Description",
+              textAlign: TextAlign.left,
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 25),
+              child: ReadMoreText(
+                jobPost.jobDescription == "null" ? "No job description specified" : jobPost.jobDescription,
+                trimLines: 3,
+                colorClickableText: Colors.orangeAccent,
+                trimMode: TrimMode.Line,
+                trimCollapsedText: '...Show more',
+                trimExpandedText: ' show less',
+                style: const TextStyle(
+                  fontSize: 18,
+                ),
+              )
+          ),
+          const SizedBox(height: 10),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            child: Text(
+              "Job Wage",
+              textAlign: TextAlign.left,
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 25),
+              child: Text(
+                jobPost.jobWage == "null" ? "No job wage specified" : jobPost.jobWage,
+                textAlign: TextAlign.left,
+                style: const TextStyle(
+                  fontSize: 18,
+                ),
+              )
+          ),
+          const SizedBox(height: 10),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            child: Text(
+              "Company Description",
+              textAlign: TextAlign.left,
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 25),
+              child: ReadMoreText(
+                companyDesc == "null" ? "No company description specified" : companyDesc,
+                trimLines: 3,
+                colorClickableText: Colors.orangeAccent,
+                trimMode: TrimMode.Line,
+                trimCollapsedText: ' Show more',
+                trimExpandedText: ' Show less',
+                style: const TextStyle(
+                  fontSize: 18,
+                ),
+              )
+          ),
+          const SizedBox(height: 10),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            child: Text(
+              "Contacts",
+              textAlign: TextAlign.left,
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 25),
+              child: ReadMoreText(
+                companyContacts == "null" ? "No contacts specified" : companyContacts,
+                trimLines: 3,
+                colorClickableText: Colors.orangeAccent,
+                trimMode: TrimMode.Line,
+                trimCollapsedText: ' Show more',
+                trimExpandedText: ' Show less',
+                style: const TextStyle(
+                  fontSize: 18,
+                ),
+              )
+          ),
+          const SizedBox(height: 10),
+          const Divider(
+            color: Colors.black,
+            endIndent: 20,
+            indent: 20,
+          ),
+          const SizedBox(height: 10),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            child: Text(
+              "Average Rating",
+              textAlign: TextAlign.left,
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: StreamBuilder<double>(
+              stream: reviewService.getJobAverageRatingStream(jobPost.jobID),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  double averageRating = snapshot.data!;
+                  return Padding(
+                    padding: const EdgeInsets.only(left: 10.0 ),
+                    child: Text(
+                      "${averageRating.toStringAsFixed(1)} / 5 ★",
+                      textAlign: TextAlign.left,
+                      style: const TextStyle(
+                        fontSize: 20,
+                        color: Colors.amber,
                       ),
                     ),
+                  );
+                } else {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+              },
+            ),
+          ),
+          const SizedBox(height: 10),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            child: Text(
+              "Latest Review",
+              textAlign: TextAlign.left,
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: SizedBox(
+              height: 80,
+              child: StreamBuilder<List<Review>>(
+                stream: reviewService.getJobReviewsStream(jobPost.jobID),
+                builder: (context, snapshot) {
+                  if (snapshot.hasError) {
+                    return Text('Error: ${snapshot.error}');
+                  }
 
-                StreamBuilder<double>(
-                  stream: reviewService.getJobAverageRatingStream(jobPost.jobID),
-                  builder: (context, snapshot) {
-                    if (snapshot.hasData) {
-                      double averageRating = snapshot.data!;
-                      return Padding(
-                        padding: const EdgeInsets.only(top: 20),
-                        child: Text(
-                          'Average rating: ${averageRating.toStringAsFixed(1)}',
-                          style: const TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const CircularProgressIndicator();
+                  }
+
+                  if (snapshot.data == null || snapshot.data!.isEmpty) {
+                    return const Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 20),
+                        child: Center(
+                          child: Text(
+                            "No reviews yet. Be the first to write one!",
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                              fontSize: 18,
+                            ),
+                          ),
+                        )
+                    );
+                  }
+
+                  final reviews = snapshot.data!;
+                  reviews.sort((a, b) => b.timestamp.compareTo(a.timestamp));
+
+                  return ListView.builder(
+                    itemCount: 1,
+                    itemBuilder: (context, index) {
+                      final review = snapshot.data![index];
+                      return Card(
+                        elevation: 5,
+                        child: ListTile(
+                          title: Text(
+                            review.comment,
+                            textAlign: TextAlign.justify,
+                            style: const TextStyle(
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          subtitle: Text(DateFormat('dd-MM-yyyy HH:mm:ss').format(review.timestamp.toDate())),
+                          trailing: Text(
+                            '${review.rating}/5 ★',
+                            style: const TextStyle(
+                              fontWeight: FontWeight.w500,
+                              color: Color(0xFFFFCB45),
+                            ),
                           ),
                         ),
                       );
-                    } else if (snapshot.hasError) {
-                      return const Text('Error getting average rating');
-                    } else {
-                      return const CircularProgressIndicator();
-                    }
+                    },
+                  );
+                },
+              ),
+            ),
+          ),
+          const SizedBox(height: 20),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 20.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ReviewBuilder(jobID: jobPost.jobID),
+                      ),
+                    );
                   },
-                ),
-                    const SizedBox(height: 20),
-                    ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => ReviewBuilder(jobID: jobPost.jobID),
-                          ),
-                        );
-                      },
-                      child: const Text('See reviews'),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.orangeAccent,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
                     ),
-                  ],
-                )
-            )
-          ],
-        ),
-      ) ,
+                  ),
+                  child: const Text(
+                      'See more reviews'
+                  ),
+                ),
+                IconButton(
+                    onPressed: (){},
+                    icon: const Icon(Icons.favorite_border)
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

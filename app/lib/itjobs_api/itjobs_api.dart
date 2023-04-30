@@ -14,10 +14,10 @@ class ITJobsAPI {
       else if(key == 'jobType' && body[key] != 'Unspecified'){
         switch(body[key]){
           case 'Full-Time':
-            finalBody['job_type'] = '1';
+            finalBody['type'] = '1';
             break;
           case 'Part-Time':
-            finalBody['job_type'] = '2';
+            finalBody['type'] = '2';
             break;
           default:
             break;
@@ -27,19 +27,19 @@ class ITJobsAPI {
       else if(key == 'contractType' && body[key] != 'Unspecified'){
         switch(body[key]){
           case 'Estágio Académico':
-            finalBody['contract_type'] = '5';
+            finalBody['contract'] = '5';
             break;
           case 'Prestação de Serviços':
-            finalBody['contract_type'] = '4';
+            finalBody['contract'] = '4';
             break;
           case 'Estágio Profissional':
-            finalBody['contract_type'] = '3';
+            finalBody['contract'] = '3';
             break;
           case 'Contrato sem termo':
-            finalBody['contract_type'] = '2';
+            finalBody['contract'] = '2';
             break;
           case 'Contrato a termo':
-            finalBody['contract_type'] = '1';
+            finalBody['contract'] = '1';
             break;
           default:
             break;
