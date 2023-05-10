@@ -35,4 +35,23 @@ class ReviewService {
       return querySnapshot.docs.map((doc) => Review.fromMap(doc.data(), doc.id)).toList();
     });
   }
+
+  Stream<int> getUserReviewsCountStream(String userId) {
+    return _db
+        .collection('reviews')
+        .where('userId', isEqualTo: userId)
+        .snapshots()
+        .map((querySnapshot) => querySnapshot.docs.where((doc) => doc.data()['comment'] != '').length);
+  }
+
+
+  Stream<int> getUserRatingCountStream(String userId) {
+    return _db
+        .collection('reviews')
+        .where('userId', isEqualTo: userId)
+        .where('comment', isEqualTo: '')
+        .snapshots()
+        .map((querySnapshot) => querySnapshot.size);
+  }
+
 }

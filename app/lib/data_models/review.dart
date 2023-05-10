@@ -11,7 +11,7 @@ class Review {
     required this.jobId,
     required this.rating,
     required this.comment,
-    this.userId = '',
+    required this.userId,
     required this.timestamp,
   });
 
