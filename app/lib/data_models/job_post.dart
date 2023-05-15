@@ -17,6 +17,7 @@ class JobPost{
   final String updatedDate;
   final String jobSlug;
   final int jobID;
+  final String allowRemote;
 
   JobPost({
     required this.company,
@@ -32,7 +33,7 @@ class JobPost{
     required this.updatedDate,
     required this.jobSlug,
     required this.jobID,
-
+    required this.allowRemote,
   });
 
   factory JobPost.fromJson(Map<String, dynamic> json) {
@@ -42,7 +43,7 @@ class JobPost{
           .map((type) => JobType.fromJson(type))
           .toList();
     } else {
-      jobTypesTemp = [JobType(jobTypeID: "Error", jobTypeName: "Error")];
+      jobTypesTemp = [JobType(jobTypeID: "", jobTypeName: "")];
     }
 
     List<JobLocation> jobLocationsTemp = [];
@@ -51,7 +52,7 @@ class JobPost{
           .map((location) => JobLocation.fromJson(location))
           .toList();
     } else {
-      jobLocationsTemp = [JobLocation(jobLocationID: "Error", jobLocationName: "Error")];
+      jobLocationsTemp = [JobLocation(jobLocationID: "", jobLocationName: "")];
     }
 
     List<JobContract> jobContractsTemp = [];
@@ -60,7 +61,7 @@ class JobPost{
           .map((contract) => JobContract.fromJson(contract))
           .toList();
     } else {
-      jobContractsTemp = [JobContract(jobContractID: "Error", jobContractName: "Error")];
+      jobContractsTemp = [JobContract(jobContractID: "", jobContractName: "")];
     }
 
     return JobPost(
@@ -77,7 +78,7 @@ class JobPost{
       updatedDate: json['updatedAt'] ?? "",
       jobSlug: (json['slug']).toString(),
       jobID: (json['id']),
-
+      allowRemote: (json['allowRemote']).toString(),
     );
   }
 }
