@@ -38,11 +38,11 @@ In our app, there are 4 entities involved:
 - `Google Maps API` - allows us to use the map and is also used for geolocation purposes
 
 Here's a quick rundown on the 4 entities' interactions:
-- The user device is the main entity in this environment. The app runs on it and, therefore, all the interactions with the other entities are dependant on it. Besides that, the device storage is uses only when the app is running to store data, for example, from searches. There is no persistent data
+- The user device is the main entity in this environment. The app runs on it and, therefore, all the interactions with the other entities are dependant on it. Besides that, the device storage is uses only when the app is running to store temporary data, for example, from searches. There is no persistent data
 - To get the user's information, such as profile information, favorites, the app (running on the user's device) makes calls to the Firebase Firestore database. When new information is added, like a new favourite, the app also communicates this information to the database
-- To authenticate the user, the app makes calls to the Firebase Authentication API
-- To fetch information about job posts, the app makes calls to the ITJobs API
-- The app makes calss to the Google Maps API to use the Maps SDK to have a interactive world map and to use the Geocoding API
+- To authenticate the user, the app makes calls to the Firebase Authentication API to validate user credentials and his login status
+- To fetch information about job posts, the app makes calls to the ITJobs API to fetch the information and then stores it in the device storage
+- The app makes calls to the Google Maps API to use the Maps SDK to have a interactive world map and to use the Geocoding API to convert job post's addresses to coordinates to draw them on the map
 
 <p align="center">
     <img src="../images/physical_architecture.png" alt="Logical Architecture UML">
@@ -50,7 +50,6 @@ Here's a quick rundown on the 4 entities' interactions:
 <p align="center">
     Fig. 2 - Physical Architecture UML
 <p>
-
 
 ### Vertical prototype
 In our vertical prototype, we implemented multiple pages (Home Page, Favorites Page and Help Page), to give a basic idea of what we want to create. Also, we added a simple button widget, just to show some "state" functionality, a key feature that we will need in the app.
