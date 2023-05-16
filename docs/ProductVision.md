@@ -1,9 +1,7 @@
 
-## Product Vision
+## Product Vision Statement
 
-### Vision Statement
-
-With the growth of technology related jobs, it is hard to find reliable opinions about the companies and have the best job offers under your radar. Our app is designed to help IT workers filter their future workplace location with the help of an interactive, user-friendly interface. Start your search today and explore the endless possibilities that are waiting for you.
+The IT jobs expansion is increasingly making hard to find reliable opinions and to have the best job offers under your radar. Our app is designed to help IT workers filter their future workplace location with the help of an interactive interface. Start your search today and explore the endless possibilities that are waiting for you.
 
 ### Main Features
 - Search with filters

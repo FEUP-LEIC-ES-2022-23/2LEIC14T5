@@ -283,16 +283,28 @@ Scenario: Edit my profile.
 <br>
 
 ## Domain Model
- <p align="center" justify="center">
+Our domain model is composed of the following classes:
+- `User`: represents a user of the application. It has the following attributes:
+  - `personal information`: information that is displayed in the user's profile, such as name, email, socials, etc
+  - `favourites list`: list of job offers that the user has marked as favourite
+  - `login credentials`: email and password that the user uses to login in the application
+- `Job Post`: represents a job offer. It has the following attributes:
+  - `job offer details`: information about the job offer, such as title, description, location, etc
+  - `company details`: information about the company that is offering the job, such as name, logo, socials, etc
+- `Review`: represents a review of a job offer. It has the following attributes:
+  - `rating`: rating of the job offer
+  - `comment`: comment about the job offer
+
+Here's an explanation of the relationships between the classes:
+- `User` can see multiple `Job Posts` and have multiple `Job Posts` as favourites as well
+- The same `Job Post` can be seen and marked as favourite by multiple `Users`
+- `User` can write multiple `Reviews` and `Job Posts` can have multiple `Reviews` referring to it. However, a `Review` can only be written by one `User` and can only refer to one `Job Post`
+
+<p align="center" justify="center">
   <img src="../images/domain_model.png" alt="Domain Model">
 </p>
 <p align="center" justify="center">
   <b>Figure 1:</b> Domain model of the FilterIT application
 </p>
 <br>
-The domain model of the FilterIT application is shown in Figure 1. The domain model is composed of the following entities:
 
-- **User**: A user is a person that uses the application. A user can not only be a newly formed IT worker, but also a senior worker looking for a new workplace. 
-- **Ad**: An ad is a job offer. It contains information about job, like the company, the job position, the salary, the location, requirements for the job and others.
-- **Review**: A review is a feedback from a user about a job offer. It contains ia rating and an optional text review.
-- **Favorite**: A favorite is a job offer that a user has marked as favorite. A user can have multiple favorites.

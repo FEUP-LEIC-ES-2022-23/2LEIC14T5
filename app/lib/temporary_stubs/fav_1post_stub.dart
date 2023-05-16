@@ -34,7 +34,11 @@ class StarkPostStub {
             companyFax: "StubCompanyFax",
             companyEmail: "StubCompanyEmail",
             companyURL: "StubCompanyUrl",
-            companySlug: "StubCompanySlug"),
+            companySlug: "StubCompanySlug",
+            urlFacebook: "",
+            urlTwitter: "",
+            urlLinkedin: "",
+        ),
         companyID: 1,
         jobTitle: "Stark",
         jobDescription: "StubJobDescription",
@@ -46,5 +50,7 @@ class StarkPostStub {
         publishedDate: "StubPublishedDate",
         updatedDate: "StubUpdatedDate",
         jobSlug: "StubJobSlug",
-        jobID: -1);
+        jobID: -1,
+        allowRemote: "true",
+    );
 }
