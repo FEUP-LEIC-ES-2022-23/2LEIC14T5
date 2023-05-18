@@ -5,6 +5,7 @@ import '../app_pages/favorites_page.dart';
 import '../app_pages/help_page.dart';
 import '../app_pages/search_page.dart';
 import '../app_pages/profile_pages/profile_page.dart';
+import '../authentication/main_page.dart';
 
 
 class NavigationDrawer extends StatelessWidget{
@@ -88,6 +89,10 @@ class NavigationDrawer extends StatelessWidget{
           title :const Text("Sign Out"),
           onTap: () {
             FirebaseAuth.instance.signOut();
+            Navigator.pop(context);
+            Navigator.of(context).pushReplacement(MaterialPageRoute(
+                builder: (context) => const MainPage()
+            ));
           },
         ),
       ],
