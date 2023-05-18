@@ -1,5 +1,7 @@
+import 'package:filter_it/authentication/auth_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import '../authentication/auth_page.dart';
 import '../app_pages/home_page.dart';
 import '../app_pages/favorites_page.dart';
 import '../app_pages/help_page.dart';
@@ -87,7 +89,7 @@ class NavigationDrawer extends StatelessWidget{
         ListTile(
           leading: const Icon(Icons.arrow_back),
           title :const Text("Sign Out"),
-          onTap: () {
+          onTap: ()  {
             FirebaseAuth.instance.signOut();
             Navigator.pop(context);
             Navigator.of(context).pushReplacement(MaterialPageRoute(

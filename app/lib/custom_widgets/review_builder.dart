@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 import '../data_models/review.dart';
 import '../data_models/review_service.dart';
@@ -22,6 +23,8 @@ class ReviewBuilderState extends State<ReviewBuilder> {
   final _formKey = GlobalKey<FormState>();
   late int _rating;
   late String _description;
+  FirebaseAuth auth = FirebaseAuth.instance;
+
 
   @override
   Widget build(BuildContext context) {
@@ -129,12 +132,6 @@ class ReviewBuilderState extends State<ReviewBuilder> {
                       ),
                       keyboardType: TextInputType.multiline,
                       maxLines: 1,
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter a description.';
-                        }
-                        return null;
-                      },
                       onSaved: (value) {
                         _description = value!;
                       },
@@ -147,11 +144,13 @@ class ReviewBuilderState extends State<ReviewBuilder> {
                       onPressed: () async {
                         if (_formKey.currentState!.validate()) {
                           _formKey.currentState!.save();
+                          String _userId = auth.currentUser!.email!;
                           Review review = Review(
                             jobId: widget.jobID,
                             rating: _rating,
                             comment: _description,
                             timestamp: Timestamp.now(),
+                            userId: _userId,
                           );
                           await reviewService.addReview(review);
 
