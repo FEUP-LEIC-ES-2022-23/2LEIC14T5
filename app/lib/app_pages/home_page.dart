@@ -18,6 +18,8 @@ class HomePage extends StatefulWidget {
 }
 
 class HomePageState extends State<HomePage> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
   List<Marker> markers = <Marker>[];
 
   final currentDate = DateTime.now();
@@ -34,6 +36,7 @@ class HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: const Key('homePage'),
       appBar: AppBar(
         title: const Text("Home Page"),
         backgroundColor: Colors.orangeAccent,

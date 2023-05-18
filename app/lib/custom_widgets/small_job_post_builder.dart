@@ -24,6 +24,7 @@ class SmallJobPostBuilder extends StatelessWidget {
       title: Text(jobPost.jobTitle),
       subtitle: Text(jobPost.company.companyName),
       trailing: IconButton(
+        key: const Key('arrowIcon'),
         onPressed: () {
           Navigator.push(
             context,
