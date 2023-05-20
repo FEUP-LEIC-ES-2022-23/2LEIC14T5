@@ -1,5 +1,6 @@
 import 'package:filter_it/data_models/job_post.dart';
 import 'package:filter_it/custom_widgets/small_fav_post_builder.dart';
+import 'package:filter_it/custom_widgets/favorites_list.dart';
 import 'package:filter_it/itjobs_api/itjobs_api.dart';
 import 'package:filter_it/temporary_stubs/jobpost_stub.dart';
 import 'package:filter_it/temporary_stubs/fav_1post_stub.dart';
@@ -17,26 +18,20 @@ class FavoritesPage extends StatefulWidget{
 }
 
 class _FavoritesPageState extends State<FavoritesPage> {
-  List<JobPost> favPostsDisplay = [];
+  /*
   final fav1 = StarkPostStub.fav1;
   final fav2 = WaynePostStub.fav2;
   final fav3 = OscorpPostStub.fav3;
+  */
 
   @override
   void initState() {
     super.initState();
-    addFavPost();
-  }
-
-  void addFavPost() {
-    favPostsDisplay.add(fav1);
-    favPostsDisplay.add(fav2);
-    favPostsDisplay.add(fav3);
   }
 
   void removeFavPost(JobPost jobPost){
     setState(() {
-      favPostsDisplay.remove(jobPost);
+      FavoritesList.favPostsDisplay.remove(jobPost);
     });
   }
 
@@ -53,7 +48,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
         child: Column(
           children: <Widget>[
             Expanded(
-              child: favPostsDisplay.isEmpty
+              child: FavoritesList.favPostsDisplay.isEmpty
                 ? const Center(
                     child: Text(
                     'No results found.',
@@ -63,9 +58,9 @@ class _FavoritesPageState extends State<FavoritesPage> {
                   ) 
                 )
                 : ListView.builder(
-                    itemCount: favPostsDisplay.length,
+                    itemCount: FavoritesList.favPostsDisplay.length,
                     itemBuilder: (context, index) {
-                      final jobPost = favPostsDisplay[index];
+                      final jobPost = FavoritesList.favPostsDisplay[index];
                       return favPostBuilder(jobPost);
                     },
                   ),

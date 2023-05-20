@@ -1,6 +1,9 @@
 import 'package:filter_it/custom_widgets/review_builder.dart';
 import 'package:filter_it/data_models/job_post.dart';
 import 'package:filter_it/data_models/review_service.dart';
+import 'package:filter_it/app_pages/favorites_page.dart';
+import 'package:filter_it/custom_widgets/favorites_list.dart';
+import 'package:filter_it/custom_widgets/small_fav_post_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:intl/intl.dart';
@@ -40,7 +43,7 @@ class BigJobPostBuilder extends StatelessWidget{
       //erase last comma
       jobTypes = jobTypes.substring(0, jobTypes.length - 2);
     }
-
+    
     return Scaffold(
       appBar: AppBar(
         title: Text(jobPost.jobTitle),
@@ -445,8 +448,15 @@ class BigJobPostBuilder extends StatelessWidget{
                   ),
                 ),
                 IconButton(
-                    onPressed: (){},
-                    icon: const Icon(Icons.favorite_border)
+                    icon: Icon(
+                      FavoritesList.favPostsDisplay.contains(jobPost) ? Icons.favorite : Icons.favorite_border,
+                      color: FavoritesList.favPostsDisplay.contains(jobPost) ? Colors.red : null,
+                      ),
+                    onPressed: (){
+                      if(!FavoritesList.favPostsDisplay.contains(jobPost)){
+                        FavoritesList.favPostsDisplay.add(jobPost);
+                      }
+                    },
                 ),
               ],
             ),
