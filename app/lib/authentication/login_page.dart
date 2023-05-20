@@ -50,7 +50,7 @@ class _LoginPageState extends State<LoginPage> {
                 Text(
                   'Welcome to FilterIT',
                   style: GoogleFonts.anton(
-                    fontSize: 52,
+                    fontSize: 47,
                   ),
                 ),
                 const SizedBox(height: 10),
