@@ -26,13 +26,17 @@ dependencies:
   firebase_storage: ^11.1.1
   intl: ^0.17.0
   flutter_rating_bar: ^4.0.1
+  google_maps_flutter: ^2.2.4
+  geocoding: ^2.0.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_driver:
+    sdk: flutter
   mockito: 5.4.0
   build_runner: 2.3.3
   flutter_lints: ^2.0.0
-
+  flutter_gherkin: ^2.0.0
 flutter:
   uses-material-design: true

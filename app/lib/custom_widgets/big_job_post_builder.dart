@@ -5,6 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:intl/intl.dart';
 import 'package:readmore/readmore.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'dart:core';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../data_models/job_type.dart';
 import '../data_models/review.dart';
@@ -136,6 +139,28 @@ class BigJobPostBuilder extends StatelessWidget{
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 20),
             child: Text(
+              "Remote Work Available?",
+              textAlign: TextAlign.left,
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 25),
+              child: Text(
+                jobPost.allowRemote == "true" ? "Yes" : "No",
+                textAlign: TextAlign.left,
+                style: const TextStyle(
+                  fontSize: 18,
+                ),
+              )
+          ),
+          const SizedBox(height: 10),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            child: Text(
               "Job Description",
               textAlign: TextAlign.left,
               style: TextStyle(
@@ -233,6 +258,49 @@ class BigJobPostBuilder extends StatelessWidget{
               )
           ),
           const SizedBox(height: 10),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            child: Text(
+              "Company Socials",
+              textAlign: TextAlign.left,
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 17),
+            child: Row(
+              //position them on the left
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                IconButton(
+                  icon: FaIcon(
+                    FontAwesomeIcons.facebook,
+                    color: (jobPost.company.urlFacebook == "null") ? Colors.grey : Colors.blue,
+                  ),
+                  onPressed: (jobPost.company.urlFacebook == "null") ? null : () {_launchURL(jobPost.company.urlFacebook);},
+                ),
+                const SizedBox(width: 10),
+                IconButton(
+                  icon: FaIcon(
+                    FontAwesomeIcons.twitter,
+                    color: (jobPost.company.urlTwitter == "null") ? Colors.grey : Colors.blue,
+                  ),
+                  onPressed: (jobPost.company.urlTwitter == "null") ? null : () {_launchURL(jobPost.company.urlTwitter);},
+                ),
+                const SizedBox(width: 10),
+                IconButton(
+                  icon: FaIcon(
+                    FontAwesomeIcons.linkedin,
+                    color: (jobPost.company.urlLinkedin == "null") ? Colors.grey : Colors.blue,
+                  ),
+                  onPressed: (jobPost.company.urlLinkedin == "null") ? null : () {_launchURL(jobPost.company.urlLinkedin);},
+                ),
+              ],
+            ),
+          ),
           const Divider(
             color: Colors.black,
             endIndent: 20,
@@ -386,5 +454,10 @@ class BigJobPostBuilder extends StatelessWidget{
         ],
       ),
     );
+  }
+
+  _launchURL(String url) async {
+    final uri = Uri.parse(url);
+    await launchUrl(uri);
   }
 }

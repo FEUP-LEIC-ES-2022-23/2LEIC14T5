@@ -34,7 +34,11 @@ class WaynePostStub {
             companyFax: "StubCompanyFax",
             companyEmail: "StubCompanyEmail",
             companyURL: "StubCompanyUrl",
-            companySlug: "StubCompanySlug"),
+            companySlug: "StubCompanySlug",
+            urlFacebook: "",
+            urlTwitter: "",
+            urlLinkedin: "",
+        ),
         companyID: 1,
         jobTitle: "Wayne Enterprises",
         jobDescription: "StubJobDescription",
@@ -46,5 +50,7 @@ class WaynePostStub {
         publishedDate: "StubPublishedDate",
         updatedDate: "StubUpdatedDate",
         jobSlug: "StubJobSlug",
-        jobID: -1);
+        jobID: -1,
+        allowRemote: "true",
+    );
 }

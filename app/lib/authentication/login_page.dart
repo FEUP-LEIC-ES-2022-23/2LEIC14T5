@@ -2,7 +2,6 @@ import 'package:filter_it/authentication/forgot_password_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 class LoginPage extends StatefulWidget {
   final VoidCallback showRegisterPage;
   const LoginPage({
@@ -69,6 +68,7 @@ class _LoginPageState extends State<LoginPage> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 25.0),
                     child: TextField(
+                      key: const Key('emailfield'),
                       controller: _emailController,
                       decoration: InputDecoration(
                         enabledBorder: OutlineInputBorder(
@@ -91,6 +91,7 @@ class _LoginPageState extends State<LoginPage> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 25.0),
                     child: TextField(
+                      key: const Key('passfield'),
                       controller: _passwordController,
                       obscureText: true,
                       decoration: InputDecoration(
@@ -140,6 +141,7 @@ class _LoginPageState extends State<LoginPage> {
                     child: GestureDetector(
                       onTap: signIn,
                       child: Container(
+                        key: const Key('signInBtn'),
                         padding: const EdgeInsets.all(20),
                         decoration: BoxDecoration(
                           color: Colors.orange,

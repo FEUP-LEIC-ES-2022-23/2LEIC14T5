@@ -6,6 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart' as auth;
 
 import '../../custom_widgets/navigation_drawer.dart' as nav;
 import '../../custom_widgets/profile_image.dart';
+import '../../data_models/review_service.dart';
 import '../../data_models/user.dart';
 import '../../custom_widgets/rounded_button.dart';
 import 'edit_profile_page.dart';
@@ -33,6 +34,7 @@ class ProfilePageState extends State<ProfilePage> {
 
   @override
   Widget build(BuildContext context){
+
     return StreamBuilder<User>(
       stream: generateUser(),
       builder: (context, snapshot) {
@@ -121,15 +123,34 @@ class ProfilePageState extends State<ProfilePage> {
   }
 
   Widget buildUserStats(User user){
+    final reviewService = ReviewService();
     return IntrinsicHeight(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           buildStatColumn(context, "Favourites", user.favouritesCount.toString()),
           verticalDivider(),
-          buildStatColumn(context, "Ratings", user.ratingsCount.toString()),
+          StreamBuilder<int>(
+            stream: reviewService.getUserRatingCountStream(user.email),
+            builder: (BuildContext context, AsyncSnapshot<int> snapshot) {
+              if (snapshot.hasData) {
+                return buildStatColumn(context, "Ratings", snapshot.data.toString());
+              } else {
+                return buildStatColumn(context, "Ratings", "0");
+              }
+            },
+          ),
           verticalDivider(),
-          buildStatColumn(context, "Reviews", user.reviewsCount.toString()),
+          StreamBuilder<int>(
+            stream: reviewService.getUserReviewsCountStream(user.email),
+            builder: (BuildContext context, AsyncSnapshot<int> snapshot) {
+              if (snapshot.hasData) {
+                return buildStatColumn(context, "Reviews", snapshot.data.toString());
+              } else {
+                return buildStatColumn(context, "Reviews", "0");
+              }
+            },
+          ),
         ],
       ),
     );

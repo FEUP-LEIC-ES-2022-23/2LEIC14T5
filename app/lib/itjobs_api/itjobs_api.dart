@@ -130,7 +130,9 @@ class ITJobsAPI {
       finalBody['q'] = query;
     }
 
-    finalBody['limit'] = body['limit'];
+    if(body['limit'] != "Unspecified"){
+      finalBody['limit'] = body['limit'];
+    }
 
     final response = await http.post(Uri.parse('https://api.itjobs.pt/job/list.json'), body: finalBody);
 
