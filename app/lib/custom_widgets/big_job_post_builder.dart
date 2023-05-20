@@ -8,6 +8,7 @@ import 'package:readmore/readmore.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'dart:core';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../data_models/job_type.dart';
 import '../data_models/review.dart';
@@ -58,15 +59,15 @@ class BigJobPostBuilder extends StatelessWidget{
           ),
           const SizedBox(height: 10),
           const SizedBox(height: 10),
-          const Padding(
+           Padding(
             padding: EdgeInsets.symmetric(horizontal: 20),
             child: Text(
               "Company Name",
                textAlign: TextAlign.left,
-               style: TextStyle(
-                 fontSize: 20,
+               style: GoogleFonts.merriweatherSans(
                  fontWeight: FontWeight.bold,
-              ),
+                 fontSize: 20,
+               ),
             ),
           ),
           Padding(
@@ -80,14 +81,14 @@ class BigJobPostBuilder extends StatelessWidget{
             )
           ),
           const SizedBox(height: 10),
-          const Padding(
+           Padding(
             padding: EdgeInsets.symmetric(horizontal: 20),
             child: Text(
               "Job Position",
               textAlign: TextAlign.left,
-              style: TextStyle(
-                fontSize: 20,
+              style: GoogleFonts.merriweatherSans(
                 fontWeight: FontWeight.bold,
+                fontSize: 20,
               ),
             ),
           ),
@@ -102,14 +103,14 @@ class BigJobPostBuilder extends StatelessWidget{
               )
           ),
           const SizedBox(height: 10),
-          const Padding(
+           Padding(
             padding: EdgeInsets.symmetric(horizontal: 20),
             child: Text(
               "Job Type(s)",
               textAlign: TextAlign.left,
-              style: TextStyle(
-                fontSize: 20,
+              style: GoogleFonts.merriweatherSans(
                 fontWeight: FontWeight.bold,
+                fontSize: 20,
               ),
             ),
           ),
@@ -136,14 +137,14 @@ class BigJobPostBuilder extends StatelessWidget{
               )
           ),
           const SizedBox(height: 10),
-          const Padding(
+           Padding(
             padding: EdgeInsets.symmetric(horizontal: 20),
             child: Text(
               "Remote Work Available?",
               textAlign: TextAlign.left,
-              style: TextStyle(
-                fontSize: 20,
+              style: GoogleFonts.merriweatherSans(
                 fontWeight: FontWeight.bold,
+                fontSize: 20,
               ),
             ),
           ),
@@ -158,14 +159,14 @@ class BigJobPostBuilder extends StatelessWidget{
               )
           ),
           const SizedBox(height: 10),
-          const Padding(
+          Padding(
             padding: EdgeInsets.symmetric(horizontal: 20),
             child: Text(
               "Job Description",
               textAlign: TextAlign.left,
-              style: TextStyle(
-                fontSize: 20,
+              style: GoogleFonts.merriweatherSans(
                 fontWeight: FontWeight.bold,
+                fontSize: 20,
               ),
             ),
           ),
@@ -184,14 +185,14 @@ class BigJobPostBuilder extends StatelessWidget{
               )
           ),
           const SizedBox(height: 10),
-          const Padding(
+          Padding(
             padding: EdgeInsets.symmetric(horizontal: 20),
             child: Text(
               "Job Wage",
               textAlign: TextAlign.left,
-              style: TextStyle(
-                fontSize: 20,
+              style: GoogleFonts.merriweatherSans(
                 fontWeight: FontWeight.bold,
+                fontSize: 20,
               ),
             ),
           ),
@@ -206,14 +207,14 @@ class BigJobPostBuilder extends StatelessWidget{
               )
           ),
           const SizedBox(height: 10),
-          const Padding(
+          Padding(
             padding: EdgeInsets.symmetric(horizontal: 20),
             child: Text(
               "Company Description",
               textAlign: TextAlign.left,
-              style: TextStyle(
-                fontSize: 20,
+              style: GoogleFonts.merriweatherSans(
                 fontWeight: FontWeight.bold,
+                fontSize: 20,
               ),
             ),
           ),
@@ -232,14 +233,14 @@ class BigJobPostBuilder extends StatelessWidget{
               )
           ),
           const SizedBox(height: 10),
-          const Padding(
+          Padding(
             padding: EdgeInsets.symmetric(horizontal: 20),
             child: Text(
               "Contacts",
               textAlign: TextAlign.left,
-              style: TextStyle(
-                fontSize: 20,
+              style: GoogleFonts.merriweatherSans(
                 fontWeight: FontWeight.bold,
+                fontSize: 20,
               ),
             ),
           ),
@@ -258,14 +259,14 @@ class BigJobPostBuilder extends StatelessWidget{
               )
           ),
           const SizedBox(height: 10),
-          const Padding(
+          Padding(
             padding: EdgeInsets.symmetric(horizontal: 20),
             child: Text(
               "Company Socials",
               textAlign: TextAlign.left,
-              style: TextStyle(
-                fontSize: 20,
+              style: GoogleFonts.merriweatherSans(
                 fontWeight: FontWeight.bold,
+                fontSize: 20,
               ),
             ),
           ),
@@ -307,14 +308,14 @@ class BigJobPostBuilder extends StatelessWidget{
             indent: 20,
           ),
           const SizedBox(height: 10),
-          const Padding(
+          Padding(
             padding: EdgeInsets.symmetric(horizontal: 20),
             child: Text(
               "Average Rating",
               textAlign: TextAlign.left,
-              style: TextStyle(
-                fontSize: 20,
+              style: GoogleFonts.merriweatherSans(
                 fontWeight: FontWeight.bold,
+                fontSize: 20,
               ),
             ),
           ),
@@ -330,9 +331,10 @@ class BigJobPostBuilder extends StatelessWidget{
                     child: Text(
                       "${averageRating.toStringAsFixed(1)} / 5 ★",
                       textAlign: TextAlign.left,
-                      style: const TextStyle(
-                        fontSize: 20,
+                      style: GoogleFonts.merriweatherSans(
+                        fontWeight: FontWeight.bold,
                         color: Colors.amber,
+                        fontSize: 20,
                       ),
                     ),
                   );
@@ -345,14 +347,14 @@ class BigJobPostBuilder extends StatelessWidget{
             ),
           ),
           const SizedBox(height: 10),
-          const Padding(
+          Padding(
             padding: EdgeInsets.symmetric(horizontal: 20),
             child: Text(
               "Latest Review",
               textAlign: TextAlign.left,
-              style: TextStyle(
-                fontSize: 20,
+              style: GoogleFonts.merriweatherSans(
                 fontWeight: FontWeight.bold,
+                fontSize: 20,
               ),
             ),
           ),
@@ -440,8 +442,12 @@ class BigJobPostBuilder extends StatelessWidget{
                       borderRadius: BorderRadius.circular(10),
                     ),
                   ),
-                  child: const Text(
-                      'See more reviews'
+                  child:  Text(
+                      'See more reviews',
+                    style: GoogleFonts.merriweatherSans(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 13,
+                  ),
                   ),
                 ),
                 IconButton(
