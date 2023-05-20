@@ -14,7 +14,6 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
-
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _confirmpasswordController = TextEditingController();
@@ -28,18 +27,18 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 
   Future signUp() async {
-
     if (passwordConfirmed()) {
       try {
         await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: _emailController.text.trim(),
           password: _passwordController.text.trim(),
-        );} on FirebaseAuthException catch (e) {
-          if (e.code == 'weak-password') {
-            return 'The password provided is weak';
+        );
+      } on FirebaseAuthException catch (e) {
+        if (e.code == 'weak-password') {
+          return 'The password provided is weak';
         } else if (e.code == 'email-already-in-use') {
-            return 'The account already exists for that email.';
-          }
+          return 'The account already exists for that email.';
+        }
       } catch (e) {
         return e.toString();
       }
@@ -72,14 +71,14 @@ class _RegisterPageState extends State<RegisterPage> {
                 const SizedBox(height: 30,),
                 Text(
                   'Hello Curious Fella',
-                  style: GoogleFonts.bebasNeue(
+                  style: GoogleFonts.anton(
                     fontSize: 52,
                   ),
                 ),
                 const SizedBox(height: 10),
-                const Text(
+                Text(
                   'Register Below',
-                  style: TextStyle(
+                  style: GoogleFonts.merriweatherSans(
                     fontSize: 20,
                   ),
                 ),
@@ -164,15 +163,15 @@ class _RegisterPageState extends State<RegisterPage> {
                         color: Colors.orange,
                         borderRadius: BorderRadius.circular(12),
                       ),
-                      child: const Center(
-                          child: Text(
-                            'Sign Up',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18,
-                            ),
-                          )
+                      child: Center(
+                        child: Text(
+                          'Sign Up',
+                          style: GoogleFonts.merriweatherSans(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18,
+                          ),
+                        ),
                       ),
                     ),
                   ),
@@ -183,25 +182,26 @@ class _RegisterPageState extends State<RegisterPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text(
+                    Text(
                       'I am a member!',
-                      style: TextStyle(
+                      style: GoogleFonts.merriweatherSans(
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     GestureDetector(
                       onTap: widget.showLoginPage,
-                      child: const Text(
+                      child: Text(
                         ' Login Now',
-                        style: TextStyle(
-                          color:Colors.deepOrange,
+                        style: GoogleFonts.merriweatherSans(
+                          color: Colors.deepOrange,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),
                   ],
                 ),
-              ],),
+              ],
+            ),
           ),
         ),
       ),
