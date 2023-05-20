@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class FiltersPopup extends StatefulWidget {
   final String jobType;
@@ -26,7 +27,11 @@ class FiltersPopupState extends State<FiltersPopup> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: const Text('Search Filters'),
+      title:  Text('Search Filters', style: GoogleFonts.merriweatherSans(
+        fontWeight: FontWeight.bold,
+        fontSize: 20,
+      ),
+      ),
       content: SizedBox(
         height: 200,
         child: Column(
@@ -34,7 +39,10 @@ class FiltersPopupState extends State<FiltersPopup> {
               Expanded(
                   child: Row(
                     children: [
-                      const Text('Job Type: '),
+                      Text('Job Type: ',style: GoogleFonts.merriweatherSans(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 15,
+                      ),),
                       DropdownButton<String>(
                         value: jobType,
                         icon: const Icon(Icons.arrow_downward),
@@ -54,7 +62,10 @@ class FiltersPopupState extends State<FiltersPopup> {
                             .map<DropdownMenuItem<String>>((String value) {
                           return DropdownMenuItem<String>(
                             value: value,
-                            child: Text(value),
+                            child: Text(value,style: GoogleFonts.merriweatherSans(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 13,
+                            ),),
                           );
                         }).toList(),
                       ),
@@ -64,7 +75,10 @@ class FiltersPopupState extends State<FiltersPopup> {
               Expanded(
                   child: Row(
                     children: [
-                      const Text('Language: '),
+                      Text('Language: ',style: GoogleFonts.merriweatherSans(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 15,
+                      ),),
                       DropdownButton<String>(
                         value: language,
                         icon: const Icon(Icons.arrow_downward),
@@ -84,7 +98,10 @@ class FiltersPopupState extends State<FiltersPopup> {
                             .map<DropdownMenuItem<String>>((String value) {
                           return DropdownMenuItem<String>(
                             value: value,
-                            child: Text(value),
+                            child: Text(value,style: GoogleFonts.merriweatherSans(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 13,
+                            ),),
                           );
                         }).toList(),
                       ),
@@ -94,7 +111,11 @@ class FiltersPopupState extends State<FiltersPopup> {
               Expanded(
                   child: Row(
                     children: [
-                      const Text('Contract: '),
+                      Text('Contract: ',
+                        style: GoogleFonts.merriweatherSans(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15,
+                        ),),
                       DropdownButton<String>(
                         value: contractType,
                         icon: const Icon(Icons.arrow_downward),
@@ -114,7 +135,10 @@ class FiltersPopupState extends State<FiltersPopup> {
                             .map<DropdownMenuItem<String>>((String value) {
                           return DropdownMenuItem<String>(
                             value: value,
-                            child: Text(value),
+                            child: Text(value,style: GoogleFonts.merriweatherSans(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 13,
+                            ),),
                           );
                         }).toList(),
                       ),
@@ -124,7 +148,10 @@ class FiltersPopupState extends State<FiltersPopup> {
               Expanded(
                 child: Row(
                   children: [
-                    const Text('Location: '),
+                    Text('Location: ',style: GoogleFonts.merriweatherSans(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 15,
+                    ),),
                     DropdownButton<String>(
                       value: location,
                       icon: const Icon(Icons.arrow_downward),
@@ -144,7 +171,10 @@ class FiltersPopupState extends State<FiltersPopup> {
                           .map<DropdownMenuItem<String>>((String value) {
                         return DropdownMenuItem<String>(
                           value: value,
-                          child: Text(value),
+                          child: Text(value,style: GoogleFonts.merriweatherSans(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 13,
+                          ),),
                         );
                       }).toList(),
                     ),
@@ -164,12 +194,18 @@ class FiltersPopupState extends State<FiltersPopup> {
                 'location': location,
               });
             },
-            child: const Text(
-                'Apply Filters'
+            child:  Text(
+                'Apply Filters',style: GoogleFonts.merriweatherSans(
+              fontWeight: FontWeight.bold,
+              fontSize: 14,
+            ),
             ),
         ),
         TextButton(
-          child: const Text('Close'),
+          child:  Text('Close',style: GoogleFonts.merriweatherSans(
+            fontWeight: FontWeight.bold,
+            fontSize: 14,
+          ),),
           onPressed: () {
             Navigator.of(context).pop();
           },

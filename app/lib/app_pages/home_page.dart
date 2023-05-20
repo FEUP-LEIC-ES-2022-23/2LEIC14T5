@@ -5,7 +5,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import '../custom_widgets/navigation_drawer.dart' as nav;
-
+import 'package:google_fonts/google_fonts.dart';
 import '../data_models/job_post.dart';
 import '../itjobs_api/itjobs_api.dart';
 import '../custom_widgets/big_job_post_builder.dart';
@@ -38,7 +38,13 @@ class HomePageState extends State<HomePage> {
     return Scaffold(
       key: const Key('homePage'),
       appBar: AppBar(
-        title: const Text("Home Page"),
+        title:   Text(
+        'Home Page',
+        style: GoogleFonts.merriweatherSans(
+          color: Colors.white,
+          fontSize: 18,
+        ),
+      ),
         backgroundColor: Colors.orangeAccent,
       ),
       drawer: const nav.NavigationDrawer(),
@@ -69,9 +75,12 @@ class HomePageState extends State<HomePage> {
               width: MediaQuery.of(context).size.width * 0.83,
               child: Row(
                 children: [
-                  const Text(
+                  Text(
                     'Job Location:',
-                    style: TextStyle(color: Colors.black, fontSize: 20),
+                    style: GoogleFonts.merriweatherSans(
+                      color: Colors.black,
+                      fontSize: 20,
+                    ),
                   ),
                   const SizedBox(width: 20),
                   DropdownButton(
@@ -81,7 +90,13 @@ class HomePageState extends State<HomePage> {
                         .map<DropdownMenuItem<String>>((String value) {
                       return DropdownMenuItem<String>(
                         value: value,
-                        child: Text(value, style: const TextStyle(fontSize: 20)),
+                        child: Text(
+                          value,
+                          style: GoogleFonts.merriweatherSans(
+                            color: Colors.black,
+                            fontSize: 19,
+                          ),
+                        ),
                       );
                     }).toList(),
                     onChanged: (String? newValue) {
@@ -156,9 +171,10 @@ class HomePageState extends State<HomePage> {
       SnackBar(
         content: Text(
           '${markers.length} job posts found!',
-          style: const TextStyle(
-            fontSize: 20,
+          style: GoogleFonts.merriweatherSans(
             color: Colors.black,
+            fontWeight: FontWeight.bold,
+            fontSize: 20,
           ),
         ),
         duration: const Duration(seconds: 3),
