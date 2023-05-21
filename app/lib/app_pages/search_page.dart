@@ -5,7 +5,7 @@ import 'package:filter_it/custom_widgets/small_job_post_builder.dart';
 import 'package:filter_it/itjobs_api/itjobs_api.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
-
+import 'package:google_fonts/google_fonts.dart';
 import '../custom_widgets/navigation_drawer.dart' as nav;
 
 
@@ -97,10 +97,16 @@ class SearchPageState extends State<SearchPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: const Key('searchPage'),
-      appBar: AppBar(
-        title: const Text('Search Page'),
-        backgroundColor: Colors.orangeAccent,
-      ),
+        appBar: AppBar(
+          title:   Text(
+            'Search Page',
+            style: GoogleFonts.merriweatherSans(
+              color: Colors.white,
+              fontSize: 18,
+            ),
+          ),
+          backgroundColor: Colors.orangeAccent,
+        ),
       drawer: const nav.NavigationDrawer(),
       body: Column(
         children: <Widget> [
@@ -124,12 +130,14 @@ class SearchPageState extends State<SearchPage> {
           ),
           Expanded(
             child: jobPostsDisplay.isEmpty
-                ? const Center(
+                ?  Center(
                   child: Text(
                     'No results found.',
-                    style: TextStyle(
+                    style: GoogleFonts.merriweatherSans(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
                       fontSize: 20,
-                    )
+                    ),
                   )
                 )
                 : ListView.builder(
@@ -156,7 +164,12 @@ class SearchPageState extends State<SearchPage> {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.orangeAccent,
                 ),
-                child: const Text("Add more results"),
+                child:  Text("Add more results",style: GoogleFonts.merriweatherSans(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 14,
+                ),
+                ),
               ) : const SizedBox(width: 0, height: 0),
 
               jobPostsDisplay.length > 20 ?
@@ -175,7 +188,11 @@ class SearchPageState extends State<SearchPage> {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.orangeAccent,
                 ),
-                child: const Text("See less results"),
+                child:  Text("See less results",style: GoogleFonts.merriweatherSans(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 14,
+                ),),
               ) : const SizedBox(width: 0, height: 0),
             ],
           )
