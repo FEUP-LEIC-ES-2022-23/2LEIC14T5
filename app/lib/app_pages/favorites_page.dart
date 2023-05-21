@@ -1,12 +1,8 @@
 import 'package:filter_it/data_models/job_post.dart';
 import 'package:filter_it/custom_widgets/small_fav_post_builder.dart';
 import 'package:filter_it/custom_widgets/favorites_list.dart';
-import 'package:filter_it/itjobs_api/itjobs_api.dart';
-import 'package:filter_it/temporary_stubs/jobpost_stub.dart';
-import 'package:filter_it/temporary_stubs/fav_1post_stub.dart';
-import 'package:filter_it/temporary_stubs/fav_2post_stub.dart';
-import 'package:filter_it/temporary_stubs/fav_3post_stub.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../custom_widgets/navigation_drawer.dart' as nav;
 
@@ -18,12 +14,6 @@ class FavoritesPage extends StatefulWidget{
 }
 
 class _FavoritesPageState extends State<FavoritesPage> {
-  /*
-  final fav1 = StarkPostStub.fav1;
-  final fav2 = WaynePostStub.fav2;
-  final fav3 = OscorpPostStub.fav3;
-  */
-
   @override
   void initState() {
     super.initState();
@@ -49,12 +39,13 @@ class _FavoritesPageState extends State<FavoritesPage> {
           children: <Widget>[
             Expanded(
               child: FavoritesList.favPostsDisplay.isEmpty
-                ? const Center(
+                ? Center(
                     child: Text(
                     'No results found.',
-                    style: TextStyle(
-                      fontSize: 20,
-                    )
+                      style: GoogleFonts.merriweatherSans(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 24,
+                      ),
                   ) 
                 )
                 : ListView.builder(

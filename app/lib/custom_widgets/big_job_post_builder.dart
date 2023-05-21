@@ -33,7 +33,7 @@ class _BigJobPostBuilderState extends State<BigJobPostBuilder> {
   @override
   void initState(){
     super.initState();
-    isFavorited = FavoritesList().isJobPostFavorite(widget.jobPost);
+    isFavorited = FavoritesList.isFavPost(widget.jobPost);
   }
 
   @override
@@ -463,12 +463,17 @@ class _BigJobPostBuilderState extends State<BigJobPostBuilder> {
                 IconButton(
                     onPressed: (){
                       setState(() {
-                        isFavorited = !isFavorited;
-                        FavoritesList().toggleFavorite(widget.jobPost);
+                        if(isFavorited){
+                          isFavorited = false;
+                          FavoritesList.removeFavPost(widget.jobPost);
+                        } else {
+                          isFavorited = true;
+                          FavoritesList.addFavPost(widget.jobPost);
+                        }
                       });
                     },
                     icon: Icon(
-                      isFavorited ? Icons.favorite : Icons.favorite_border,
+                      (isFavorited || FavoritesList.isFavPost(widget.jobPost)) ? Icons.favorite : Icons.favorite_border,
                       color:  isFavorited ? Colors.red : null,
                     ),
                 ),
