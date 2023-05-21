@@ -36,6 +36,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: const Key('loginPage_key'),
       backgroundColor: Colors.grey[300],
       body: SafeArea(
         child: Center(
@@ -173,6 +174,7 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
                       GestureDetector(
+                        key: const Key('registerBtn'),
                         onTap: widget.showRegisterPage,
                         child: const Text(
                             ' Register Now',

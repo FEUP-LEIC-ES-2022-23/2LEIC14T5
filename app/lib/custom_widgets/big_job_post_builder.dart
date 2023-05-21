@@ -42,6 +42,7 @@ class BigJobPostBuilder extends StatelessWidget{
     }
 
     return Scaffold(
+      key: const Key('jobDetailPage'),
       appBar: AppBar(
         title: Text(jobPost.jobTitle),
         backgroundColor: Colors.orangeAccent,
@@ -426,6 +427,7 @@ class BigJobPostBuilder extends StatelessWidget{
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 ElevatedButton(
+                  key: const Key('seeMoreReviews_key'),
                   onPressed: () {
                     Navigator.push(
                       context,

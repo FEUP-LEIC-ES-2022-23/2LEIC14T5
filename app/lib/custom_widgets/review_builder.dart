@@ -31,6 +31,7 @@ class ReviewBuilderState extends State<ReviewBuilder> {
     final reviewService = ReviewService();
 
     return Scaffold(
+      key: const Key('reviewPage_key'),
       appBar: AppBar(
         title: const Text("Reviews"),
         backgroundColor: Colors.orangeAccent,
@@ -127,6 +128,7 @@ class ReviewBuilderState extends State<ReviewBuilder> {
                         }
                     ),
                     TextFormField(
+                      key: const Key('reviewField_key'),
                       decoration: const InputDecoration(
                         labelText: 'Comment',
                       ),

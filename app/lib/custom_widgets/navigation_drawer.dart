@@ -64,6 +64,7 @@ class NavigationDrawer extends StatelessWidget{
         ),
 
         ListTile(
+          key: const Key('profile_key'),
           leading: const Icon(Icons.person),
           title: const Text("Profile"),
           onTap: () {
@@ -87,6 +88,7 @@ class NavigationDrawer extends StatelessWidget{
         ),
 
         ListTile(
+          key: const Key('logout_key'),
           leading: const Icon(Icons.arrow_back),
           title :const Text("Sign Out"),
           onTap: ()  {

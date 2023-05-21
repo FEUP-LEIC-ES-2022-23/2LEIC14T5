@@ -4,14 +4,19 @@ import 'package:filter_it/custom_widgets/big_job_post_builder.dart';
 
 class SmallJobPostBuilder extends StatelessWidget {
   final JobPost jobPost;
+  final int index;
 
   const SmallJobPostBuilder({
     Key? key,
     required this.jobPost,
+    required this.index,
+
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final arrowIconKey = Key('arrowIcon_$index');
+
     return ListTile(
       leading: Image.network(
         jobPost.company.logoURL.isNotEmpty
@@ -24,7 +29,7 @@ class SmallJobPostBuilder extends StatelessWidget {
       title: Text(jobPost.jobTitle),
       subtitle: Text(jobPost.company.companyName),
       trailing: IconButton(
-        key: const Key('arrowIcon'),
+        key: arrowIconKey,
         onPressed: () {
           Navigator.push(
             context,

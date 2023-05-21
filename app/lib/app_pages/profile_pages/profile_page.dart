@@ -90,6 +90,7 @@ class ProfilePageState extends State<ProfilePage> {
     return Column(
       children: [
         Text(
+          key: const Key('profile_name_key'),
           user.name,
           style: const TextStyle(
             fontSize: 30,
@@ -110,6 +111,7 @@ class ProfilePageState extends State<ProfilePage> {
 
   Widget buildEditButton(){
     return RoundedButton(
+      key: const Key('edit_profile_key'),
       text: "Edit Profile",
       onPressed:(){
         Navigator.push(
