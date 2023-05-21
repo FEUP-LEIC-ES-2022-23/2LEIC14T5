@@ -11,4 +11,16 @@ import '../custom_widgets/navigation_drawer.dart' as nav;
 
 class FavoritesList {
   static List<JobPost> favPostsDisplay = [];
+
+  void toggleFavorite(JobPost jobPost) {
+    if (favPostsDisplay.contains(jobPost)) {
+      favPostsDisplay.remove(jobPost);
+    } else {
+      favPostsDisplay.add(jobPost);
+    }
+  }
+
+  bool isJobPostFavorite(JobPost jobPost) {
+    return favPostsDisplay.contains(jobPost);
+  }
 }

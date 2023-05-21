@@ -15,38 +15,51 @@ import 'package:url_launcher/url_launcher.dart';
 import '../data_models/job_type.dart';
 import '../data_models/review.dart';
 
-class BigJobPostBuilder extends StatelessWidget{
+class BigJobPostBuilder extends StatefulWidget{
   final JobPost jobPost;
   const BigJobPostBuilder({
     Key? key,
     required this.jobPost,
   }) : super(key: key);
 
+  @override
+  State<BigJobPostBuilder> createState() => _BigJobPostBuilderState();
+}
+
+class _BigJobPostBuilderState extends State<BigJobPostBuilder> {
+  
+  bool isFavorited= false;
+
+  @override
+  void initState(){
+    super.initState();
+    isFavorited = FavoritesList().isJobPostFavorite(widget.jobPost);
+  }
 
   @override
   Widget build(BuildContext context){
     final reviewService = ReviewService();
-    String companyNumber = jobPost.company.companyPhoneNumber;
-    String companyEmail = jobPost.company.companyEmail;
-    String companyAddress = jobPost.company.companyAddress;
+    String companyNumber = widget.jobPost.company.companyPhoneNumber;
+    String companyEmail = widget.jobPost.company.companyEmail;
+    String companyAddress = widget.jobPost.company.companyAddress;
     String companyContacts = "Phone number: ${companyNumber == "null" ? "No phone number specified" : companyNumber}\n"
         "Email: ${companyEmail == "null" ? "No email specified" : companyEmail}\n"
         "Address: ${companyAddress == "null" ? "No address specified" : companyAddress}";
-    String companyDesc = jobPost.company.companyDescription;
+    String companyDesc = widget.jobPost.company.companyDescription;
     String jobTypes = "No job types specified";
 
-    if(jobPost.jobTypes.isNotEmpty){
+    if(widget.jobPost.jobTypes.isNotEmpty){
       jobTypes = "";
-      for(JobType jobType in jobPost.jobTypes){
+      for(JobType jobType in widget.jobPost.jobTypes){
         jobTypes += "${jobType.jobTypeName}, ";
       }
       //erase last comma
       jobTypes = jobTypes.substring(0, jobTypes.length - 2);
     }
-    
+
     return Scaffold(
       appBar: AppBar(
-        title: Text(jobPost.jobTitle),
+        title: Text(widget.jobPost.jobTitle),
         backgroundColor: Colors.orangeAccent,
       ),
       body: ListView(
@@ -54,7 +67,7 @@ class BigJobPostBuilder extends StatelessWidget{
         physics: const BouncingScrollPhysics(),
         children: [
           Image.network(
-            jobPost.company.logoURL,
+            widget.jobPost.company.logoURL,
             width: MediaQuery.of(context).size.width * 0.15,
             height: MediaQuery.of(context).size.width * 0.15,
             fit: BoxFit.contain,
@@ -75,7 +88,7 @@ class BigJobPostBuilder extends StatelessWidget{
           Padding(
               padding: const EdgeInsets.symmetric(horizontal: 25),
               child: Text(
-                jobPost.company.companyName,
+                widget.jobPost.company.companyName,
                 textAlign: TextAlign.left,
                 style: const TextStyle(
                 fontSize: 18,
@@ -97,7 +110,7 @@ class BigJobPostBuilder extends StatelessWidget{
           Padding(
               padding: const EdgeInsets.symmetric(horizontal: 25),
               child: Text(
-                jobPost.jobTitle,
+                widget.jobPost.jobTitle,
                 textAlign: TextAlign.left,
                 style: const TextStyle(
                   fontSize: 18,
@@ -153,7 +166,7 @@ class BigJobPostBuilder extends StatelessWidget{
           Padding(
               padding: const EdgeInsets.symmetric(horizontal: 25),
               child: Text(
-                jobPost.allowRemote == "true" ? "Yes" : "No",
+                widget.jobPost.allowRemote == "true" ? "Yes" : "No",
                 textAlign: TextAlign.left,
                 style: const TextStyle(
                   fontSize: 18,
@@ -175,7 +188,7 @@ class BigJobPostBuilder extends StatelessWidget{
           Padding(
               padding: const EdgeInsets.symmetric(horizontal: 25),
               child: ReadMoreText(
-                jobPost.jobDescription == "null" ? "No job description specified" : jobPost.jobDescription,
+                widget.jobPost.jobDescription == "null" ? "No job description specified" : widget.jobPost.jobDescription,
                 trimLines: 3,
                 colorClickableText: Colors.orangeAccent,
                 trimMode: TrimMode.Line,
@@ -201,7 +214,7 @@ class BigJobPostBuilder extends StatelessWidget{
           Padding(
               padding: const EdgeInsets.symmetric(horizontal: 25),
               child: Text(
-                jobPost.jobWage == "null" ? "No job wage specified" : jobPost.jobWage,
+                widget.jobPost.jobWage == "null" ? "No job wage specified" : widget.jobPost.jobWage,
                 textAlign: TextAlign.left,
                 style: const TextStyle(
                   fontSize: 18,
@@ -281,25 +294,25 @@ class BigJobPostBuilder extends StatelessWidget{
                 IconButton(
                   icon: FaIcon(
                     FontAwesomeIcons.facebook,
-                    color: (jobPost.company.urlFacebook == "null") ? Colors.grey : Colors.blue,
+                    color: (widget.jobPost.company.urlFacebook == "null") ? Colors.grey : Colors.blue,
                   ),
-                  onPressed: (jobPost.company.urlFacebook == "null") ? null : () {_launchURL(jobPost.company.urlFacebook);},
+                  onPressed: (widget.jobPost.company.urlFacebook == "null") ? null : () {_launchURL(widget.jobPost.company.urlFacebook);},
                 ),
                 const SizedBox(width: 10),
                 IconButton(
                   icon: FaIcon(
                     FontAwesomeIcons.twitter,
-                    color: (jobPost.company.urlTwitter == "null") ? Colors.grey : Colors.blue,
+                    color: (widget.jobPost.company.urlTwitter == "null") ? Colors.grey : Colors.blue,
                   ),
-                  onPressed: (jobPost.company.urlTwitter == "null") ? null : () {_launchURL(jobPost.company.urlTwitter);},
+                  onPressed: (widget.jobPost.company.urlTwitter == "null") ? null : () {_launchURL(widget.jobPost.company.urlTwitter);},
                 ),
                 const SizedBox(width: 10),
                 IconButton(
                   icon: FaIcon(
                     FontAwesomeIcons.linkedin,
-                    color: (jobPost.company.urlLinkedin == "null") ? Colors.grey : Colors.blue,
+                    color: (widget.jobPost.company.urlLinkedin == "null") ? Colors.grey : Colors.blue,
                   ),
-                  onPressed: (jobPost.company.urlLinkedin == "null") ? null : () {_launchURL(jobPost.company.urlLinkedin);},
+                  onPressed: (widget.jobPost.company.urlLinkedin == "null") ? null : () {_launchURL(widget.jobPost.company.urlLinkedin);},
                 ),
               ],
             ),
@@ -324,7 +337,7 @@ class BigJobPostBuilder extends StatelessWidget{
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: StreamBuilder<double>(
-              stream: reviewService.getJobAverageRatingStream(jobPost.jobID),
+              stream: reviewService.getJobAverageRatingStream(widget.jobPost.jobID),
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
                   double averageRating = snapshot.data!;
@@ -364,7 +377,7 @@ class BigJobPostBuilder extends StatelessWidget{
             child: SizedBox(
               height: 80,
               child: StreamBuilder<List<Review>>(
-                stream: reviewService.getJobReviewsStream(jobPost.jobID),
+                stream: reviewService.getJobReviewsStream(widget.jobPost.jobID),
                 builder: (context, snapshot) {
                   if (snapshot.hasError) {
                     return Text('Error: ${snapshot.error}');
@@ -433,7 +446,7 @@ class BigJobPostBuilder extends StatelessWidget{
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => ReviewBuilder(jobID: jobPost.jobID),
+                        builder: (context) => ReviewBuilder(jobID: widget.jobPost.jobID),
                       ),
                     );
                   },
@@ -448,15 +461,16 @@ class BigJobPostBuilder extends StatelessWidget{
                   ),
                 ),
                 IconButton(
-                    icon: Icon(
-                      FavoritesList.favPostsDisplay.contains(jobPost) ? Icons.favorite : Icons.favorite_border,
-                      color: FavoritesList.favPostsDisplay.contains(jobPost) ? Colors.red : null,
-                      ),
                     onPressed: (){
-                      if(!FavoritesList.favPostsDisplay.contains(jobPost)){
-                        FavoritesList.favPostsDisplay.add(jobPost);
-                      }
+                      setState(() {
+                        isFavorited = !isFavorited;
+                        FavoritesList().toggleFavorite(widget.jobPost);
+                      });
                     },
+                    icon: Icon(
+                      isFavorited ? Icons.favorite : Icons.favorite_border,
+                      color:  isFavorited ? Colors.red : null,
+                    ),
                 ),
               ],
             ),
