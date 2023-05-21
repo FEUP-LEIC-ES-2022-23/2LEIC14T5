@@ -56,6 +56,7 @@ class EditProfileState extends State<EditProfile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: const ValueKey("edit_profile_page_key"),
       appBar: AppBar(
         title: const Text("Editing Profile"),
         backgroundColor: Colors.orangeAccent,
@@ -103,6 +104,7 @@ class EditProfileState extends State<EditProfile> {
           ),
           const SizedBox(height: 24),
           TextFieldWidget(
+            key: const ValueKey("name_key"),
             label: 'Full Name',
             text: widget.user.name,
             onChanged: (name){},
@@ -175,6 +177,7 @@ class EditProfileState extends State<EditProfile> {
           ),
           const SizedBox(height: 24),
           ElevatedButton(
+            key: const ValueKey("Save_button_key"),
             onPressed: () {
               updateUserInfo();
               Navigator.pop(context);

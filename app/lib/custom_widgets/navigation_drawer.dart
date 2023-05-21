@@ -8,6 +8,7 @@ import '../app_pages/help_page.dart';
 import '../app_pages/search_page.dart';
 import '../app_pages/profile_pages/profile_page.dart';
 import '../authentication/main_page.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 
 class NavigationDrawer extends StatelessWidget{
@@ -28,7 +29,11 @@ class NavigationDrawer extends StatelessWidget{
         ListTile(
           key: const Key('home_key'),
           leading: const Icon(Icons.home),
-          title: const Text("Home Page"),
+          title: Text("Home Page",style: GoogleFonts.merriweatherSans(
+            fontWeight: FontWeight.bold,
+            fontSize: 14,
+          ),
+          ),
           onTap: () =>
               Navigator.of(context).pushReplacement(MaterialPageRoute(
                   builder: (context) => const HomePage()
@@ -37,7 +42,10 @@ class NavigationDrawer extends StatelessWidget{
         ListTile(
           key: const Key('search_key'),
           leading: const Icon(Icons.search),
-          title: const Text("Search Page"),
+          title: Text("Search Page",style: GoogleFonts.merriweatherSans(
+            fontWeight: FontWeight.bold,
+            fontSize: 14,
+          ),),
           onTap: () {
             Navigator.pop(context);
             Navigator.of(context).push(MaterialPageRoute(
@@ -48,7 +56,10 @@ class NavigationDrawer extends StatelessWidget{
         ListTile(
           key: const Key('favorites_key'),
           leading: const Icon(Icons.favorite),
-          title: const Text("Favorites"),
+          title: Text("Favorites",style: GoogleFonts.merriweatherSans(
+            fontWeight: FontWeight.bold,
+            fontSize: 14,
+          ),),
           onTap: () {
             Navigator.pop(context);
             Navigator.of(context).push(MaterialPageRoute(
@@ -64,8 +75,12 @@ class NavigationDrawer extends StatelessWidget{
         ),
 
         ListTile(
+          key: const Key('profile_key'),
           leading: const Icon(Icons.person),
-          title: const Text("Profile"),
+          title: Text("Profile",style: GoogleFonts.merriweatherSans(
+            fontWeight: FontWeight.bold,
+            fontSize: 14,
+          ),),
           onTap: () {
             Navigator.pop(context);
             Navigator.of(context).push(MaterialPageRoute(
@@ -77,7 +92,11 @@ class NavigationDrawer extends StatelessWidget{
         ListTile(
             key: const Key('help_key'),
             leading: const Icon(Icons.question_mark_rounded),
-            title: const Text("Help Page"),
+            title: Text("Help Page",style: GoogleFonts.merriweatherSans(
+              fontWeight: FontWeight.bold,
+              fontSize: 14,
+            ),
+            ),
             onTap: () {
               Navigator.pop(context);
               Navigator.of(context).push(MaterialPageRoute(
@@ -87,8 +106,12 @@ class NavigationDrawer extends StatelessWidget{
         ),
 
         ListTile(
+          key: const Key('logout_key'),
           leading: const Icon(Icons.arrow_back),
-          title :const Text("Sign Out"),
+          title :Text("Sign Out",style: GoogleFonts.merriweatherSans(
+            fontWeight: FontWeight.bold,
+            fontSize: 14,
+          ),),
           onTap: ()  {
             FirebaseAuth.instance.signOut();
             Navigator.pop(context);

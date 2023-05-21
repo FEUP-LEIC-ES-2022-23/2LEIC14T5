@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../data_models/review.dart';
 import '../data_models/review_service.dart';
@@ -31,10 +32,18 @@ class ReviewBuilderState extends State<ReviewBuilder> {
     final reviewService = ReviewService();
 
     return Scaffold(
+      key: const Key('reviewPage_key'),
       appBar: AppBar(
-        title: const Text("Reviews"),
+        title:   Text(
+          'Reviews',
+          style: GoogleFonts.merriweatherSans(
+            color: Colors.white,
+            fontSize: 18,
+          ),
+        ),
         backgroundColor: Colors.orangeAccent,
       ),
+
       body: Column(
         children: [
           Expanded(
@@ -50,8 +59,11 @@ class ReviewBuilderState extends State<ReviewBuilder> {
                 }
 
                 if (snapshot.data == null || snapshot.data!.isEmpty) {
-                  return const Center(
-                    child: Text('No reviews yet.', style: TextStyle(fontSize: 20),),
+                  return  Center(
+                    child: Text('No reviews yet.', style: GoogleFonts.merriweatherSans(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                    ),),
                   );
                 }
 
@@ -77,9 +89,10 @@ class ReviewBuilderState extends State<ReviewBuilder> {
                           subtitle: Text(DateFormat('dd-MM-yyyy HH:mm:ss').format(review.timestamp.toDate())),
                           trailing: Text(
                             '${review.rating}/5 ★',
-                            style: const TextStyle(
-                              fontWeight: FontWeight.w500,
-                              color: Color(0xFFFFCB45),
+                            style: GoogleFonts.merriweatherSans(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.amber,
+                              fontSize: 15,
                             ),
                           ),
                         ),
@@ -91,11 +104,12 @@ class ReviewBuilderState extends State<ReviewBuilder> {
             ),
           ),
           const SizedBox(height: 20),
-          const Center(
+          Center(
             child: Text(
               'Leave a review',
-              style: TextStyle(
-                fontSize: 15,
+              style: GoogleFonts.merriweatherSans(
+                fontWeight: FontWeight.bold,
+                fontSize: 14,
               ),
             ),
           ),
@@ -127,6 +141,7 @@ class ReviewBuilderState extends State<ReviewBuilder> {
                         }
                     ),
                     TextFormField(
+                      key: const Key('reviewField_key'),
                       decoration: const InputDecoration(
                         labelText: 'Comment',
                       ),
@@ -157,15 +172,21 @@ class ReviewBuilderState extends State<ReviewBuilder> {
                           _formKey.currentState!.reset();
 
                           ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                              content: Text('Review added successfully!'),
+                             SnackBar(
+                              content: Text('Review added successfully!',style: GoogleFonts.merriweatherSans(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.orangeAccent,
+                                fontSize: 14,
+                              ),),
                               duration: Duration(seconds: 1),
-
                             ),
                           );
                         }
                       },
-                      child: const Text('Submit Review'),
+                      child:  Text('Submit Review',style: GoogleFonts.merriweatherSans(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 14,
+                      ),),
                     ),
                   ],
                 ),
