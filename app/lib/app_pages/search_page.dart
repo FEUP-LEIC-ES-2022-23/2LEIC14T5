@@ -47,6 +47,7 @@ class SearchPageState extends State<SearchPage> {
     final result = await showDialog(
       context: context,
       builder: (BuildContext context) => FiltersPopup(
+        key: const Key('filtersPopup_key'),
         jobType: requestBody['jobType']!,
         language: requestBody['language']!,
         contractType: requestBody['contractType']!,
@@ -95,6 +96,7 @@ class SearchPageState extends State<SearchPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: const Key('searchPage'),
         appBar: AppBar(
           title:   Text(
             'Search Page',
@@ -142,7 +144,7 @@ class SearchPageState extends State<SearchPage> {
               itemCount: jobPostsDisplay.length,
               itemBuilder: (context, index) {
                 final jobPost = jobPostsDisplay[index];
-                return jobPostBuilder(jobPost);
+                return jobPostBuilder(jobPost, index);
               },
             ),
           ),
@@ -205,7 +207,8 @@ class SearchPageState extends State<SearchPage> {
     onChanged: searchJobPosts,
   );
 
-  Widget jobPostBuilder(JobPost jobPost) => SmallJobPostBuilder(
+  Widget jobPostBuilder(JobPost jobPost,int index) => SmallJobPostBuilder(
+      index: index,
       jobPost: jobPost
   );
 

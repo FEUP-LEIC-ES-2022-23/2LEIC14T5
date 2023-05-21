@@ -75,6 +75,7 @@ class NavigationDrawer extends StatelessWidget{
         ),
 
         ListTile(
+          key: const Key('profile_key'),
           leading: const Icon(Icons.person),
           title: Text("Profile",style: GoogleFonts.merriweatherSans(
             fontWeight: FontWeight.bold,
@@ -105,6 +106,7 @@ class NavigationDrawer extends StatelessWidget{
         ),
 
         ListTile(
+          key: const Key('logout_key'),
           leading: const Icon(Icons.arrow_back),
           title :Text("Sign Out",style: GoogleFonts.merriweatherSans(
             fontWeight: FontWeight.bold,

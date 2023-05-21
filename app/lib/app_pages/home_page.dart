@@ -84,6 +84,7 @@ class HomePageState extends State<HomePage> {
                   ),
                   const SizedBox(width: 20),
                   DropdownButton(
+                    key: const Key('locationDropdown'),
                     value: requestBody['location'],
                     style: const TextStyle(color: Colors.black, fontSize: 15),
                     items: <String>['Unspecified', 'Açores', 'Aveiro', 'Beja', 'Braga', 'Bragança', 'Castelo Branco', 'Coimbra', 'Évora', 'Faro', 'Guarda', 'Leiria', 'Lisboa', 'Madeira', 'Portalegre', 'Porto', 'Santarém', 'Setúbal', 'Viana do Castelo', 'Vila Real', 'Viseu', 'Internacional']
@@ -110,6 +111,7 @@ class HomePageState extends State<HomePage> {
             ),
           ),
           Positioned(
+            key: const Key('searchButton'),
             top: 12,
             right: 0,
             child: ElevatedButton(
@@ -170,6 +172,7 @@ class HomePageState extends State<HomePage> {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(
+          key: const Key('snackBarText'),
           '${markers.length} job posts found!',
           style: GoogleFonts.merriweatherSans(
             color: Colors.black,
