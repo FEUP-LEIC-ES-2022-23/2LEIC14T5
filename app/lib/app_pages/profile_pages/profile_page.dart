@@ -10,6 +10,7 @@ import '../../data_models/review_service.dart';
 import '../../data_models/user.dart';
 import '../../custom_widgets/rounded_button.dart';
 import 'edit_profile_page.dart';
+import '../../custom_widgets/favorites_list.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -130,7 +131,7 @@ class ProfilePageState extends State<ProfilePage> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          buildStatColumn(context, "Favourites", user.favouritesCount.toString()),
+          buildStatColumn(context, "Favourites", FavoritesList.favPostsDisplay.length.toString()),
           verticalDivider(),
           StreamBuilder<int>(
             stream: reviewService.getUserRatingCountStream(user.email),
