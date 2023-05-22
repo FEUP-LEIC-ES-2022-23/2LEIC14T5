@@ -2,7 +2,7 @@ import 'package:flutter_driver/flutter_driver.dart';
 import 'package:flutter_gherkin/flutter_gherkin.dart';
 import 'package:gherkin/gherkin.dart';
 
-class HomePageGiven extends GivenWithWorld<FlutterWorld> {
+class HomePageStep extends GivenWithWorld<FlutterWorld> {
   @override
   Future<void> executeStep() async {
     // Assuming the home page is already displayed
@@ -27,12 +27,12 @@ class SelectSearchPageStep extends AndWithWorld<FlutterWorld> {
 class TapJobOfferStep extends AndWithWorld<FlutterWorld> {
   @override
   Future<void> executeStep() async {
-    final jobOffer = find.byValueKey('arrowIcon_0');
+    final jobOffer = find.byValueKey('arrowIcon_2');
     await FlutterDriverUtils.tap(world.driver, jobOffer);
   }
 
   @override
-  RegExp get pattern => RegExp(r'I tap the first job offer');
+  RegExp get pattern => RegExp(r'I tap the third job offer');
 }
 
 class VerifyJobOfferDetails extends ThenWithWorld<FlutterWorld> {
@@ -45,5 +45,5 @@ class VerifyJobOfferDetails extends ThenWithWorld<FlutterWorld> {
   }
 
   @override
-  RegExp get pattern => RegExp(r'I see the details of the first job offer');
+  RegExp get pattern => RegExp(r'I see the details of the third job offer');
 }

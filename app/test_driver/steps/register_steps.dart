@@ -1,8 +1,12 @@
 import 'package:flutter_driver/flutter_driver.dart';
 import 'package:flutter_gherkin/flutter_gherkin.dart';
 import 'package:gherkin/gherkin.dart';
+import 'dart:math';
+final random = Random();
+final username = 'user${random.nextInt(10000)}';
+final randomEmail = '$username@example.com';
 
-class LoginPage extends GivenWithWorld<FlutterWorld> {
+class LoginPageRegStep extends GivenWithWorld<FlutterWorld> {
   @override
   Future<void> executeStep() async {
     // assuming that the login page is already displayed!!
@@ -12,10 +16,10 @@ class LoginPage extends GivenWithWorld<FlutterWorld> {
   RegExp get pattern => RegExp(r'I am on the Login Page');
 }
 
-class TapRegisterNow extends WhenWithWorld<FlutterWorld> {
+class TapRegisterNowRegStep extends WhenWithWorld<FlutterWorld> {
   @override
   Future<void> executeStep() async {
-    final registerNowButton = find.byValueKey('registerBtn');
+    final registerNowButton = find.byValueKey('registerBtn_key');
     await FlutterDriverUtils.tap(world.driver, registerNowButton);
   }
 
@@ -23,11 +27,11 @@ class TapRegisterNow extends WhenWithWorld<FlutterWorld> {
   RegExp get pattern => RegExp(r'I tap "Register Now"');
 }
 
-class EnterRegisterEmail extends AndWithWorld<FlutterWorld> {
+class EmailRegStep extends AndWithWorld<FlutterWorld> {
   @override
   Future<void> executeStep() async {
-    const email = 'test@gmail.com';
-    final emailField = find.byValueKey('email_register');
+    final email = randomEmail;
+    final emailField = find.byValueKey('emailRegister_key');
     await FlutterDriverUtils.enterText(world.driver, emailField, email);
   }
 
@@ -35,11 +39,11 @@ class EnterRegisterEmail extends AndWithWorld<FlutterWorld> {
   RegExp get pattern => RegExp(r'I enter my email');
 }
 
-class EnterRegisterPassword extends AndWithWorld<FlutterWorld> {
+class PasswordRegStep extends AndWithWorld<FlutterWorld> {
   @override
   Future<void> executeStep() async {
     const password = 'password123';
-    final passwordField = find.byValueKey('password_register');
+    final passwordField = find.byValueKey('passwordRegister_key');
     await FlutterDriverUtils.enterText(world.driver, passwordField, password);
   }
 
@@ -47,22 +51,22 @@ class EnterRegisterPassword extends AndWithWorld<FlutterWorld> {
   RegExp get pattern => RegExp(r'I enter my password');
 }
 
-class EnterConfirmPassword extends AndWithWorld<FlutterWorld> {
+class ConfirmPassRegStep extends AndWithWorld<FlutterWorld> {
   @override
   Future<void> executeStep() async {
     const password = 'password123';
-    final confirmPasswordField = find.byValueKey('confirm_password_register');
+    final confirmPasswordField = find.byValueKey('confirmPassReg_key');
     await FlutterDriverUtils.enterText(world.driver, confirmPasswordField, password);
   }
 
   @override
-  RegExp get pattern => RegExp(r'I enter my password confirmation');
+  RegExp get pattern => RegExp(r'I fill the "confirmPassReg_key" field with my password');
 }
 
-class TapSignUpButton extends AndWithWorld<FlutterWorld> {
+class TapSignUpBtnRegStep extends AndWithWorld<FlutterWorld> {
   @override
   Future<void> executeStep() async {
-    final signUpButton = find.byValueKey('sign_up_button');
+    final signUpButton = find.byValueKey('signUpBtn_key');
     await FlutterDriverUtils.tap(world.driver, signUpButton);
   }
 
@@ -70,12 +74,20 @@ class TapSignUpButton extends AndWithWorld<FlutterWorld> {
   RegExp get pattern => RegExp(r'I tap the "Sign Up" button');
 }
 
-class VerifyEmailAccount extends ThenWithWorld<FlutterWorld> {
+
+class VerifyEmailAccRegStep extends ThenWithWorld<FlutterWorld> {
   @override
   Future<void> executeStep() async {
+
+    await Future.delayed(const Duration(seconds: 2));
     final verifyEmailPage = find.byValueKey('verifyEmailPage');
     final isVerifyEmailPageDisplayed = await FlutterDriverUtils.isPresent(world.driver, verifyEmailPage);
     expect(isVerifyEmailPageDisplayed, true);
+    final cancelBtn = find.byValueKey('cancel_key');
+    await FlutterDriverUtils.tap(world.driver, cancelBtn);
+
+    print('--> Test REGISTER finished successfully! <--');
+
   }
 
   @override

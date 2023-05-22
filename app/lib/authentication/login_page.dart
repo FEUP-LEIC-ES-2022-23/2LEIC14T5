@@ -171,7 +171,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
                     GestureDetector(
-                      key: const Key('registerBtn'),
+                      key: const Key('registerBtn_key'),
                       onTap: widget.showRegisterPage,
                       child: Text(
                         ' Register Now',

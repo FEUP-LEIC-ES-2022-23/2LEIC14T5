@@ -10,7 +10,7 @@ final randomFirstName = firstNames[random.nextInt(firstNames.length)];
 final randomLastName = lastNames[random.nextInt(lastNames.length)];
 final randomFullName = '$randomFirstName $randomLastName';
 
-class HomePageGiven extends GivenWithWorld<FlutterWorld>{
+class HomePageGivenEdit extends GivenWithWorld<FlutterWorld>{
   @override
   Future<void> executeStep() async {
     // Assuming the home page is already displayed
@@ -26,6 +26,7 @@ class SelectProfileStep extends AndWithWorld<FlutterWorld> {
   Future<void> executeStep() async {
     final profileButton = find.byValueKey('profile_key');
     await FlutterDriverUtils.tap(world.driver, profileButton);
+    await Future.delayed(const Duration(seconds: 2));
   }
 
   @override

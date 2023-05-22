@@ -13,7 +13,7 @@ class LoginPageGiven extends GivenWithWorld<FlutterWorld> {
   RegExp get pattern => RegExp(r'I am on the Login Page');
 }
 
-class EnterEmailFieldWhen extends When1WithWorld<String, FlutterWorld> {
+class EnterEmailField extends When1WithWorld<String, FlutterWorld> {
   @override
   Future<void> executeStep(String email) async {
     final emailField = find.byValueKey('emailfield');
@@ -51,7 +51,9 @@ class VerifyHomePageThen extends ThenWithWorld<FlutterWorld> {
   Future<void> executeStep() async {
     final homePage = find.byValueKey('homePage');
     final isHomePageDisplayed = await FlutterDriverUtils.isPresent(world.driver, homePage);
+    await Future.delayed(const Duration(seconds: 2));
     expect(isHomePageDisplayed, true);
+
   }
 
 

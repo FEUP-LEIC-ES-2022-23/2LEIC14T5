@@ -2,26 +2,16 @@ import 'package:flutter_driver/flutter_driver.dart';
 import 'package:flutter_gherkin/flutter_gherkin.dart';
 import 'package:gherkin/gherkin.dart';
 
-class HomePageGiven extends GivenWithWorld<FlutterWorld> {
+class SearchPageGiven extends GivenWithWorld<FlutterWorld> {
   @override
   Future<void> executeStep() async {
-    // Assuming the home page is already displayed
-    // You can add any necessary setup steps here
+    final searchPage = find.byValueKey('searchPage');
+    final isSearchPageDisplayed = await FlutterDriverUtils.isPresent(world.driver, searchPage);
+    expect(isSearchPageDisplayed, true);
   }
 
   @override
-  RegExp get pattern => RegExp(r'I am on the Home Page');
-}
-
-class SelectSearchPage extends AndWithWorld<FlutterWorld> {
-  @override
-  Future<void> executeStep() async {
-    final searchPageButton = find.byValueKey('search_key');
-    await FlutterDriverUtils.tap(world.driver, searchPageButton);
-  }
-
-  @override
-  RegExp get pattern => RegExp(r'I select "Search Page"');
+  RegExp get pattern => RegExp(r'I am on the Search Page');
 }
 
 class TapJobOffer extends AndWithWorld<FlutterWorld> {
@@ -60,5 +50,5 @@ class VerifyReviewsPage extends ThenWithWorld<FlutterWorld> {
   }
 
   @override
-  RegExp get pattern => RegExp(r'I see the reviews about the job offer');
+  RegExp get pattern => RegExp(r'I see Review Page on the screen');
 }
