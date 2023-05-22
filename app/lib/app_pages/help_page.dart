@@ -9,6 +9,7 @@ class HelpPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: const Key('helpPage'),
       appBar: AppBar(
         title:   Text(
           'Help Page',

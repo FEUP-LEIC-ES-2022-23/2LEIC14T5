@@ -3,197 +3,138 @@ import 'package:flutter_gherkin/flutter_gherkin.dart';
 import 'package:gherkin/gherkin.dart';
 import 'package:glob/glob.dart';
 
+import 'steps/edit_profile_steps.dart';
+import 'steps/job_offer_details_steps.dart';
+import 'steps/login_steps.dart';
+import 'steps/logout_steps.dart';
+import 'steps/register_steps.dart';
+import 'steps/reviews_steps.dart';
 import 'steps/search_location_steps.dart';
+import 'steps/switch_back_home_steps.dart';
+import 'steps/switch_pages_steps.dart';
+import 'steps/tap_back_button_steps.dart';
 
-
-/* login
 Future<void> main() async {
   final config = FlutterTestConfiguration()
-    ..features = [Glob(r"test_driver/features/login.feature")]
+    ..features = [
+      // Register feature
+      Glob(r"test_driver/features/register.feature"),
+
+      // Login feature
+      Glob(r"test_driver/features/login.feature"),
+
+      // Search job of a location ("Aveiro")
+      Glob(r"test_driver/features/search_location.feature"),
+
+      // Switch pages (Home -> Search)
+      Glob(r"test_driver/features/switch_page.feature"),
+
+      //Switch back to home page (Random page -> Home)
+      Glob(r"test_driver/features/switch_back_home.feature"),
+
+      //See job offer details
+      Glob(r"test_driver/features/job_offer_details.feature"),
+
+      //Tap the back button
+      Glob(r"test_driver/features/tap_back_button.feature"),
+
+      //See reviews
+      Glob(r"test_driver/features/reviews.feature"),
+
+      //Tap the back button 2 times
+      Glob(r"test_driver/features/tap_back_button.feature"),
+      Glob(r"test_driver/features/tap_back_button.feature"),
+
+      //Edit profile
+      Glob(r"test_driver/features/edit_profile.feature"),
+
+      //logout
+      Glob(r"test_driver/features/logout.feature"),
+
+
+    ]
     ..reporters = [
       ProgressReporter(),
       TestRunSummaryReporter(),
       JsonReporter(path: './report.json')
     ]
+    ..order = ExecutionOrder.sequential
+
     ..stepDefinitions = [
-      LoginPageGiven(), // Add the login steps here
-      EnterEmailFieldWhen(),
-      EnterPasswordFieldWhen(),
-      TapLoginButtonWhen(),
-      VerifyHomePageThen(),
-    ]
-    ..restartAppBetweenScenarios = true
-    ..targetAppPath = "test_driver/app.dart";
+      // Register steps
+      LoginPageRegStep(),
+      TapRegisterNowRegStep(),
+      EmailRegStep(),
+      PasswordRegStep(),
+      ConfirmPassRegStep(),
+      TapSignUpBtnRegStep(),
+      VerifyEmailAccRegStep(),
 
-  final runner = GherkinRunner();
 
-  await runner.execute(config);
-}
-*/
-/* register
-Future<void> main() async {
-  final config = FlutterTestConfiguration()
-    ..features = [Glob(r"test_driver/features/register.feature")]
-    ..reporters = [
-      ProgressReporter(),
-      TestRunSummaryReporter(),
-      JsonReporter(path: './report.json')
-    ]
-    ..stepDefinitions = [
-      LoginPage(),
-      TapRegisterNow(),
-      EnterRegisterEmail(),
-      EnterRegisterPassword(),
-      EnterConfirmPassword(),
-      TapSignUpButton(),
-      VerifyEmailAccount()
-    ]
-    ..restartAppBetweenScenarios = true
-    ..targetAppPath = "test_driver/app.dart";
+      // Login steps
+      LoginPageLogStep(),
+      EnterEmailLogStep(),
+      EnterPasswordLogStep(),
+      TapLoginBtnLogStep(),
+      VerifyHomePageLogStep(),
 
-  final runner = GherkinRunner();
 
-  await runner.execute(config);
-}
-*/
-/* switch pages
-Future<void> main() async {
-  final config = FlutterTestConfiguration()
-    ..features = [Glob(r"test_driver/features/switch_page.feature")]
-    ..reporters = [
-      ProgressReporter(),
-      TestRunSummaryReporter(),
-      JsonReporter(path: './report.json')
-    ]
-    ..stepDefinitions = [
-      HomePage(),
-      SelectSearchPage(),
+      // Search job of a location
+      HomePageSearchStep(),
+      SearchForJob(),
+      VerifyJobsSearchStep(),
+
+
+      // Switch pages
+      HomePageSwitchStep(),
+      SelectSearchPageSwitchStep(),
       VerifySearchPage(),
-    ]
-    ..restartAppBetweenScenarios = true
-    ..targetAppPath = "test_driver/app.dart";
 
-  final runner = GherkinRunner();
 
-  await runner.execute(config);
-}
+      //Switch back to home page
+      RandomPage(),
+      SelectHomePage(),
+      VerifyHomePage(),
 
- */
 
-/*edit_profile
-Future<void> main() async {
-  final config = FlutterTestConfiguration()
-    ..features = [Glob(r"test_driver/features/edit_profile.feature")]
-    ..reporters = [
-      ProgressReporter(),
-      TestRunSummaryReporter(),
-      JsonReporter(path: './report.json')
-    ]
-    ..stepDefinitions = [
-      HomePageGiven(),
-      SelectProfileStep(),
-      TapEditProfileStep(),
-      EnterFullName(),
-      SaveProfile(),
-      CheckFullName()
-    ]
-    ..restartAppBetweenScenarios = true
-    ..targetAppPath = "test_driver/app.dart";
-
-  final runner = GherkinRunner();
-
-  await runner.execute(config);
-}
-*/
-
-/* job offer detail
-Future<void> main() async {
-  final config = FlutterTestConfiguration()
-    ..features = [Glob(r"test_driver/features/job_offer_details.feature")]
-    ..reporters = [
-      ProgressReporter(),
-      TestRunSummaryReporter(),
-      JsonReporter(path: './report.json')
-    ]
-    ..stepDefinitions = [
-      HomePageGiven(),
-      SelectSearchPageStep(),
-      TapJobOfferStep(),
+      //See job offer details
+      HomePageDetailsStep(),
+      SelectSearchPageDetailsStep(),
+      TapJobOfferDetailsStep(),
       VerifyJobOfferDetails(),
-    ]
-    ..restartAppBetweenScenarios = true
-    ..targetAppPath = "test_driver/app.dart";
 
-  final runner = GherkinRunner();
 
-  await runner.execute(config);
-}
-*/
-/*logout
-Future<void> main() async {
-  final config = FlutterTestConfiguration()
-    ..features = [Glob(r"test_driver/features/logout.feature")]
-    ..reporters = [
-      ProgressReporter(),
-      TestRunSummaryReporter(),
-      JsonReporter(path: './report.json')
-    ]
-    ..stepDefinitions = [
-      HomePageGiven(),
+      //Tap the back button
+      RandomPageStep(),
+      PreviousPageStep(),
+
+
+      //Reviews
+      SearchPageReviewStep(),
+      TapJobOfferReviewStep(),
+      ClickSeeReviews(),
+      VerifyReviewsPage(),
+
+
+      //Edit profile
+      HomePageEditStep(),
+      SelectProfileEditStep(),
+      TapEditProfile(),
+      EnterNameEditStep(),
+      SaveProfileEditStep(),
+      CheckNameEditStep(),
+
+
+      //Logout
+      RandomPageLogout(),
       ClickSignOut(),
       VerifyLoginPage(),
+
     ]
-    ..restartAppBetweenScenarios = true
+
+
+    ..restartAppBetweenScenarios = false
     ..targetAppPath = "test_driver/app.dart";
-
   final runner = GherkinRunner();
-
-  await runner.execute(config);
-}
-*/
-/*reviews
-Future<void> main() async {
-  final config = FlutterTestConfiguration()
-    ..features = [Glob(r"test_driver/features/reviews.feature")]
-    ..reporters = [
-      ProgressReporter(),
-      TestRunSummaryReporter(),
-      JsonReporter(path: './report.json')
-    ]
-    ..stepDefinitions = [
-      HomePageGiven(),
-      SelectSearchPage(),
-      TapJobOffer(),
-      ClickSeeReviews(),
-      VerifyReviewsPage()
-    ]
-    ..restartAppBetweenScenarios = true
-    ..targetAppPath = "test_driver/app.dart";
-
-  final runner = GherkinRunner();
-
-  await runner.execute(config);
-}
-
-*/
-
-Future<void> main() async {
-  final config = FlutterTestConfiguration()
-    ..features = [Glob(r"test_driver/features/search_location.feature")]
-    ..reporters = [
-      ProgressReporter(),
-      TestRunSummaryReporter(),
-      JsonReporter(path: './report.json')
-    ]
-    ..stepDefinitions = [
-      HomePageGiven(),
-      SearchForJob(),
-      VerifyJobsInLocation(),
-    ]
-    ..restartAppBetweenScenarios = true
-    ..targetAppPath = "test_driver/app.dart";
-
-  final runner = GherkinRunner();
-
   await runner.execute(config);
 }

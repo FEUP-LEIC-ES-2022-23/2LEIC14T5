@@ -93,6 +93,7 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
             ),
             const SizedBox(height: 8),
             TextButton(
+              key: const ValueKey('cancel_key'),
               style: ElevatedButton.styleFrom(
                 minimumSize: const Size.fromHeight(50),
               ),

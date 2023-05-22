@@ -180,7 +180,7 @@ class HomePageState extends State<HomePage> {
             fontSize: 20,
           ),
         ),
-        duration: const Duration(seconds: 3),
+        duration: const Duration(seconds: 5),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
         ),

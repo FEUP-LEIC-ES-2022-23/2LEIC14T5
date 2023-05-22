@@ -2,15 +2,14 @@ import 'package:flutter_driver/flutter_driver.dart';
 import 'package:flutter_gherkin/flutter_gherkin.dart';
 import 'package:gherkin/gherkin.dart';
 
-class HomePageGiven extends GivenWithWorld<FlutterWorld> {
+class RandomPageLogout extends GivenWithWorld<FlutterWorld> {
   @override
   Future<void> executeStep() async {
-    // Assuming the home page is already displayed
-    // You can add any necessary setup steps here
+    // Assuming the random Page is already displayed
   }
 
   @override
-  RegExp get pattern => RegExp(r'I am on the Home Page');
+  RegExp get pattern => RegExp(r'I am on a random Page');
 }
 
 class ClickSignOut extends AndWithWorld<FlutterWorld> {

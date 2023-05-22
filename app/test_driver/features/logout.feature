@@ -1,6 +1,6 @@
-Feature: Testng the logout
+Feature: Testing the logout
   Scenario: Successful logout
-    Given I am on the Home Page
-    And I open the drawer
+    Given I am on a random Page
+    When I open the drawer
     And I select "Sign Out"
     Then I should be on the Login Page
