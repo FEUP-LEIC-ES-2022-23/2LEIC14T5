@@ -2,23 +2,26 @@ import 'package:flutter_driver/flutter_driver.dart';
 import 'package:flutter_gherkin/flutter_gherkin.dart';
 import 'package:gherkin/gherkin.dart';
 
-class SearchPageGiven extends GivenWithWorld<FlutterWorld> {
+class SearchPageReviewStep extends GivenWithWorld<FlutterWorld> {
   @override
   Future<void> executeStep() async {
     final searchPage = find.byValueKey('searchPage');
     final isSearchPageDisplayed = await FlutterDriverUtils.isPresent(world.driver, searchPage);
     expect(isSearchPageDisplayed, true);
+    await Future.delayed(const Duration(seconds: 1));
   }
 
   @override
   RegExp get pattern => RegExp(r'I am on the Search Page');
 }
 
-class TapJobOffer extends AndWithWorld<FlutterWorld> {
+class TapJobOfferReviewStep extends WhenWithWorld<FlutterWorld> {
   @override
   Future<void> executeStep() async {
     final jobOffer = find.byValueKey('arrowIcon_0');
     await FlutterDriverUtils.tap(world.driver, jobOffer);
+    await Future.delayed(const Duration(seconds: 1));
+
   }
 
   @override
@@ -50,5 +53,5 @@ class VerifyReviewsPage extends ThenWithWorld<FlutterWorld> {
   }
 
   @override
-  RegExp get pattern => RegExp(r'I see Review Page on the screen');
+  RegExp get pattern => RegExp(r'I see the Review Page on the screen');
 }

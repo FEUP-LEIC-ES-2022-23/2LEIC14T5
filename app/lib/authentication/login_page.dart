@@ -67,7 +67,7 @@ class _LoginPageState extends State<LoginPage> {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
                   child: TextField(
-                    key: const Key('emailfield'),
+                    key: const Key('emailField_key'),
                     controller: _emailController,
                     decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
@@ -90,7 +90,7 @@ class _LoginPageState extends State<LoginPage> {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
                   child: TextField(
-                    key: const Key('passfield'),
+                    key: const Key('passField_key'),
                     controller: _passwordController,
                     obscureText: true,
                     decoration: InputDecoration(
@@ -139,7 +139,7 @@ class _LoginPageState extends State<LoginPage> {
                   child: GestureDetector(
                     onTap: signIn,
                     child: Container(
-                      key: const Key('signInBtn'),
+                      key: const Key('signInBtn_key'),
                       padding: const EdgeInsets.all(20),
                       decoration: BoxDecoration(
                         color: Colors.orange,

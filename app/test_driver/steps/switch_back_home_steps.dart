@@ -2,10 +2,10 @@ import 'package:flutter_driver/flutter_driver.dart';
 import 'package:flutter_gherkin/flutter_gherkin.dart';
 import 'package:gherkin/gherkin.dart';
 
-class GivenRandomPage extends GivenWithWorld<FlutterWorld> {
+class RandomPage extends GivenWithWorld<FlutterWorld> {
   @override
   Future<void> executeStep() async {
-    await Future.delayed(const Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 1));
   }
 
   @override
@@ -28,7 +28,7 @@ class VerifyHomePage extends ThenWithWorld<FlutterWorld> {
   Future<void> executeStep() async {
     final searchPage = find.byValueKey('homePage');
     final isSearchPageDisplayed = await FlutterDriverUtils.isPresent(world.driver, searchPage);
-    await Future.delayed(const Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 1));
     expect(isSearchPageDisplayed, true);
   }
 

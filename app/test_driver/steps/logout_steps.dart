@@ -5,8 +5,7 @@ import 'package:gherkin/gherkin.dart';
 class RandomPageLogout extends GivenWithWorld<FlutterWorld> {
   @override
   Future<void> executeStep() async {
-    // Assuming the home page is already displayed
-    // You can add any necessary setup steps here
+    // Assuming the random Page is already displayed
   }
 
   @override

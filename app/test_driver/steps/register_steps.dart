@@ -9,7 +9,8 @@ final randomEmail = '$username@example.com';
 class LoginPageRegStep extends GivenWithWorld<FlutterWorld> {
   @override
   Future<void> executeStep() async {
-    // assuming that the login page is already displayed!!
+    // Assuming the login page is already displayed
+    await Future.delayed(const Duration(seconds: 1));
   }
 
   @override
@@ -21,6 +22,8 @@ class TapRegisterNowRegStep extends WhenWithWorld<FlutterWorld> {
   Future<void> executeStep() async {
     final registerNowButton = find.byValueKey('registerBtn_key');
     await FlutterDriverUtils.tap(world.driver, registerNowButton);
+    await Future.delayed(const Duration(seconds: 1));
+
   }
 
   @override
@@ -33,6 +36,8 @@ class EmailRegStep extends AndWithWorld<FlutterWorld> {
     final email = randomEmail;
     final emailField = find.byValueKey('emailRegister_key');
     await FlutterDriverUtils.enterText(world.driver, emailField, email);
+    await Future.delayed(const Duration(seconds: 1));
+
   }
 
   @override
@@ -45,6 +50,8 @@ class PasswordRegStep extends AndWithWorld<FlutterWorld> {
     const password = 'password123';
     final passwordField = find.byValueKey('passwordRegister_key');
     await FlutterDriverUtils.enterText(world.driver, passwordField, password);
+    await Future.delayed(const Duration(seconds: 1));
+
   }
 
   @override
@@ -57,6 +64,8 @@ class ConfirmPassRegStep extends AndWithWorld<FlutterWorld> {
     const password = 'password123';
     final confirmPasswordField = find.byValueKey('confirmPassReg_key');
     await FlutterDriverUtils.enterText(world.driver, confirmPasswordField, password);
+    await Future.delayed(const Duration(seconds: 1));
+
   }
 
   @override
@@ -68,6 +77,8 @@ class TapSignUpBtnRegStep extends AndWithWorld<FlutterWorld> {
   Future<void> executeStep() async {
     final signUpButton = find.byValueKey('signUpBtn_key');
     await FlutterDriverUtils.tap(world.driver, signUpButton);
+    await Future.delayed(const Duration(seconds: 1));
+
   }
 
   @override
@@ -78,15 +89,12 @@ class TapSignUpBtnRegStep extends AndWithWorld<FlutterWorld> {
 class VerifyEmailAccRegStep extends ThenWithWorld<FlutterWorld> {
   @override
   Future<void> executeStep() async {
-
     await Future.delayed(const Duration(seconds: 2));
     final verifyEmailPage = find.byValueKey('verifyEmailPage');
     final isVerifyEmailPageDisplayed = await FlutterDriverUtils.isPresent(world.driver, verifyEmailPage);
     expect(isVerifyEmailPageDisplayed, true);
     final cancelBtn = find.byValueKey('cancel_key');
     await FlutterDriverUtils.tap(world.driver, cancelBtn);
-
-    print('--> Test REGISTER finished successfully! <--');
 
   }
 

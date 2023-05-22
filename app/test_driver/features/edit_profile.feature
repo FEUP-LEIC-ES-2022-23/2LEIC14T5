@@ -1,6 +1,6 @@
 Feature:Edit profile
   Scenario: Edit Full Name of a user
-  Given I am on the Home Page
+  Given I am on a random Page
   When I open the drawer
   And I select "Profile"
   And I tap the "Edit Profile" button

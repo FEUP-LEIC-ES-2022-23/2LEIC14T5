@@ -1,6 +1,6 @@
 Feature: Switching between pages
-  Scenario: Switching back to Home Page
+  Scenario: Switch back to the Home Page
     Given I am on a random Page
-    And I open the drawer
-    When I select "Home Page"
+    When I open the drawer
+    And I select "Home Page"
     Then I should be on the Home Page

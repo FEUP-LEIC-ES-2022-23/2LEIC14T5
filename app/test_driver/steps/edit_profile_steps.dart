@@ -10,18 +10,17 @@ final randomFirstName = firstNames[random.nextInt(firstNames.length)];
 final randomLastName = lastNames[random.nextInt(lastNames.length)];
 final randomFullName = '$randomFirstName $randomLastName';
 
-class HomePageGivenEdit extends GivenWithWorld<FlutterWorld>{
+class HomePageEditStep extends GivenWithWorld<FlutterWorld>{
   @override
   Future<void> executeStep() async {
-    // Assuming the home page is already displayed
-    // You can add any necessary setup steps here
+    // Assuming the random Page is already displayed
   }
 
   @override
-  RegExp get pattern => RegExp(r'I am on the Home Page');
+  RegExp get pattern => RegExp(r'I am on a random Page');
 }
 
-class SelectProfileStep extends AndWithWorld<FlutterWorld> {
+class SelectProfileEditStep extends AndWithWorld<FlutterWorld> {
   @override
   Future<void> executeStep() async {
     final profileButton = find.byValueKey('profile_key');
@@ -33,7 +32,7 @@ class SelectProfileStep extends AndWithWorld<FlutterWorld> {
   RegExp get pattern => RegExp(r'I select "Profile"');
 }
 
-class TapEditProfileStep extends AndWithWorld<FlutterWorld> {
+class TapEditProfile extends AndWithWorld<FlutterWorld> {
   @override
   Future<void> executeStep() async {
 
@@ -47,7 +46,7 @@ class TapEditProfileStep extends AndWithWorld<FlutterWorld> {
 
 
 
-class EnterFullName extends AndWithWorld<FlutterWorld> {
+class EnterNameEditStep extends AndWithWorld<FlutterWorld> {
   @override
   Future<void> executeStep() async {
     final fullNameField = find.byValueKey('name_key');
@@ -61,9 +60,11 @@ class EnterFullName extends AndWithWorld<FlutterWorld> {
 
 
 
-class SaveProfile extends AndWithWorld<FlutterWorld> {
+class SaveProfileEditStep extends AndWithWorld<FlutterWorld> {
   @override
   Future<void> executeStep() async {
+    await Future.delayed(const Duration(seconds: 2));
+
     final editPage = find.byValueKey('edit_profile_page_key');
 
     await world.driver?.scroll(editPage, 0, -600, const Duration(milliseconds: 500));
@@ -79,7 +80,7 @@ class SaveProfile extends AndWithWorld<FlutterWorld> {
 }
 
 
-class CheckFullName extends ThenWithWorld<FlutterWorld> {
+class CheckNameEditStep extends ThenWithWorld<FlutterWorld> {
   @override
   Future<void> executeStep() async {
     final fullNameFieldKey = find.byValueKey('profile_name_key');

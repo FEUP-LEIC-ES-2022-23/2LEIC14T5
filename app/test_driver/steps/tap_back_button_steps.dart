@@ -6,7 +6,7 @@ import 'package:gherkin/gherkin.dart';
 class RandomPageStep extends GivenWithWorld<FlutterWorld> {
   @override
   Future<void> executeStep() async {
-    await Future.delayed(const Duration(seconds: 4));
+    await Future.delayed(const Duration(seconds: 1));
 
   }
 
@@ -17,7 +17,7 @@ class RandomPageStep extends GivenWithWorld<FlutterWorld> {
 class PreviousPageStep extends GivenWithWorld<FlutterWorld> {
   @override
   Future<void> executeStep() async {
-    await Future.delayed(const Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 1));
 
   }
 

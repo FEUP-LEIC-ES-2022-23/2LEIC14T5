@@ -45,9 +45,6 @@ Future<void> main() async {
       Glob(r"test_driver/features/tap_back_button.feature"),
       Glob(r"test_driver/features/tap_back_button.feature"),
 
-      //Switch back to home page (Random page -> Home)
-      Glob(r"test_driver/features/switch_back_home.feature"),
-
       //Edit profile
       Glob(r"test_driver/features/edit_profile.feature"),
 
@@ -75,53 +72,60 @@ Future<void> main() async {
 
 
       // Login steps
-      LoginPageGiven(),
-      EnterEmailField(),
-      EnterPasswordFieldWhen(),
-      TapLoginButtonWhen(),
-      VerifyHomePageThen(),
+      LoginPageLogStep(),
+      EnterEmailLogStep(),
+      EnterPasswordLogStep(),
+      TapLoginBtnLogStep(),
+      VerifyHomePageLogStep(),
+
 
       // Search job of a location
-      HomePageGiven(),
+      HomePageSearchStep(),
       SearchForJob(),
-      VerifyJobsInLocation(),
+      VerifyJobsSearchStep(),
+
 
       // Switch pages
-      HomePage(),
-      SelectSearchPage(),
+      HomePageSwitchStep(),
+      SelectSearchPageSwitchStep(),
       VerifySearchPage(),
 
+
       //Switch back to home page
-      GivenRandomPage(),
+      RandomPage(),
       SelectHomePage(),
       VerifyHomePage(),
 
+
       //See job offer details
-      HomePageStep(),
-      SelectSearchPageStep(),
-      TapJobOfferStep(),
+      HomePageDetailsStep(),
+      SelectSearchPageDetailsStep(),
+      TapJobOfferDetailsStep(),
       VerifyJobOfferDetails(),
+
 
       //Tap the back button
       RandomPageStep(),
       PreviousPageStep(),
 
+
       //Reviews
-      SearchPageGiven(),
-      TapJobOffer(),
+      SearchPageReviewStep(),
+      TapJobOfferReviewStep(),
       ClickSeeReviews(),
       VerifyReviewsPage(),
 
+
       //Edit profile
-      HomePageGivenEdit(),
-      SelectProfileStep(),
-      TapEditProfileStep(),
-      EnterFullName(),
-      SaveProfile(),
-      CheckFullName(),
+      HomePageEditStep(),
+      SelectProfileEditStep(),
+      TapEditProfile(),
+      EnterNameEditStep(),
+      SaveProfileEditStep(),
+      CheckNameEditStep(),
 
 
-      //logout
+      //Logout
       RandomPageLogout(),
       ClickSignOut(),
       VerifyLoginPage(),

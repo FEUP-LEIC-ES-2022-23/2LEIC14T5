@@ -2,15 +2,14 @@ import 'package:flutter_driver/flutter_driver.dart';
 import 'package:flutter_gherkin/flutter_gherkin.dart';
 import 'package:gherkin/gherkin.dart';
 
-class HomePageGiven extends GivenWithWorld<FlutterWorld> {
+class HomePageSearchStep extends GivenWithWorld<FlutterWorld> {
   @override
   Future<void> executeStep() async {
     // Assuming the home page is already displayed
-    // You can add any necessary setup steps here
   }
 
   @override
-  RegExp get pattern => RegExp(r'I am on the home page');
+  RegExp get pattern => RegExp(r'I am on the Home Page');
 }
 
 class SearchForJob extends WhenWithWorld<FlutterWorld> {
@@ -30,7 +29,7 @@ class SearchForJob extends WhenWithWorld<FlutterWorld> {
   RegExp get pattern => RegExp(r'I search for a job in "Aveiro"');
 }
 
-class VerifyJobsInLocation extends ThenWithWorld<FlutterWorld> {
+class VerifyJobsSearchStep extends ThenWithWorld<FlutterWorld> {
   @override
   Future<void> executeStep() async {
     await Future.delayed(const Duration(seconds: 5));
